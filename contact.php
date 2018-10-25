@@ -2,7 +2,7 @@
 include_once('controller.php');
 
 if(isset($_POST['register']))
-  {  
+  {  var_dump($_POST['register']); die('jjjj');
       $name = $_POST['name'];  
       $subject = $_POST['subject'];  
       $phone = $_POST['phone'];  
@@ -10,6 +10,7 @@ if(isset($_POST['register']))
       $message = $_POST['message'];
 
       $reg= new controller;
+
       $reg->con_register($name,$subject,$phone,$email,$message); 
   }
 ?>

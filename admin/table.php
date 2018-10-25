@@ -2,14 +2,13 @@
    include("controller.php");
    $sel=mysqli_query($con,"SELECT * FROM contact");
     
-    //delete the data
-   //include("controller.php");
      if(isset($_REQUEST['del_id']))
      {
-       $del=$_REQUEST['del_id'];
-
-       $obj->delete($del);
-       header("location:table.php");
+        $del=$_REQUEST['del_id'];
+        
+        $obj= new controller;
+        $obj->delete($del);
+        header("location:table.php");
     }
 ?>
 
