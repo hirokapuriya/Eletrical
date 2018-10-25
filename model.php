@@ -17,6 +17,15 @@
       $subscriber_query= mysqli_query($con,"INSERT INTO subscribe(subscribe_email) values('".$subscribe_email."')") or die(mysqli_error('this is not completed for subscriber'));  
       return $subscriber_query;
     }
+    public function gallery_model($gallery_img)
+    {
+      //var_dump($gallery_img); die('Hello model');
+      global $con;
+          
+      $gallery_query= mysqli_query($con,"INSERT INTO gallery_img(gallery_image) values('".$gallery_img."')") or die(mysqli_error('this is not completed for images'));  
+      //var_dump($gallery_query); die('kjkjkk');
+      return $gallery_query;
+    }
   }
 
 ?>

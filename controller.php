@@ -5,11 +5,10 @@
     /*Contact Form Function*/
     public function con_register($name,$subject,$phone,$email,$message)
     {
-      //var_dump($name,$subject,$phone,$email,$message);
+      
       $ins=new model;
       
-        $register = $ins->contact($name,$subject,$phone,$email,$message);
-        //var_dump($register); die('7777');
+        $register = $ins->contact($name,$subject,$phone,$email,$message); 
         if($register)
         {  
              echo "<script>alert('Registration Successful')</script>";  
@@ -37,6 +36,23 @@
         {  
             echo "<script>alert('Subscribed Not Successful')</script>";  
         }
+      }
+      /*Image upload function*/
+      public function image_gallery($gallery_img){
+        //var_dump($gallery_img); die('opopopopo');
+        $gallery_ctrl=new model;
+
+        //var_dump($gallery_ctrl); die('hello_ctrl');
+        /*$image_done = $gallery_ctrl->gallery_model($gallery_img);
+        if ($image_done) {
+          echo "image Uploaded";
+        }else{
+          echo "image Not Uploaded";
+        }*/
+
+        
+
+        
       }
   } 
 

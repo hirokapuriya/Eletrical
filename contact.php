@@ -2,7 +2,7 @@
 include_once('controller.php');
 
 if(isset($_POST['register']))
-  {  var_dump($_POST['register']); die('jjjj');
+  {  //var_dump($_POST['register']); die('jjjj');
       $name = $_POST['name'];  
       $subject = $_POST['subject'];  
       $phone = $_POST['phone'];  
