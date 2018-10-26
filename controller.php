@@ -37,23 +37,6 @@
             echo "<script>alert('Subscribed Not Successful')</script>";  
         }
       }
-      /*Image upload function*/
-      public function image_gallery($gallery_img){
-        //var_dump($gallery_img); die('opopopopo');
-        $gallery_ctrl=new model;
-
-        //var_dump($gallery_ctrl); die('hello_ctrl');
-        /*$image_done = $gallery_ctrl->gallery_model($gallery_img);
-        if ($image_done) {
-          echo "image Uploaded";
-        }else{
-          echo "image Not Uploaded";
-        }*/
-
-        
-
-        
-      }
   } 
 
 ?>

@@ -1,8 +1,8 @@
 ﻿<?php
 error_reporting(E_ALL); 
 ini_set('display_errors', TRUE);  
-include('../controller.php');
-//kapuriyahiren8899@gmail.com
+include('controller.php');
+
 if(isset($_POST['submit']))
 {
     //var_dump($_POST['submit']); die('789');
@@ -18,7 +18,7 @@ if(isset($_POST['submit']))
     <input class="btn-one" type="submit" name="submit_image" value="submit_image" required="required">
 </form> -->
 
-<form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
         Upload a File:
         <input type="file" name="gallery_image" id="fileToUpload">
         <input type="submit" name="submit" value="Upload File Now" >
