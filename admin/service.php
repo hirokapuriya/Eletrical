@@ -33,6 +33,12 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
 
 <form method="post">
 <table>
+    <?php while ($req = mysqli_fetch_assoc($get_services_name)) { ?>
+    <tr>
+      <td><?php echo $req['service_name']; ?></td>
+    </tr>  
+   <?php } ?>
+    
     <tr>
         <td>
             <select name="service_name_dp">

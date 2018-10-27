@@ -29,7 +29,7 @@
          
         $service_done = $service_ctrl->Add_service_model($service_name);
         if($service_done){
-        	header("location:service.php");
+        	header("location:add_service.php");
         }else{
         	header('contact.php');
         }
