@@ -28,48 +28,7 @@
             </div>
         </nav>
         <!-- /. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
-                    <li>
-                        <div class="user-img-div">
-                            <img src="assets/img/user.png" class="img-thumbnail" />
-
-                            <div class="inner-text">
-                                Jhon Deo Alex
-                           </div>
-                        </div>
-
-                    </li>
-                    <li>
-                        <a class="index.php" href="index.html">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="form.html">Add Services</span></a>
-                    </li>
-                    <li>
-                        <a href="gallery.html">Gallery</a>
-                    </li>
-                    <li>
-                        <a href="error.html">AC & DC Drive programning</a>
-                    </li>
-                    <li>
-                        <a href="error.html">AC & DC Drive Reparing</a>
-                    </li>
-                    <li>
-                        <a href="error.html">PLC & SMI programning</a>
-                    </li>
-                    <li>
-                        <a href="error.html">Subscriber</a>
-                    </li>
-                    <li>
-                        <a href="table.html">Contact-us</a>
-                    </li>
-                </ul>
-
-            </div>
-
-        </nav>
+        <?php include('admin_include/inc_menubar.php'); ?>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div id="page-inner">

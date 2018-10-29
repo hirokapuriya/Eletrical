@@ -3,8 +3,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);  
 echo "hello service";
 include("controller.php");
-
-$get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
+//This $get_services_drop using Drop-down option
+$get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
+//This $get_services_name using side list name option
+$get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY service_name DESC");
 
   if(isset($_POST['service']))
   {
@@ -51,139 +53,7 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
             </div>
         </nav>
         <!-- /. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
-                    <li>
-                        <div class="user-img-div">
-                            <img src="assets/img/user.png" class="img-thumbnail" />
-
-                            <div class="inner-text">
-                                Jhon Deo Alex
-                            <br />
-                                <small>Last Login : 2 Weeks Ago </small>
-                            </div>
-                        </div>
-
-                    </li>
-
-
-                    <li>
-                        <a  href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-desktop "></i>UI Elements <span class="fa arrow"></span></a>
-                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="panel-tabs.html"><i class="fa fa-toggle-on"></i>Tabs & Panels</a>
-                            </li>
-                            <li>
-                                <a href="notification.html"><i class="fa fa-bell "></i>Notifications</a>
-                            </li>
-                             <li>
-                                <a href="progress.html"><i class="fa fa-circle-o "></i>Progressbars</a>
-                            </li>
-                             <li>
-                                <a href="buttons.html"><i class="fa fa-code "></i>Buttons</a>
-                            </li>
-                             <li>
-                                <a href="icons.html"><i class="fa fa-bug "></i>Icons</a>
-                            </li>
-                             <li>
-                                <a href="wizard.html"><i class="fa fa-bug "></i>Wizard</a>
-                            </li>
-                             <li>
-                                <a href="typography.html"><i class="fa fa-edit "></i>Typography</a>
-                            </li>
-                             <li>
-                                <a href="grid.html"><i class="fa fa-eyedropper "></i>Grid</a>
-                            </li>
-                            
-                           
-                        </ul>
-                    </li>
-                     <li>
-                        <a href="#"><i class="fa fa-yelp "></i>Extra Pages <span class="fa arrow"></span></a>
-                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="invoice.html"><i class="fa fa-coffee"></i>Invoice</a>
-                            </li>
-                            <li>
-                                <a href="pricing.html"><i class="fa fa-flash "></i>Pricing</a>
-                            </li>
-                             <li>
-                                <a href="component.html"><i class="fa fa-key "></i>Components</a>
-                            </li>
-                             <li>
-                                <a href="social.html"><i class="fa fa-send "></i>Social</a>
-                            </li>
-                            
-                             <li>
-                                <a href="message-task.html"><i class="fa fa-recycle "></i>Messages & Tasks</a>
-                            </li>
-                            
-                           
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="table.html"><i class="fa fa-flash "></i>Data Tables </a>
-                        
-                    </li>
-                     <li>
-                        <a class="active-menu-top" href="#"><i class="fa fa-bicycle "></i>Forms <span class="fa arrow"></span></a>
-                         <ul class="nav nav-second-level collapse in">
-                           
-                             <li>
-                                <a  class="active-menu" href="form.html"><i class="fa fa-desktop "></i>Basic </a>
-                            </li>
-                             <li>
-                                <a href="form-advance.html"><i class="fa fa-code "></i>Advance</a>
-                            </li>
-                             
-                           
-                        </ul>
-                    </li>
-                     <li>
-                        <a href="gallery.html"><i class="fa fa-anchor "></i>Gallery</a>
-                    </li>
-                     <li>
-                        <a href="error.html"><i class="fa fa-bug "></i>Error Page</a>
-                    </li>
-                    <li>
-                        <a href="login.html"><i class="fa fa-sign-in "></i>Login Page</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap "></i>Multilevel Link <span class="fa arrow"></span></a>
-                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#"><i class="fa fa-bicycle "></i>Second Level Link</a>
-                            </li>
-                             <li>
-                                <a href="#"><i class="fa fa-flask "></i>Second Level Link</a>
-                            </li>
-                            <li>
-                                <a href="#">Second Level Link<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#"><i class="fa fa-plus "></i>Third Level Link</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-comments-o "></i>Third Level Link</a>
-                                    </li>
-
-                                </ul>
-
-                            </li>
-                        </ul>
-                    </li>
-                   
-                    <li>
-                        <a  href="blank.html"><i class="fa fa-square-o "></i>Blank Page</a>
-                    </li>
-                </ul>
-            </div>
-
-        </nav>
+        <?php include('admin_include/inc_menubar.php'); ?>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div id="page-inner">
@@ -216,7 +86,7 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
                             <div class="form-group">
                                 <label>Select Service</label>
                                 <select class="form-control">
-                                    <?php while ($result = mysqli_fetch_assoc($get_services_name)) {?>
+                                    <?php while ($result = mysqli_fetch_assoc($get_services_drop)) {?>
                                         <option value="<?php echo $result['service_id'];?>"><?php echo $result['service_name'];?></option>
                                     <?php } ?>
                                 </select>
@@ -240,59 +110,11 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
                                 <div class="chat-widget-main">
                                   <div class="panel-body">
                                 <div class="list-group">
-
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-twitter fa-fw"></i>3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-envelope fa-fw"></i>Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-tasks fa-fw"></i>New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-upload fa-fw"></i>Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                    </a>
-
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-shopping-cart fa-fw"></i>New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                    </a>
-                                     <a href="#" class="list-group-item">
-                                        <i class="fa fa-upload fa-fw"></i>Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                    </a>
-                                   
+                                    <?php while ($row_option_name = mysqli_fetch_assoc($get_services_name)) { ?>
+                                        <a href="#" class="list-group-item">
+                                           <?php echo $row_option_name['service_name']; ?>
+                                        </a>    
+                                   <?php } ?>
                                 </div>
                                 <!-- /.list-group -->
                                 <a href="#" class="btn btn-info btn-block">View All Alerts</a>
@@ -300,172 +122,10 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-                <!-- <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                           SINGUP FORM
-                        </div>
-                        <div class="panel-body">
-                            <form role="form">
-                                        
-                                 <div class="form-group">
-                                            <label>Enter Email</label>
-                                            <input class="form-control" type="text">
-                                     <p class="help-block">Help text here.</p>
-                                        </div>
-                                            <div class="form-group">
-                                            <label>Enter Password</label>
-                                            <input class="form-control" type="password">
-                                     <p class="help-block">Help text here.</p>
-                                        </div>
-                                <div class="form-group">
-                                            <label>Re Type Password </label>
-                                            <input class="form-control" type="password">
-                                     <p class="help-block">Help text here.</p>
-                                        </div>
-                                 
-                                        <button type="submit" class="btn btn-danger">Register Now </button>
-
-                            </form>
-                        </div>
-                    </div>
-                </div> -->
-        </div>
-             <!--/.ROW-->
-             <div class="row">
-                 <div class="col-md-6 col-sm-6 col-xs-12">
-               <!-- <div class="panel panel-primary">
-                        <div class="panel-heading">
-                           FORM ELEMENTS
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                            <label>Select Example</label>
-                                            <select class="form-control">
-                                                <option>One Vale</option>
-                                                <option>Two Vale</option>
-                                                <option>Three Vale</option>
-                                                <option>Four Vale</option>
-                                            </select>
-                                        </div>
-                            <hr>
-                            <div class="form-group">
-                                            <label>Multiple Select Example</label>
-                                            <select multiple="" class="form-control">
-                                                <option>One Vale</option>
-                                                <option>Two Vale</option>
-                                                <option>Three Vale</option>
-                                                <option>Four Vale</option>
-                                            </select>
-                                        </div>
-                            <hr>
-                            <div class="form-group">
-                                            <label>Checkboxes</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox Example One
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox Example Two
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox Example Three
-                                                </label>
-                                            </div>
-                                  <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox Example Four
-                                                </label>
-                                            </div>
-                                        </div>
-                            <hr>
-                            <div class="form-group">
-                                            <label>Radio Button Examples</label>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Radio Example One
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio Example Two
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio Example Three
-                                                </label>
-                                            </div>
-                                        </div>
-                            </div>
-                        </div> -->
-                            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <!--  <div class="panel panel-default">
-                        <div class="panel-heading">
-                           OTHER ELEMENTS FOR FORM
-                        </div>
-                        <div class="panel-body">
-                            
-                            <form role="form">
-                                Some Message Examples
-                                <br />
-                                        <div class="form-group has-success">
-                                            <label class="control-label" for="success">SUCCESS EXAMPLE</label>
-                                            <input type="text" class="form-control" id="success" />
-                                        </div>
-                                        <div class="form-group has-warning">
-                                            <label class="control-label" for="warning">WARNING EXAMPLE</label>
-                                            <input type="text" class="form-control" id="warning" />
-                                        </div>
-                                        <div class="form-group has-error">
-                                            <label class="control-label" for="error">ERROR EXAMPLE</label>
-                                            <input type="text" class="form-control" id="error" />
-                                        </div>
-                                    </form>
-                            <hr>
-                            Other Group Examples
-                            <br>
-                            <form role="form">
-                                <div class="input-group">
-                                    <span class="form-group input-group-btn">
-                                      <button class="btn btn-default" type="button">Go!</button>
-                                    </span>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <br />
-                                <div class="input-group">
-                                    <input type="text" class="form-control" />
-                                    <span class="form-group input-group-btn">
-                                        <button class="btn btn-default" type="button">Go!</button>
-                                    </span>
-                                </div>
-                                         </form>
-                            <hr>
-                            <form role="form">
-                                            <div class="form-group">
-                                                <label for="disabledInput">Disabled input</label>
-                                                <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled="">
-                                            </div>
-                                            
-                                            
-                                    </form>
-                            <hr />
-                            For more customization for this template or its components please visit official bootstrap website i.e getbootstrap.com or
-                            <a href="http://getbootstrap.com/components/" target="_blank">click here</a> 
-                            </div>
-                        </div> -->
-                            </div>
-
-        </div>
-        <div class="col-md-12">
+                </div>
+                <!--/.ROW-->
+                <div class="col-md-12">
                   <!--   Kitchen Sink -->
                     <div class="panel panel-default">
                         <div class="panel-heading">

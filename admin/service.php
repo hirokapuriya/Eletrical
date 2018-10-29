@@ -1,9 +1,10 @@
 ﻿<?php
 error_reporting(E_ALL); 
 ini_set('display_errors', TRUE);  
-echo "hello service";
+//echo "hello service";
 include("controller.php");
 
+$get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
 $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
 
 
@@ -18,6 +19,7 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
       $service_view->Add_service_admin_ctrl($service_name); 
   }
   if(isset($_POST['add_services'])){
+        var_dump($_POST['service_name']); die('7777');
         var_dump($_POST['Service_description']); die('oooo');
   }
 
@@ -33,18 +35,22 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
 
 <form method="post">
 <table>
-    <?php while ($req = mysqli_fetch_assoc($get_services_name)) { ?>
-    <tr>
-      <td><?php echo $req['service_name']; ?></td>
+    <?php while ($row = mysqli_fetch_assoc($get_services_name)) { ?>
+      <tr>
+        <td>
+          <?php echo $row['service_name']; ?>  
+        </td>
     </tr>  
-   <?php } ?>
+      
+    <?php } ?>
     
     <tr>
         <td>
             <select name="service_name_dp">
-                <?php while ($result = mysqli_fetch_assoc($get_services_name)) {?>
-                        <option value="<?php echo $result['service_id'];?>"><?php echo $result['service_name'];?></option>
-                <?php } ?>
+                <?php while ($result = mysqli_fetch_assoc($get_services_drop)) 
+                {
+                     echo '<option value='.$result["service_id"].'>'.$result["service_name"].'</option>';
+                } ?>
             </select>
         </td>
     </tr>
@@ -52,7 +58,7 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
         <td>
             <textarea cols="30" rows="30" name="Service_description"></textarea>
         </td>
-        <td> <button class="btn btn-default" type="submit" name="add_services" value="add_services_data" type="button">Add Data</button></td>
+        <td><button class="btn btn-default" type="submit" name="add_services" value="add_services_data" type="button">Add Data</button></td>
     </tr>
 </table>
 </form>
