@@ -3,23 +3,47 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);  
 echo "hello service";
 include("controller.php");
+
+//Pagination Data Limi and Satting
+$limit = 5;  
+if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+$start_from = ($page-1) * $limit;
+
+$get_service_details = mysqli_query($con,"SELECT COUNT(id) FROM Service_tab_details");  
+$option_details = mysqli_fetch_row($get_service_details);  
+$total_records = $option_details[0];  
+$total_pages = ceil($total_records / $limit);  
+//PAgination Code Ending
+
 //This $get_services_drop using Drop-down option
 $get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
 //This $get_services_name using side list name option
 $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY service_name DESC");
-
+//This $get_service_details using final option
+$get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id LIMIT $start_from, $limit ");
+  //Add Service name in list  
   if(isset($_POST['service']))
   {
-      // /var_dump($_POST['service']); die('789');
       $service_name = $_POST['service_name']; 
-      //var_dump($service_name); die('klklklk');
-      
       $service_view= new controller;
       $service_view->Add_service_admin_ctrl($service_name); 
   }
+  //Add Service Details and Description
   if(isset($_POST['add_services'])){
-        var_dump($_POST['Service_description']); die('oooo');
+       
+       $select_dp_service = $_POST['service_name_opt'];
+       $service_desc = $_POST['Service_description'];
+       $service_ctrl_select = new controller;
+       $service_ctrl_select->Add_service_description_ctrl($select_dp_service,$service_desc);
   }
+  //Delete Service Tab and data 
+  if(isset($_REQUEST['option_del_id']))
+  {
+       $option_delete=$_REQUEST['option_del_id'];
+       $delete_obj= new controller;
+       $delete_obj->service_delete($option_delete);
+       header("location:add_service.php");
+   }
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,8 +51,7 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Bootstrap Advance Admin Template</title>
-
-  <?php include('admin_include/inc_css.php') ?>
+    <?php include('admin_include/inc_css.php'); ?>
 </head>
 <body>
     <div id="wrapper">
@@ -60,48 +83,47 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY 
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-head-line">Add Services</h1>
-                        <!-- <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
- -->
                     </div>
                 </div>
                 <!-- /. ROW  -->
                 <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-               <div class="panel panel-info">
-                    <div class="panel-heading">
-                       Tab Form
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" method="post">
-                            <div class="input-group">
-                                <input type="text" placeholder="Please Enter Service-Tab" class="form-control" name="service_name" />
-                                <span class="form-group input-group-btn">
-                                    <button class="btn btn-default" type="submit" name="service" value="TabService" type="button">Go!</button>
-                                </span>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                       <div class="panel panel-info">
+                            <div class="panel-heading">
+                               Tab Form
                             </div>
-                        </form>
+                            <div class="panel-body">
+                                <form role="form" method="post">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Please Enter Service-Tab" class="form-control" name="service_name" />
+                                        <span class="form-group input-group-btn">
+                                            <button class="btn btn-default" type="submit" name="service" value="TabService" type="button">Go!</button>
+                                        </span>
+                                    </div>
+                                </form>
 
-                        <form>
-                            <br>
-                            <div class="form-group">
-                                <label>Select Service</label>
-                                <select class="form-control">
-                                    <?php while ($result = mysqli_fetch_assoc($get_services_drop)) {?>
-                                        <option value="<?php echo $result['service_id'];?>"><?php echo $result['service_name'];?></option>
-                                    <?php } ?>
-                                </select>
+                                <form method="post">
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Select Service</label>
+                                        <select class="form-control" name="service_name_opt">
+                                            <?php while ($result = mysqli_fetch_assoc($get_services_drop)) {?>
+                                                <option value="<?php echo $result['service_id'];?>"><?php echo $result['service_name'];?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Enter Description</label>
+                                        <div id="editor">
+                                            <textarea id='edit' style="margin-top: 30px;" name="Service_description"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" type="submit" name="add_services" value="add_services_data" class="btn btn-info">Send Message </button>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label>Enter Description</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-info">Send Message </button>
-                        </form>
+                        </div>
                     </div>
-                </div>
-            </div>
-                            <div class="col-md-6">
-
+                    <div class="col-md-6">
                         <div class="panel panel-success">
                             <div class="panel-heading">
                               Service List
@@ -109,23 +131,25 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY 
                             <div class="panel-body" style="padding: 0px;">
                                 <div class="chat-widget-main">
                                   <div class="panel-body">
-                                <div class="list-group">
-                                    <?php while ($row_option_name = mysqli_fetch_assoc($get_services_name)) { ?>
-                                        <a href="#" class="list-group-item">
-                                           <?php echo $row_option_name['service_name']; ?>
-                                        </a>    
-                                   <?php } ?>
-                                </div>
-                                <!-- /.list-group -->
-                                <a href="#" class="btn btn-info btn-block">View All Alerts</a>
-                            </div>
+                                    <div class="list-group">
+                                        <?php while ($row_option_name = mysqli_fetch_assoc($get_services_name)) { ?>
+
+                                            <a href="#" class="list-group-item">
+                                                <!-- <input type="checkbox" name="chk[]" value="<?php echo $row_option_name['service_id']; ?>" /> -->
+                                                <?php echo $row_option_name['service_name']; ?>
+                                            </a>    
+                                       <?php } ?>
+                                    </div>
+                                    <!-- /.list-group -->
+                                    <a href="#" class="btn btn-info btn-block">View All Alerts</a>
+                                  </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--/.ROW-->
-                <div class="col-md-12">
+                <div>
                   <!--   Kitchen Sink -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -137,7 +161,7 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY 
                                     <thead>
                                         <tr>
                                             <th width="5%">Id</th>
-                                            <th width="25%">Image</th>
+                                            <th width="25%">Service Name</th>
                                             <th width="25%">Content</th>
                                             <th width="13%">Createdat</th>
                                             <th width="13%">Updated</th>
@@ -145,29 +169,34 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                     <?php while ($option_details = mysqli_fetch_assoc($get_service_details)) { ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>content</td>
-                                            <td>02/05/2018</td>
-                                            <td>02/05/2018</td>
+                                            <td><?php echo $option_details['id']; ?></td>
+                                            <td><?php echo $option_details['service_name']; ?></td>
+                                            <td><?php echo $option_details['service_description']; ?></td>
+                                            <td><?php echo $option_details['created']; ?></td>
+                                            <td><?php echo $option_details['updated']; ?></td>
                                             <td>
-                                              <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button>
-                                              <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
+                                                <button class="btn btn-primary">Edit</button>
+                                              <a href="add_service.php?option_del_id=<?php echo $option_details['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger">Delete</td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
+                               <?php for ($i=1; $i<=$total_pages; $i++) {  
+                                    echo  $pagLink = "<a class=".'btn btn-danger'." href='add_service.php?page=".$i."'>".$i."</a>";  
+                                } ?>  
                             </div>
                         </div>
                     </div>
                      <!-- End  Kitchen Sink -->
                 </div>
-
             </div>
             <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>
+   
     <!-- /. WRAPPER  -->
     <div id="footer-sec">
         &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
@@ -182,6 +211,51 @@ $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY 
     <script src="assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+  <script type="text/javascript" src="Editor/js/froala_editor.min.js" ></script>
+  <script type="text/javascript" src="Editor/js/plugins/align.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/char_counter.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/code_beautifier.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/code_view.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/colors.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/draggable.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/emoticons.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/entities.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/file.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/font_size.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/font_family.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/fullscreen.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/image.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/image_manager.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/line_breaker.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/inline_style.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/link.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/lists.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/paragraph_format.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/paragraph_style.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/quick_insert.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/quote.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/table.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/save.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/url.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/video.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/help.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/print.min.js"></script>
+  <script type="text/javascript" src="Editor/js/third_party/spell_checker.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/special_characters.min.js"></script>
+  <script type="text/javascript" src="Editor/js/plugins/word_paste.min.js"></script>
+
+  <script>
+    $(function(){
+      $('#edit').froalaEditor()
+    });
+  </script>
+ 
 
 
 </body>

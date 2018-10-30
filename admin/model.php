@@ -24,7 +24,20 @@ ini_set('display_errors', TRUE);
       $add_image =  mysqli_query($con, "INSERT INTO gallery_image(gallery_img) values('".$gallery_img."')") or die(mysqli_error('this is not completed for add gallery_img'));  
       return $add_image;
     }
+    public function Add_service_description_model($select_dp_service,$service_desc){
 
+        global $con;
+        $add_service_desc =  mysqli_query($con, "INSERT INTO Service_tab_details(service_name_opt,service_description) values('".$select_dp_service."','".$service_desc."')") or die(mysqli_error('this is not completed for add gallery_img'));  
+      return $add_service_desc;
+
+    }
+    public function service_delete_model($option_delete)
+    {
+      global $con;
+      $service_delete = mysqli_query($con,"delete from Service_tab_details where id='$option_delete'");
+
+      return $service_delete;
+    }
   }
 
 ?>

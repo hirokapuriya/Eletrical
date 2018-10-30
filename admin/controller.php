@@ -58,6 +58,24 @@ ini_set('display_errors', TRUE);
         	header('contact.php');
         }
 	   }
+     public function Add_service_description_ctrl($select_dp_service,$service_desc)
+     {
+
+        $service_description_ctrl = new model();
+        
+        $service_description_done = $service_description_ctrl->Add_service_description_model($select_dp_service,$service_desc);
+    
+        if($service_description_done){
+          header("location:add_service.php");
+        }else{
+          header("location:add_service.php");
+        }
+    }
+    public function service_delete($option_delete)
+    {
+       $delete_option_ctrl=new model();
+       $delete_option_ctrl->service_delete_model($option_delete);
+    }
   } 
 
 ?>

@@ -5,10 +5,7 @@ include('../controller.php');
 //kapuriyahiren8899@gmail.com
 if(isset($_POST['subscriber']))
   {
-      //var_dump($_POST['subscriber']); die('789');
       $subscribe_email = $_POST['subscribe_email']; 
-      //var_dump($subscribe_email); die('klklklk');
-      
       $subscriber_view= new controller;
       $subscriber_view->subscriber_registration($subscribe_email); 
   }
