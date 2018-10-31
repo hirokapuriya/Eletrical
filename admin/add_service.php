@@ -15,6 +15,15 @@ $total_records = $option_details[0];
 $total_pages = ceil($total_records / $limit);  
 //PAgination Code Ending
 
+//Edit id is get(option_edit_id) in current page
+if(isset($_REQUEST['option_edit_id']))
+{     
+     $id = $_REQUEST['option_edit_id'];
+     $res = mysqli_query($con,"SELECT * FROM `Service_tab_details` WHERE `id`=$id;");
+     $row_option = mysqli_fetch_assoc($res);
+     //var_dump($row_option['option_edit_id']); die('789');
+}
+        
 //This $get_services_drop using Drop-down option
 $get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
 //This $get_services_name using side list name option
@@ -36,13 +45,24 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
        $service_ctrl_select = new controller;
        $service_ctrl_select->Add_service_description_ctrl($select_dp_service,$service_desc);
   }
-  //Delete Service Tab and data 
+  //Delete Service Tab and data(option_del_id) 
   if(isset($_REQUEST['option_del_id']))
   {
        $option_delete=$_REQUEST['option_del_id'];
        $delete_obj= new controller;
        $delete_obj->service_delete($option_delete);
        header("location:add_service.php");
+   }
+   //Edit Service record Data(option_edit_id)
+   if(isset($_REQUEST['edit_services']))
+   {   $edit_service_id = $_REQUEST['option_edit_id'];
+        
+       $edit_select_dp_service = $_POST['service_name_opt'];
+       $edit_service_desc = $_POST['Service_description'];
+      
+       $edit_obj= new controller;
+       $edit_obj->service_edit($edit_select_dp_service,$edit_service_desc,$edit_service_id);
+       
    }
 
 ?>
@@ -106,19 +126,35 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
                                     <br>
                                     <div class="form-group">
                                         <label>Select Service</label>
-                                        <select class="form-control" name="service_name_opt">
+                                        <?php if(isset($row_option))
+                                              { ?>
+                                                <input type="hidden" name="id" value="<?php echo $row_option['id']; ?>">
+                                        <?php }?>
+                                         <select class="form-control" name="service_name_opt">
                                             <?php while ($result = mysqli_fetch_assoc($get_services_drop)) {?>
-                                                <option value="<?php echo $result['service_id'];?>"><?php echo $result['service_name'];?></option>
-                                            <?php } ?>
+                                                <?php if(isset($row_option)) 
+                                                {
+                                                    echo '<option selected="selected" value="'.$result["service_id"].'">'.$result["service_name"].'</option>'; 
+                                                }
+                                                else{   
+                                                    echo '<option value="'.$result["service_id"].'">'.$result["service_name"].'</option>';
+                                                }
+                                             } ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Enter Description</label>
                                         <div id="editor">
-                                            <textarea id='edit' style="margin-top: 30px;" name="Service_description"></textarea>
+                                            <textarea id='edit' style="margin-top: 30px;" name="Service_description">
+                                                <?php echo isset($row_option['service_description'])?$row_option['service_description']:''; ?>
+                                            </textarea>
                                         </div>
                                     </div>
-                                    <button type="submit" type="submit" name="add_services" value="add_services_data" class="btn btn-info">Send Message </button>
+                                    <?php if(isset($row_option)) {?>
+                                        <button type="submit" type="submit" name="edit_services" value="edit_services_data" class="btn btn-info">Edit Data</button>
+                                    <?php }else{?>
+                                    <button type="submit" type="submit" name="add_services" value="add_services_data" class="btn btn-info">Add Data</button>
+                                    <?php } ?>
                                 </form>
                             </div>
                         </div>
@@ -135,7 +171,6 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
                                         <?php while ($row_option_name = mysqli_fetch_assoc($get_services_name)) { ?>
 
                                             <a href="#" class="list-group-item">
-                                                <!-- <input type="checkbox" name="chk[]" value="<?php echo $row_option_name['service_id']; ?>" /> -->
                                                 <?php echo $row_option_name['service_name']; ?>
                                             </a>    
                                        <?php } ?>
@@ -177,13 +212,15 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
                                             <td><?php echo $option_details['created']; ?></td>
                                             <td><?php echo $option_details['updated']; ?></td>
                                             <td>
-                                                <button class="btn btn-primary">Edit</button>
+                                                
+                                              <a href="add_service.php?option_edit_id=<?php echo $option_details['id']; ?>" class="btn btn-primary">Edit</a>
+                                                
                                               <a href="add_service.php?option_del_id=<?php echo $option_details['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger">Delete</td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>
                                 </table>
-                               <?php for ($i=1; $i<=$total_pages; $i++) {  
+                                <?php for ($i=1; $i<=$total_pages; $i++) {  
                                     echo  $pagLink = "<a class=".'btn btn-danger'." href='add_service.php?page=".$i."'>".$i."</a>";  
                                 } ?>  
                             </div>

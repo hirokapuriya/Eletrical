@@ -10,7 +10,7 @@ ini_set('display_errors', TRUE);
          $obj->delete($del);
       }
       /*Image upload function*/
-      public function image_gallery($gallery_img)
+      public function image_gallery($gallery_img,$name)
       {
         $rand_img = rand(0000,9999);
         $img_name=$gallery_img['name'];
@@ -42,9 +42,11 @@ ini_set('display_errors', TRUE);
         }
 
         move_uploaded_file($img_tmp_path,"Gallery/".$rand_img.$img_name); 
-        
         $gallery_ctrl=new model;
-        $image_done = $gallery_ctrl->gallery_model($img_name);
+        $image_done = $gallery_ctrl->gallery_model($rand_img.$img_name,$name);
+        if($image_done){
+          header('location:image_upload.php');
+        }
       }
       public function Add_service_admin_ctrl($service_name)
       {
@@ -60,11 +62,8 @@ ini_set('display_errors', TRUE);
 	   }
      public function Add_service_description_ctrl($select_dp_service,$service_desc)
      {
-
         $service_description_ctrl = new model();
-        
         $service_description_done = $service_description_ctrl->Add_service_description_model($select_dp_service,$service_desc);
-    
         if($service_description_done){
           header("location:add_service.php");
         }else{
@@ -75,6 +74,14 @@ ini_set('display_errors', TRUE);
     {
        $delete_option_ctrl=new model();
        $delete_option_ctrl->service_delete_model($option_delete);
+    }
+    public function service_edit($edit_select_dp_service,$edit_service_desc,$edit_service_id)
+    {
+      $edit_option_ctrl=new model();
+      $edit_option_ctrl->service_edit_model($edit_select_dp_service,$edit_service_desc,$edit_service_id); 
+      if($edit_option_ctrl){
+        header('location:add_service.php');
+      }
     }
   } 
 

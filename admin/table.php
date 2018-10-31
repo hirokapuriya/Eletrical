@@ -94,7 +94,6 @@
                                             <td><?php echo $result['created']; ?></td>
                                             <td><?php echo $result['updated']; ?></td>
                                             <td><a href="table.php?del_id=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</td>
-                                            <!-- <td><button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td> -->
                                         </tr>
                                       <?php  } ?>
                                     </tbody>
