@@ -42,10 +42,11 @@ ini_set('display_errors', TRUE);
         }
 
         move_uploaded_file($img_tmp_path,"Gallery/".$rand_img.$img_name); 
+        chmod("Gallery/".$rand_img.$img_name, 0777);
         $gallery_ctrl=new model;
         $image_done = $gallery_ctrl->gallery_model($rand_img.$img_name,$name);
         if($image_done){
-          header('location:image_upload.php');
+          header('location:gallery.php');
         }
       }
       public function Add_service_admin_ctrl($service_name)
@@ -82,6 +83,14 @@ ini_set('display_errors', TRUE);
       if($edit_option_ctrl){
         header('location:add_service.php');
       }
+    }
+    public function delete_image($image_delete_id){
+       
+       $delete_img_ctrl=new model();
+       $delete_img_ctrl->img_delete_model($image_delete_id);
+       if( $delete_img_ctrl){
+        header('location:gallery.php');
+       }
     }
   } 
 

@@ -1,6 +1,6 @@
 ﻿<?php
 error_reporting(E_ALL); 
-ini_set('display_errors', TRUE);  
+ini_set('display_errors',1);  
 echo "hello service";
 include("controller.php");
 
@@ -13,7 +13,7 @@ $get_service_details = mysqli_query($con,"SELECT COUNT(id) FROM Service_tab_deta
 $option_details = mysqli_fetch_row($get_service_details);  
 $total_records = $option_details[0];  
 $total_pages = ceil($total_records / $limit);  
-//PAgination Code Ending
+//Pagination Code Ending
 
 //Edit id is get(option_edit_id) in current page
 if(isset($_REQUEST['option_edit_id']))
@@ -21,13 +21,17 @@ if(isset($_REQUEST['option_edit_id']))
      $id = $_REQUEST['option_edit_id'];
      $res = mysqli_query($con,"SELECT * FROM `Service_tab_details` WHERE `id`=$id;");
      $row_option = mysqli_fetch_assoc($res);
-     //var_dump($row_option['option_edit_id']); die('789');
+     //get service table name id 
+     $get_services_edit=mysqli_query($con,"SELECT * FROM `service_tab_name` WHERE `service_id`=".$row_option['service_name_opt']);
+     $row_edit_option =mysqli_fetch_assoc($get_services_edit);
+    
+     
 }
         
 //This $get_services_drop using Drop-down option
 $get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
 //This $get_services_name using side list name option
-$get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name ORDER BY service_name DESC");
+$get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
 //This $get_service_details using final option
 $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id LIMIT $start_from, $limit ");
   //Add Service name in list  
@@ -132,13 +136,18 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
                                         <?php }?>
                                          <select class="form-control" name="service_name_opt">
                                             <?php while ($result = mysqli_fetch_assoc($get_services_drop)) {?>
-                                                <?php if(isset($row_option)) 
-                                                {
-                                                    echo '<option selected="selected" value="'.$result["service_id"].'">'.$result["service_name"].'</option>'; 
-                                                }
-                                                else{   
+                                                <?php if (isset($row_edit_option))
+                                                      {?>
+                                                        <option <?php if($row_edit_option['service_id']==$result['service_id'])
+                                                                      {
+                                                                        echo "selected="."selected";
+                                                                      }
+                                                                    ?> value="<?php echo $result["service_id"];?>"><?php echo $result["service_name"]; ?>
+                                                        </option>
+                                                        <?php
+                                                    }else{   
                                                     echo '<option value="'.$result["service_id"].'">'.$result["service_name"].'</option>';
-                                                }
+                                                 }
                                              } ?>
                                         </select>
                                     </div>

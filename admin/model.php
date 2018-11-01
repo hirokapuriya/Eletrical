@@ -45,6 +45,17 @@ ini_set('display_errors', TRUE);
 
       return $service_edit;
     }
+    public function img_delete_model($image_delete_id){
+      global $con;
+      //This is used of delete image in folder using unlink function
+      $get_image = mysqli_query($con , "select * from gallery_image where id='$image_delete_id'");
+      $name = mysqli_fetch_assoc($get_image);
+      unlink("Gallery/".$name['gallery_img']);
+
+      $img_delete = mysqli_query($con,"delete from gallery_image where id='$image_delete_id'");
+      return $img_delete;
+    }
+
   }
 
 ?>
