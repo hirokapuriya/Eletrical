@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 26, 2018 at 07:22 PM
+-- Generation Time: Nov 02, 2018 at 04:44 PM
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
@@ -53,9 +53,18 @@ INSERT INTO `contact` (`id`, `name`, `subject`, `phone`, `email`, `message`, `cr
 CREATE TABLE `gallery_image` (
   `id` int(10) NOT NULL,
   `gallery_img` varchar(240) NOT NULL,
+  `name` varchar(240) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `gallery_image`
+--
+
+INSERT INTO `gallery_image` (`id`, `gallery_img`, `name`, `created`, `updated`) VALUES
+(59, '36548.jpg', 'ddd', '2018-11-01 10:07:33', '2018-11-01 10:07:33'),
+(63, '53675-dairy-milk.jpg', 'aaaaaaaaaaaaaaaaaaaaaaaa', '2018-11-02 10:13:01', '2018-11-02 10:13:01');
 
 -- --------------------------------------------------------
 
@@ -84,11 +93,30 @@ INSERT INTO `login` (`id`, `username`, `password`) VALUES
 
 CREATE TABLE `Service_tab_details` (
   `id` int(10) NOT NULL,
-  `service_id` int(10) NOT NULL,
+  `service_name_opt` int(10) NOT NULL,
   `service_description` varchar(240) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Service_tab_details`
+--
+
+INSERT INTO `Service_tab_details` (`id`, `service_name_opt`, `service_description`, `created`, `updated`) VALUES
+(11, 26, '<p>abcd</p>', '2018-10-30 10:03:49', '2018-11-01 06:22:22'),
+(13, 24, '<p>hello hiren kapuriya ssssssssssssssss</p>', '2018-10-30 10:04:18', '2018-11-01 07:02:35'),
+(19, 21, '<p>asdfsdafsadf</p>', '2018-10-30 12:55:29', '2018-10-30 12:55:29'),
+(20, 21, '<p>asdfasdfsda</p>', '2018-10-30 12:55:33', '2018-10-30 12:55:33'),
+(21, 21, '<p>asdfsdaf</p>', '2018-10-30 12:55:36', '2018-10-30 12:55:36'),
+(22, 21, '<p>adsfasdf</p>', '2018-10-30 12:55:42', '2018-10-30 12:55:42'),
+(23, 21, '<p>xczvxcvxcvxzdsafdsfdsaf</p>', '2018-10-30 12:55:46', '2018-10-30 12:55:46'),
+(24, 21, '<p>asdfdafasdfasdfasdffdafasdf</p>', '2018-10-30 12:55:51', '2018-10-30 12:55:51'),
+(25, 21, '<p>sadfsdfasdfasfadfadsfdas</p>', '2018-10-30 12:55:56', '2018-10-30 12:55:56'),
+(26, 21, '<p>asfasdfadsfasfadsfasdf</p>', '2018-10-30 12:56:01', '2018-10-30 12:56:01'),
+(27, 21, '<p>sbgdgdfsgsfg</p>', '2018-10-30 13:25:21', '2018-10-30 13:25:21'),
+(28, 24, '<p><strong><em>aaaaaaaaaaaaaA<br></em></strong></p>', '2018-10-31 04:53:48', '2018-10-31 04:53:48'),
+(30, 25, '<p>aaaaaaa</p>', '2018-10-31 08:50:42', '2018-10-31 08:50:42');
 
 -- --------------------------------------------------------
 
@@ -108,16 +136,12 @@ CREATE TABLE `service_tab_name` (
 --
 
 INSERT INTO `service_tab_name` (`service_id`, `service_name`, `created`, `updated`) VALUES
-(3, 'shtrrrrrrrrrrr', '2018-10-26 11:47:50', '2018-10-26 11:47:50'),
-(4, 'shtrrrrrrrrrrr', '2018-10-26 11:48:30', '2018-10-26 11:48:30'),
-(5, 'asfddddddddddddddddd', '2018-10-26 11:48:33', '2018-10-26 11:48:33'),
-(6, 'asfddddddddddddddddd', '2018-10-26 11:48:47', '2018-10-26 11:48:47'),
-(7, 'sssssssssssss', '2018-10-26 12:01:47', '2018-10-26 12:01:47'),
-(8, 'sdddddddddddddd', '2018-10-26 12:03:21', '2018-10-26 12:03:21'),
-(9, 'sssssssssssss', '2018-10-26 12:03:24', '2018-10-26 12:03:24'),
-(10, 'aaaaaaaaaaaaaaaaaa', '2018-10-26 13:07:35', '2018-10-26 13:07:35'),
-(11, '789797987', '2018-10-26 13:07:41', '2018-10-26 13:07:41'),
-(12, '111111', '2018-10-26 13:08:22', '2018-10-26 13:08:22');
+(21, 'AC & DC', '2018-10-30 10:00:05', '2018-10-30 10:00:05'),
+(22, 'asfdfasf', '2018-10-30 10:03:41', '2018-10-30 10:03:41'),
+(23, 'SMI & PCL', '2018-10-30 10:05:49', '2018-10-30 10:05:49'),
+(24, 'aaaaaaaaaaaaaaa', '2018-10-31 04:53:26', '2018-10-31 04:53:26'),
+(25, '123456', '2018-10-31 08:50:33', '2018-10-31 08:50:33'),
+(26, 'hiren', '2018-11-01 05:57:22', '2018-11-01 05:57:22');
 
 -- --------------------------------------------------------
 
@@ -195,12 +219,12 @@ ALTER TABLE `subscribe`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `gallery_image`
 --
 ALTER TABLE `gallery_image`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT for table `login`
 --
@@ -210,12 +234,12 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `Service_tab_details`
 --
 ALTER TABLE `Service_tab_details`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `service_tab_name`
 --
 ALTER TABLE `service_tab_name`
-  MODIFY `service_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `service_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `subscribe`
 --

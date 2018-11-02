@@ -1,12 +1,22 @@
-﻿
-<?php
+﻿<?php
 error_reporting(E_ALL); 
-ini_set('display_errors', TRUE);  
+ini_set('display_errors', 1);  
 include('controller.php');
 
 
+//Pagination Data Limi and Satting
+$limit = 5;  
+if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+$start_from = ($page-1) * $limit;
+$gallery_page_details = mysqli_query($con,"SELECT COUNT(id) FROM gallery_image");  
+$get_gallery_image = mysqli_fetch_row($gallery_page_details);  
+$total_records = $get_gallery_image[0];  
+$total_pages = ceil($total_records / $limit);  
+//Pagination Code Ending
 
-$get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image");
+
+
+$get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image LIMIT $start_from, $limit");
 
 if(isset($_POST['submit_image']))
 {
@@ -27,7 +37,16 @@ if(isset($_REQUEST['gallery_edit_id']))
     $image_edit_id = $_REQUEST['gallery_edit_id'];
     $res = mysqli_query($con,"SELECT * FROM `gallery_image` WHERE `id`=$image_edit_id;");
     $image_row_option = mysqli_fetch_assoc($res);
-    var_dump($image_row_option); die('okokok');
+}
+
+if(isset($_REQUEST['edit_image'])){
+
+    $edit_image_id = $_REQUEST['id'];
+    $gallery_img  = $_FILES['gallery_image'];
+    $name = $_POST['name'];
+     
+    $edit_image= new controller;
+    $edit_image->image_gallery($gallery_img,$name,$edit_image_id); 
 } 
 
 
@@ -83,53 +102,53 @@ if(isset($_REQUEST['gallery_edit_id']))
                         </div>
                         <div class="panel-body">
                    <form method="post" enctype="multipart/form-data">
+                      <?php if(isset($image_row_option))
+                          { ?>
+                              <input type="hidden" name="id" value="<?php echo $image_row_option['id']; ?>">
+                      <?php }?>
                       <div class="form-group">
                           <label class="control-label col-lg-12">Gallery Image</label>
                           <div class="">
                               <!-- <input type="file" name="gallery_image" id="fileToUpload"> -->
                               <div class="fileupload fileupload-new" data-provides="fileupload">
                                   <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                    <?php if(isset($image_row_option['gallery_img'])){?>
+                                        <span>
+                                          <img name="gallery_image" src="Gallery/<?php echo $image_row_option['gallery_img'];?>" style="width: 200px; height: 150px;">
+                                        </span> 
+                                      <?php }else{?>
                                     <img src="assets/img/demoUpload.jpg" alt="" />
+                                  <?php } ?>
                                   </div>
-                                  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+                                    
                                   </div>
-                                  <?php if(isset($image_row_option))
-                                            { ?>
-                                              <input type="hidden" name="id" value="<?php echo $image_row_option['id']; ?>">
-                                  <?php }?>
-                                  <div>
+                                <div>
                                     
                                       <span class="btn btn-file btn-primary">
                                         <span class="fileupload-new">Select image</span>
                                         <span class="fileupload-exists">Change</span>
-                                        <input type="file" name="gallery_image" value=""> 
-                                        <img src="Gallery/<?php echo $image_row_option['gallery_img'];?>">
+                                        <input type="file" name="gallery_image" value="">
+                                         
                                       </span>
                                       <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
                                   </div>
                                   <div class="form-group">
                                         <label>Enter Name</label>
-                                        <input type="text" name="name" value="<?php echo $image_row_option['name']; ?>">
+                                        <input type="text" name="name" value="<?php echo isset($image_row_option['name'])?$image_row_option['name']:''; ?>">
                                   </div>
-                                  <button type="submit" name="submit_image" value="Upload File Now" class="btn btn-info">Upload File</button>
+                                  <?php if(isset($image_row_option)){?>
+                                      <button type="submit" name="edit_image" value="Edit Upload File Now" class="btn btn-info">Edit File</button>
+                                  <?php }else{?>  
+                                    <button type="submit" name="submit_image" value="Upload File Now" class="btn btn-info">Upload File</button>
+                                  <?php } ?>
                                </div>
                           </div>
                       </div>
                     </form>
-                    <!-- <div class="alert alert-warning"><strong>Notice!</strong> Image preview only works in IE10+, FF3.6+, Chrome6.0+ and Opera11.1+. In older browsers and Safari, the filename is shown instead.</div> -->
                     </div>
                            </div>
-                         <!-- <div class="panel panel-default">
-                        <div class="panel-heading">
-                           For More Customization
-                        </div>
-                        <div class="panel-body">
-                            <h4 class="alert alert-info" style="line-height:50px;">
-                            For more customization for this template or its components please visit official bootstrap website i.e getbootstrap.com or <a href="http://getbootstrap.com/components/" target="_blank" >click here</a> 
-                           </h4>
-                                 </div>
-                             </div> -->
-                        </div>
+                      </div>
                         <div class="col-md-12">
                           <!--   Kitchen Sink -->
                             <div class="panel panel-default">
@@ -165,6 +184,9 @@ if(isset($_REQUEST['gallery_edit_id']))
                                              <?php } ?>
                                             </tbody>
                                         </table>
+                                         <?php for ($i=1; $i<=$total_pages; $i++) {  
+                                              echo  $pagLink = "<a class=".'btn btn-danger'." href='gallery.php?page=".$i."'>".$i."</a>";  
+                                          } ?>  
                                     </div>
                                 </div>
                             </div>

@@ -1,3 +1,11 @@
+<?php
+error_reporting(E_ALL); 
+ini_set('display_errors', 1);  
+include('controller.php');
+
+$get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image");
+
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://sbtechnosoft.com/electricshop/gallery.html -->
 <html lang="en" class="gr__sbtechnosoft_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -73,33 +81,38 @@
   <div class="container">
     <div class="title">
       <h2>Gallery</h2>
-      <span class="title-border-color"><i class="fa fa-bolt" aria-hidden="true"></i></span> </div>
+      <span class="title-border-color"><i class="fa fa-bolt" aria-hidden="true"></i></span> 
+    </div>
     <div class="row">
+      <?php while ($get_image_row = mysqli_fetch_assoc($get_gallery_image)) {?>
       <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="news-section-single">
           <div class="news-img-main">
-            <div class="news-img"><img src="images/news-img1.jpg" alt="" data-popupalt-original-title="null" title="">
+            <div class="news-img"><img src="<?php echo "admin/Gallery/".$get_image_row['gallery_img'];?>" style="height: 200px; width: 226px;" data-popupalt-original-title="null">
+              <!-- <img src="images/news-img1.jpg" alt="" data-popupalt-original-title="null" title=""> -->
               <div class="news-list">
                 <ul>
-                  <li><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
+                  <li><i class="fa fa-clock-o" aria-hidden="true"></i><?php echo $get_image_row['updated']; ?></li>
                   <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> -->
                 </ul>
               </div>
             </div>
           </div>
           <div class="news-head">
-            <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing</h3>
+            <h3><?php echo $get_image_row['name']; ?></h3>
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
+      </div>   
+    <?php } ?>
+     
+      <!-- <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="news-section-single">
           <div class="news-img-main">
             <div class="news-img"><img src="images/news-img2.jpg" alt="" data-popupalt-original-title="null" title="">
               <div class="news-list">
                 <ul>
                   <li><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
-                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> -->
+                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> ->
                 </ul>
               </div>
             </div>
@@ -116,7 +129,7 @@
               <div class="news-list">
                 <ul>
                   <li><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
-                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> -->
+                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> ->
                 </ul>
               </div>
             </div>
@@ -133,7 +146,7 @@
               <div class="news-list">
                 <ul>
                   <li><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
-                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> -->
+                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> ->
                 </ul>
               </div>
             </div>
@@ -142,126 +155,10 @@
             <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing</h3>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
-<!-- <div class="inner-page-wrapper gallery-wrapper">
- <div class="portfolio-page">
-    <div class="container-fluid">
-
-      <div class="row">
-        <div class="gallery-section">
-          <div class="gallery-caption col-md-3 col-sm-6 col-xs-12"> <a href="images/gallery-img1.jpg" title="Electricshop"> <img alt="" src="images/gallery-img1.jpg" class="img-responsive">
-            <div class="caption row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="blur caption-text" style="height: 230.174px; width: 345.278px;">
-                  <div class="gallery-content">
-                    <h1 class="text-right">Electricshop Project</h1>
-                  </div>
-                  <div class="gallery_caption_icon"> <span class="fa  fa-search"></span> </div>
-                  <div class="gallery_caption_text"> <span>Electricshop</span> </div>
-                </div>
-              </div>
-            </div>
-            </a> 
-          </div>
-          <div class="gallery-caption col-md-3 col-sm-6 col-xs-12"> <a href="images/gallery-img2.jpg" title="Electricshop"> <img alt="" src="images/gallery-img2.jpg" class="img-responsive">
-            <div class="caption row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="blur caption-text" style="height: 230.174px; width: 345.278px;">
-                  <div class="gallery-content">
-                    <h1 class="text-right">Electricshop Project</h1>
-                  </div>
-                  <div class="gallery_caption_icon"> <span class="fa  fa-search"></span> </div>
-                  <div class="gallery_caption_text"> <span>Electricshop</span> </div>
-                </div>
-              </div>
-            </div>
-            </a> </div>
-          <div class="gallery-caption col-md-3 col-sm-6 col-xs-12"> <a href="images/gallery-img3.jpg" title="Electricshop"> <img alt="" src="images/gallery-img3.jpg" class="img-responsive">
-            <div class="caption row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="blur caption-text" style="height: 230.174px; width: 345.278px;">
-                  <div class="gallery-content">
-                    <h1 class="text-right">Electricshop Project</h1>
-                  </div>
-                  <div class="gallery_caption_icon"> <span class="fa  fa-search"></span> </div>
-                  <div class="gallery_caption_text"> <span>Electricshop</span> </div>
-                </div>
-              </div>
-            </div>
-            </a> </div>
-          <div class="gallery-caption col-md-3 col-sm-6 col-xs-12"> <a href="images/gallery-img4.jpg" title="Electricshop"> <img alt="" src="images/gallery-img4.jpg" class="img-responsive">
-            <div class="caption row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="blur caption-text" style="height: 230.174px; width: 345.278px;">
-                  <div class="gallery-content">
-                    <h1 class="text-right">Electricshop Project</h1>
-                  </div>
-                  <div class="gallery_caption_icon"> <span class="fa  fa-search"></span> </div>
-                  <div class="gallery_caption_text"> <span>Electricshop</span> </div>
-                </div>
-              </div>
-            </div>
-            </a> </div>
-         <div class="gallery-caption col-md-3 col-sm-6 col-xs-12"> <a href="images/gallery-img5.jpg" title="Electricshop"><img alt="" src="images/gallery-img5.jpg" class="img-responsive">
-            <div class="caption row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="blur caption-text" style="height: 230.174px; width: 345.278px;">
-                  <div class="gallery-content">
-                    <h1 class="text-right">Electricshop Project</h1>
-                  </div>
-                  <div class="gallery_caption_icon"> <span class="fa  fa-search"></span> </div>
-                  <div class="gallery_caption_text"> <span>Electricshop</span> </div>
-                </div>
-              </div>
-            </div>
-            </a> </div>
-          <div class="gallery-caption col-md-3 col-sm-6 col-xs-12"> <a href="images/gallery-img6.jpg" title="Electricshop"> <img alt="" src="images/gallery-img6.jpg" class="img-responsive">
-            <div class="caption row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="blur caption-text" style="height: 230.174px; width: 345.278px;">
-                  <div class="gallery-content">
-                    <h1 class="text-right">Electricshop Project</h1>
-                  </div>
-                  <div class="gallery_caption_icon"> <span class="fa  fa-search"></span> </div>
-                  <div class="gallery_caption_text"> <span>Electricshop</span> </div>
-                </div>
-              </div>
-            </div>
-            </a> </div>
-          <div class="gallery-caption col-md-3 col-sm-6 col-xs-12"> <a href="images/gallery-img7.jpg" title="Electricshop"> <img alt="" src="images/gallery-img7.jpg" class="img-responsive">
-            <div class="caption row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="blur caption-text" style="height: 230.174px; width: 345.278px;">
-                  <div class="gallery-content">
-                    <h1 class="text-right">Electricshop Project</h1>
-                  </div>
-                  <div class="gallery_caption_icon"> <span class="fa  fa-search"></span> </div>
-                  <div class="gallery_caption_text"> <span>Electricshop</span> </div>
-                </div>
-              </div>
-            </div>
-            </a> </div>
-          <div class="gallery-caption col-md-3 col-sm-6 col-xs-12"> <a href="images/gallery-img8.jpg" title="Electricshop"> <img alt="" src="images/gallery-img8.jpg" class="img-responsive">
-            <div class="caption row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="blur caption-text" style="height: 230.174px; width: 345.278px;">
-                  <div class="gallery-content">
-                    <h1 class="text-right">Electricshop Project</h1>
-                  </div>
-                  <div class="gallery_caption_icon"> <span class="fa  fa-search"></span> </div>
-                  <div class="gallery_caption_text"> <span>Electricshop</span> </div>
-                </div>
-              </div>
-            </div>
-            </a> </div>
-        </div>
-      </div> 
-    </div>
-  </div>
-</div> -->
 <!-- Inner Page Wrapper End --> 
 <!-- Footer Wrapper Start -->
 <footer class="footer-wrapper">

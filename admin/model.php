@@ -3,8 +3,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE); 
   include('connection/connection.php');
   class model
-  {
-  	public function delete($del)
+  { 
+    public function delete($del)
     {
       global $con;
       $execute_delete = mysqli_query($con,"delete from contact where id='$del'");
@@ -54,6 +54,13 @@ ini_set('display_errors', TRUE);
 
       $img_delete = mysqli_query($con,"delete from gallery_image where id='$image_delete_id'");
       return $img_delete;
+    }
+    public function edit_gallery_model($gallery_img,$name,$edit_image_id){
+      
+      global $con;
+
+      $imge_gallery_edit = mysqli_query($con,"UPDATE `gallery_image` SET gallery_img='$gallery_img',name = '$name' WHERE `id`=$edit_image_id");      
+      return $imge_gallery_edit;
     }
 
   }

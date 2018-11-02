@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL); 
 ini_set('display_errors', TRUE);  
-include('../controller.php');
+include("controller.php");
 //kapuriyahiren8899@gmail.com
 if(isset($_POST['subscriber']))
   {
@@ -9,7 +9,7 @@ if(isset($_POST['subscriber']))
       $subscriber_view= new controller;
       $subscriber_view->subscriber_registration($subscribe_email); 
   }
-?>
+?> 
   <div class="search-wrapper">
     <div class="col-sm-6">
       <div class="search-inner-text">
@@ -21,9 +21,13 @@ if(isset($_POST['subscriber']))
         <div class="form">
           <form method="post">
             <input placeholder="Your Email Address" id="exampleInputName" class="form-control first" name="subscribe_email" type="text">
-            <input class="btn-one" type="submit" name="subscriber" value="Subscribe" required="required">
+            <input class="bttn" type="submit" name="subscriber" value="Subscribe" required="required">
           </form>
         </div>
       </div>
     </div>
   </div>
+
+
+
+

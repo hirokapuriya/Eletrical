@@ -1,14 +1,13 @@
 ﻿<?php
 error_reporting(E_ALL); 
 ini_set('display_errors',1);  
-echo "hello service";
+//echo "hello service";
 include("controller.php");
 
 //Pagination Data Limi and Satting
 $limit = 5;  
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
 $start_from = ($page-1) * $limit;
-
 $get_service_details = mysqli_query($con,"SELECT COUNT(id) FROM Service_tab_details");  
 $option_details = mysqli_fetch_row($get_service_details);  
 $total_records = $option_details[0];  
@@ -24,8 +23,6 @@ if(isset($_REQUEST['option_edit_id']))
      //get service table name id 
      $get_services_edit=mysqli_query($con,"SELECT * FROM `service_tab_name` WHERE `service_id`=".$row_option['service_name_opt']);
      $row_edit_option =mysqli_fetch_assoc($get_services_edit);
-    
-     
 }
         
 //This $get_services_drop using Drop-down option
@@ -185,7 +182,12 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
                                        <?php } ?>
                                     </div>
                                     <!-- /.list-group -->
-                                    <a href="#" class="btn btn-info btn-block">View All Alerts</a>
+                                    <div class="col-md-4">
+                                        <a href="#" class="btn btn-info btn-block">Select All </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="#" class="btn btn-info btn-block">Delete</a>
+                                    </div>
                                   </div>
                                 </div>
                             </div>
