@@ -1,10 +1,5 @@
 <?php
-error_reporting(E_ALL); 
-ini_set('display_errors', 1);  
-include('controller.php');
-
-$get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image");
-
+  include('controller.php');
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0049)http://sbtechnosoft.com/electricshop/gallery.html -->
@@ -84,7 +79,11 @@ $get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image");
       <span class="title-border-color"><i class="fa fa-bolt" aria-hidden="true"></i></span> 
     </div>
     <div class="row">
-      <?php while ($get_image_row = mysqli_fetch_assoc($get_gallery_image)) {?>
+      <?php
+          $get_img_view = new controller;
+          $get_img_get_ctrl = $get_img_view->get_image_ctrl();
+      while ($get_image_row = mysqli_fetch_assoc($get_img_get_ctrl)) 
+      {?>
       <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="news-section-single">
           <div class="news-img-main">
@@ -99,63 +98,12 @@ $get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image");
             </div>
           </div>
           <div class="news-head">
-            <h3><?php echo $get_image_row['name']; ?></h3>
+           <h3><?php echo $get_image_row['name']; ?></h3>
           </div>
         </div>
       </div>   
-    <?php } ?>
+      <?php } ?>
      
-      <!-- <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="news-section-single">
-          <div class="news-img-main">
-            <div class="news-img"><img src="images/news-img2.jpg" alt="" data-popupalt-original-title="null" title="">
-              <div class="news-list">
-                <ul>
-                  <li><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
-                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> ->
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="news-head">
-            <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="news-section-single">
-          <div class="news-img-main">
-            <div class="news-img"><img src="images/news-img3.jpg" alt="" data-popupalt-original-title="null" title="">
-              <div class="news-list">
-                <ul>
-                  <li><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
-                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> ->
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="news-head">
-            <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="news-section-single blur caption-text">
-          <div class="news-img-main">
-            <div class="news-img"><img src="images/news-img3.jpg" alt="" data-popupalt-original-title="null" title="">
-              <div class="news-list">
-                <ul>
-                  <li><i class="fa fa-clock-o" aria-hidden="true"></i> November 16, 2016</li>
-                  <!-- <li><i class="fa fa-comments-o" aria-hidden="true"></i> 8</li> ->
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="news-head">
-            <h3>Lorem ipsum dolor sit amet, consectetuer adipiscing</h3>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </section>
@@ -187,16 +135,14 @@ $get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image");
 </div>
 <!-- Copyright Wrapper End --> 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="images/jquery-3.1.1.min.js"></script> 
-<script src="images/plugins.js"></script> 
-<script src="images/popup.js"></script> 
-<script src="images/slicknav.min.js"></script> 
-<script src="images/bootstrap.min.js"></script> 
-<script src="images/jquery.animateNumber.min.js"></script> 
-<script src="images/owl.carousel.js"></script> 
-<script src="images/wow.min.js"></script> 
-<script src="images/slider.js"></script> 
-<script src="images/jquery.magnific-popup.min.js"></script> 
-<script src="images/custom.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script> 
+<script src="js/plugins.js"></script> 
+<script src="js/slicknav.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.animateNumber.min.js"></script> 
+<script src="js/owl.carousel.js"></script> 
+<script src="js/wow.min.js"></script> 
+<script src="js/slider.js"></script> 
+<script src="js/custom.js"></script>
 
-<a id="scrollUp" href="http://sbtechnosoft.com/electricshop/gallery.html#top" style="position: fixed; z-index: 2147483647; display: none;"><i class="fa fa-angle-up"></i></a></body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>
+<a id="scrollUp" href="http://sbtechnosoft.com/electricshop/#top" style="display: none; position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a></body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>

@@ -184,6 +184,11 @@ ini_set('display_errors', TRUE);
         header('location:gallery.php');
        }
     }
+    public function get_subscriber_ctrl(){
+        $subscrib_get = new model();
+        $subscrib_client = $subscrib_get->get_subscriber_model();
+        return $subscrib_client;           
+    }
   } 
 
 ?>

@@ -62,6 +62,12 @@ ini_set('display_errors', TRUE);
       $imge_gallery_edit = mysqli_query($con,"UPDATE `gallery_image` SET gallery_img='$gallery_img',name = '$name' WHERE `id`=$edit_image_id");      
       return $imge_gallery_edit;
     }
+    public function get_subscriber_model(){
+      global $con;
+
+      $get_subscriber_deatils = mysqli_query($con,"select * From subscribe");
+      return $get_subscriber_deatils;
+    }
 
   }
 

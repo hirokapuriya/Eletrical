@@ -26,6 +26,15 @@
       //var_dump($gallery_query); die('kjkjkk');
       return $gallery_query;
     }
+    public function get_image_frunt(){
+      global $con;
+
+      $get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image");
+      
+        return $get_gallery_image;
+        
+      }
+    
   }
 
 ?>

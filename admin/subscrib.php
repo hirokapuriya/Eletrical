@@ -1,4 +1,6 @@
-﻿
+﻿<?php 
+    include("controller.php")
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -42,90 +44,7 @@
                     </div>
                 </div>
                 <!-- /. ROW  -->
-              
-            <!-- <div class="row"> -->
-                <!-- <div class="col-md-12">
-                  <!--   Kitchen Sink ->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Kitchen Sink
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th width="5%">Id</th>
-                                            <th width="10%">Name</th>
-                                            <th width="15%">Subject</th>
-                                            <th width="15%">Phone</th>
-                                            <th width="25%">Email</th>
-                                            <th width="50%">Message</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Mark</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- End  Kitchen Sink ->
-                </div>-->
-                <!-- <div class="col-md-6">
-                     <!--   Basic Table  ->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Table
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                      <!-- End  Basic Table ->
-                </div> ->
-            </div>-->
+             
                 <!-- /. ROW  -->
            <div class="row">
                 <div class="col-md-12">
@@ -145,11 +64,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                   <?php
+                                      $get_subscriber_view = new controller;
+                                      $get_subscriber_get_ctrl = $get_subscriber_view->get_subscriber_ctrl();
+                                  while ($get_subscrib_row = mysqli_fetch_assoc($get_subscriber_get_ctrl)) 
+                                  {?>
                                         <tr>
-                                            <td width="5%">1</td>
-                                            <td width="80%">Mark</td>
-                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
+                                            <td width="5%"><?php echo $get_subscrib_row['id']; ?></td>
+                                            <td width="80%"><?php echo $get_subscrib_row['subscribe_email']; ?></td>
+                                            <td><!-- <button class="btn btn-danger">Delete</button> -->
+                                                
+                                                <a href="subscrib.php?sub_del_id=<?php echo $get_subscrib_row['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger">Delete</td>
+
+                                            </td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -180,110 +109,6 @@
                     </div>
                 </div> 
                 <!-- /. ROW  -->
-            <!--<div class="row">
-                <div class="col-md-6">
-                     <!--    Hover Rows  ->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Hover Rows
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End  Hover Rows  >
-                </div>
-                <div class="col-md-6">
-                     <!--    Context Classes  ->
-                    <div class="panel panel-default">
-                       
-                        <div class="panel-heading">
-                            Context Classes
-                        </div>
-                        
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="success">
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr class="info">
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr class="warning">
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                        <tr class="danger">
-                                            <td>4</td>
-                                            <td>John</td>
-                                            <td>Smith</td>
-                                            <td>@jsmith</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  end  Context Classes  ->
-                </div>
-            </div>-->
-                <!-- /. ROW  -->
-
             </div>
             <!-- /. PAGE INNER  -->
         </div>

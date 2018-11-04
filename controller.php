@@ -30,12 +30,18 @@
         if($subscriber_customer)
         {  
              echo "<script>alert('Subscribed Successful')</script>";  
-             header("location:contact.php");
+             header("location:../index.php");
         }
         else
         {  
             echo "<script>alert('Subscribed Not Successful')</script>";  
         }
+      }
+      public function get_image_ctrl(){
+        $get_img_frunt = new model;
+        $get_img = $get_img_frunt->get_image_frunt();
+        
+        return $get_img;
       }
   } 
 

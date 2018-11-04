@@ -1,3 +1,6 @@
+<?php
+  include("controller.php");
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0037)http://sbtechnosoft.com/electricshop/ -->
 <html lang="en" class="gr__sbtechnosoft_com"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
