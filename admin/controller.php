@@ -4,6 +4,7 @@ ini_set('display_errors', TRUE);
   include("model.php");
   class controller
   {
+      //Contact Delete Function
       public function delete($del)
       {
          $obj=new model();
@@ -57,69 +58,33 @@ ini_set('display_errors', TRUE);
         }
         $src = imagecreatefromstring(file_get_contents($img_tmp_path));
         $dst = imagecreatetruecolor($width,$height);
-        //var_dump($src); var_dump($dst); die('op');
-
+        
         $imageType = $size[2];
-       // var_dump($size); die('opopop');
-
+       
         switch ($imageType) {
 
-
             case 3:
-                //$src = imagecreatefrompng($img_tmp_path);
-                //imagecreatefrompng
                 imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
-                //imagedestroy($src);
-                //var_dump(imagepng($dst,$img_name));die("aaaa");
                 imagepng($dst,$img_name);
                 unlink($img_name); // adjust format as needed
-                //var_dump($img_name);die("AAA");
-                //imagedestroy($dst);
-                //$imageResourceId = imagecreatefrompng($file); 
-                //$targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
-                //imagepng($targetLayer,$folderPath. $fileNewName. "_thump.". $ext);
                 break;
-
 
             case 1:
                 imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
-                //imagedestroy($src);
                 imagegif($dst,$img_name);
                 unlink($img_name); // adjust format as needed
-                //imagedestroy($dst);
-                //$imageResourceId = imagecreatefromgif($file); 
-                //$targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
-                //imagegif($targetLayer,$folderPath. $fileNewName. "_thump.". $ext);
                 break;
-
 
             case 2:
                 imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
-                //imagedestroy($src);
                 imagejpeg($dst,$img_name);
-                unlink($img_name);
-                 // adjust format as needed
-                //imagedestroy($dst);
-
-                //$imageResourceId = imagecreatefromjpeg($file); 
-                //$targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
-                //imagejpeg($targetLayer,$folderPath. $fileNewName. "_thump.". $ext);
+                unlink($img_name);  // adjust format as needed
                 break;
-
 
             default:
                
                 break;
         }
-
-       /* imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
-        imagedestroy($src);
-        imagepng($dst,$img_name); // adjust format as needed
-        imagedestroy($dst);*/
-
-
-
-
 
         move_uploaded_file($img_tmp_path,"Gallery/".$rand_img.$img_name); 
         chmod("Gallery/".$rand_img.$img_name, 0777);
@@ -141,9 +106,17 @@ ini_set('display_errors', TRUE);
           }    
         }
       }
-      public function Add_service_admin_ctrl($service_name)
-      {
-
+      //Delete Gallery Image Function
+      public function delete_image($image_delete_id){
+       
+       $delete_img_ctrl=new model();
+       $delete_img_ctrl->img_delete_model($image_delete_id);
+       if( $delete_img_ctrl){
+        header('location:gallery.php');
+       }
+      }
+      //Add Service In list Function
+      public function Add_service_admin_ctrl($service_name){
         $service_ctrl=new model();
          
         $service_done = $service_ctrl->Add_service_model($service_name);
@@ -153,7 +126,16 @@ ini_set('display_errors', TRUE);
         	header('contact.php');
         }
 	   }
-     public function Add_service_description_ctrl($select_dp_service,$service_desc)
+     //Delete Name In Service List
+     public function delete_service_list($id){
+      $delete_service_ctrl = new model();
+      $delete_service_ctrl->service_list_delete_model($id);
+      if($delete_service_ctrl){
+        header('location:add_service.php');
+      }
+    }
+    //Service Data Add Function
+    public function Add_service_description_ctrl($select_dp_service,$service_desc)
      {
         $service_description_ctrl = new model();
         $service_description_done = $service_description_ctrl->Add_service_description_model($select_dp_service,$service_desc);
@@ -163,11 +145,7 @@ ini_set('display_errors', TRUE);
           header("location:add_service.php");
         }
     }
-    public function service_delete($option_delete)
-    {
-       $delete_option_ctrl=new model();
-       $delete_option_ctrl->service_delete_model($option_delete);
-    }
+    //Service Data Edit Function
     public function service_edit($edit_select_dp_service,$edit_service_desc,$edit_service_id)
     {
       $edit_option_ctrl=new model();
@@ -176,18 +154,38 @@ ini_set('display_errors', TRUE);
         header('location:add_service.php');
       }
     }
-    public function delete_image($image_delete_id){
-       
-       $delete_img_ctrl=new model();
-       $delete_img_ctrl->img_delete_model($image_delete_id);
-       if( $delete_img_ctrl){
-        header('location:gallery.php');
-       }
+    //Service Data Delete Function
+    public function service_delete($option_delete)
+    {
+       $delete_option_ctrl=new model();
+       $delete_option_ctrl->service_delete_model($option_delete);
     }
+   
+    //Subscriber Fetch Function
     public function get_subscriber_ctrl(){
         $subscrib_get = new model();
         $subscrib_client = $subscrib_get->get_subscriber_model();
         return $subscrib_client;           
+    }
+    //Subscriber delete Function
+    public function delete_sub_data($id){
+      $del_sub_ctrl = new model;
+      $del_sub_done = $del_sub_ctrl->delete_subscriber_model($id);
+      if(isset($del_sub_done)){
+        header('location:subscrib.php');
+      }else{
+        die('Delete Not Complete');
+      }
+    }
+    //Mail Send Function
+    public function send_mail_ctrl($to,$subject,$email_msg){
+      include('Email/Thank_you.php');
+    }
+    //Contact Show Function
+    public function get_contact_ctrl(){
+      $get_contact_list = new model;
+      $get_contact = $get_contact_list->get_contact_list();
+      return $get_contact;
     }
   } 
 

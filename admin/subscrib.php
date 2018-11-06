@@ -1,5 +1,26 @@
-﻿<?php 
-    include("controller.php")
+﻿<?php
+error_reporting(E_ALL); 
+ini_set('display_errors', TRUE);
+    
+    include('controller.php');
+
+    if(isset($_REQUEST['sub_del_id'])){
+       
+       $id =  $_REQUEST['sub_del_id'];  
+
+       $delete_sub_id = new controller;
+       $delete_sub_id->delete_sub_data($id);
+   }
+
+   if(isset($_POST['sendmail'])){
+        $to = $_POST['mail'];
+        $email_msg  = $_POST['email_msg'];
+        $subject = $_POST['subject'];
+
+        $send_mail_ctrl = new controller;
+        $send_mail_ctrl->send_mail_ctrl($to,$subject,$email_msg);
+   }
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,6 +55,7 @@
         <!-- /. NAV TOP  -->
         <?php include('admin_include/inc_menubar.php'); ?>
         <!-- /. NAV SIDE  -->
+        <form method="post">
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
@@ -58,6 +80,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <th>Checkbox</th>
                                             <th>Id</th>
                                             <th>Email</th>
                                             <th>Action</th>
@@ -67,18 +90,19 @@
                                    <?php
                                       $get_subscriber_view = new controller;
                                       $get_subscriber_get_ctrl = $get_subscriber_view->get_subscriber_ctrl();
+                                      $i = 1;
                                   while ($get_subscrib_row = mysqli_fetch_assoc($get_subscriber_get_ctrl)) 
                                   {?>
                                         <tr>
-                                            <td width="5%"><?php echo $get_subscrib_row['id']; ?></td>
+                                            <td><input type="checkbox" name="mail[]" value="<?php echo $get_subscrib_row['subscribe_email']; ?>"></td>
+                                            <td width="5%"><?php echo $i; ?></td>
                                             <td width="80%"><?php echo $get_subscrib_row['subscribe_email']; ?></td>
-                                            <td><!-- <button class="btn btn-danger">Delete</button> -->
-                                                
+                                            <td>                                            
                                                 <a href="subscrib.php?sub_del_id=<?php echo $get_subscrib_row['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger">Delete</td>
 
                                             </td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php $i++; } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -96,14 +120,14 @@
 
                             <div class="form-group  ">
                                 <label>Please Write a Subject Line</label>
-                                <input type="text" class="form-control" required="required" placeholder="Enter Subject Of Ticket" />
+                                <input type="text" class="form-control" name="subject" required="required" placeholder="Enter Subject Of Ticket" />
                             </div>
                             <div class="form-group ">
                                 <label>Please Enter Issue</label>
-                                <textarea class="form-control" rows="8"></textarea>
+                                <textarea class="form-control" name="email_msg" rows="8"></textarea>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Compose &amp; Send Ticket</button>
+                                <button type="submit" name="sendmail" class="btn btn-success">Compose &amp; Send Ticket</button>
                             </div>
                         </div>
                     </div>
@@ -112,6 +136,7 @@
             </div>
             <!-- /. PAGE INNER  -->
         </div>
+        </form>
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->

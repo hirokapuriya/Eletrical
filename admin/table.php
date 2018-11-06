@@ -1,18 +1,23 @@
 ﻿<?php 
    include("controller.php");
-   $sel=mysqli_query($con,"SELECT * FROM contact");
     
-     if(isset($_REQUEST['del_id']))
+    if(isset($_REQUEST['del_id']))
      {
         $del=$_REQUEST['del_id'];
-        
         $obj= new controller;
         $obj->delete($del);
         header("location:table.php");
     }
+    //Pagination page
+    $limit = 5;  
+    if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+    $start_from = ($page-1) * $limit;
+    $contact_page_details = mysqli_query($con,"SELECT COUNT(id) FROM contact");  
+    $get_contact_ctrl_list = mysqli_fetch_row($contact_page_details);  
+    $total_records = $get_contact_ctrl_list[0];  
+    $total_pages = ceil($total_records / $limit);
+
 ?>
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -80,10 +85,12 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <?php
-                                        while($result=mysqli_fetch_array($sel)){ ?>
+                                              $get_contact_view_list = new controller;
+                                              $get_contact_ctrl_list = $get_contact_view_list->get_contact_ctrl();
+                                          while ($result = mysqli_fetch_assoc($get_contact_ctrl_list)) 
+                                          {?>
                                         <tr>
                                             <td><?php echo $result['id']; ?></td>
                                             <td><?php echo $result['name']; ?></td>
@@ -93,11 +100,14 @@
                                             <td><?php echo $result['message']; ?></td>
                                             <td><?php echo $result['created']; ?></td>
                                             <td><?php echo $result['updated']; ?></td>
-                                            <td><a href="table.php?del_id=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</td>
+                                            <td><a href="table.php?del_id=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</a></td>
                                         </tr>
                                       <?php  } ?>
                                     </tbody>
                                 </table>
+                                <?php for ($i=1; $i<=$total_pages; $i++) {  
+                                    echo  $pagLink = "<a class=".'btn btn-danger'." href='table.php?page=".$i."'>".$i."</a>";  
+                                } ?>
                             </div>
                         </div>
                     </div>

@@ -1,14 +1,13 @@
 ﻿<?php
 error_reporting(E_ALL); 
 ini_set('display_errors',1);  
-//echo "hello service";
 include("controller.php");
 
 //Pagination Data Limi and Satting
 $limit = 5;  
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
 $start_from = ($page-1) * $limit;
-$get_service_details = mysqli_query($con,"SELECT COUNT(id) FROM Service_tab_details");  
+$get_service_details = mysqli_query($con,"SELECT COUNT(id) FROM service_tab_details");  
 $option_details = mysqli_fetch_row($get_service_details);  
 $total_records = $option_details[0];  
 $total_pages = ceil($total_records / $limit);  
@@ -18,7 +17,7 @@ $total_pages = ceil($total_records / $limit);
 if(isset($_REQUEST['option_edit_id']))
 {     
      $id = $_REQUEST['option_edit_id'];
-     $res = mysqli_query($con,"SELECT * FROM `Service_tab_details` WHERE `id`=$id;");
+     $res = mysqli_query($con,"SELECT * FROM `service_tab_details` WHERE `id`=$id;");
      $row_option = mysqli_fetch_assoc($res);
      //get service table name id 
      $get_services_edit=mysqli_query($con,"SELECT * FROM `service_tab_name` WHERE `service_id`=".$row_option['service_name_opt']);
@@ -30,7 +29,7 @@ $get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
 //This $get_services_name using side list name option
 $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
 //This $get_service_details using final option
-$get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id LIMIT $start_from, $limit ");
+$get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id LIMIT $start_from, $limit ");
   //Add Service name in list  
   if(isset($_POST['service']))
   {
@@ -64,6 +63,13 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
        $edit_obj= new controller;
        $edit_obj->service_edit($edit_select_dp_service,$edit_service_desc,$edit_service_id);
        
+   }
+   //Delete service list delete_service_list
+   if(isset($_POST['delete_service_list'])){
+      $id = $_POST['delete_service'];
+
+      $delete_service = new controller;
+      $delete_service->delete_service_list($id);
    }
 
 ?>
@@ -165,34 +171,37 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                              Service List
-                            </div>
-                            <div class="panel-body" style="padding: 0px;">
-                                <div class="chat-widget-main">
-                                  <div class="panel-body">
-                                    <div class="list-group">
-                                        <?php while ($row_option_name = mysqli_fetch_assoc($get_services_name)) { ?>
-
-                                            <a href="#" class="list-group-item">
-                                                <?php echo $row_option_name['service_name']; ?>
-                                            </a>    
-                                       <?php } ?>
-                                    </div>
-                                    <!-- /.list-group -->
-                                    <div class="col-md-4">
-                                        <a href="#" class="btn btn-info btn-block">Select All </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="#" class="btn btn-info btn-block">Delete</a>
+                    <form method="POST">
+                      <div class="col-md-6">
+                          <div class="panel panel-success">
+                              <div class="panel-heading">
+                                Service List
+                              </div>
+                              <div class="panel-body" style="padding: 0px;">
+                                  <div class="chat-widget-main">
+                                    <div class="panel-body">
+                                      <div class="list-group">
+                                          <?php while ($row_option_name = mysqli_fetch_assoc($get_services_name)) { ?>
+                                              <!-- <input type="checkbox" name="mail[]" value="<?php echo $row_option_name['service_id']; ?>"> -->
+                                              <div class="list-group-item">
+                                                <input type="checkbox" name="delete_service[]" value="<?php echo $row_option_name['service_id']; ?>">
+                                                  <?php echo $row_option_name['service_name']; ?>
+                                              </div>    
+                                         <?php } ?>
+                                      </div>
+                                      <!-- /.list-group -->
+                                      <div class="col-md-4">
+                                          <!-- <a href="#" class="btn btn-info btn-block">Select All </a> -->
+                                      </div>
+                                      <div class="col-md-4">
+                                          <button type="submit" name="delete_service_list" value="hello_delete" class="btn btn-info btn-block">Delete</button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                              </div>
+                          </div>
+                      </div>
+                    </form>
                 </div>
                 <!--/.ROW-->
                 <div>
@@ -219,7 +228,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
                                         <tr>
                                             <td><?php echo $option_details['id']; ?></td>
                                             <td><?php echo $option_details['service_name']; ?></td>
-                                            <td><?php echo $option_details['service_description']; ?></td>
+                                            <td><div style="overflow-y:scroll; height:100px;"><?php echo $option_details['service_description']; ?></div></td>
                                             <td><?php echo $option_details['created']; ?></td>
                                             <td><?php echo $option_details['updated']; ?></td>
                                             <td>

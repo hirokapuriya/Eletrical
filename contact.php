@@ -1,8 +1,10 @@
 <?php 
+error_reporting(E_ALL); 
+ini_set('display_errors', 1);  
 include_once('controller.php');
 
 if(isset($_POST['register']))
-  {  //var_dump($_POST['register']); die('jjjj');
+  {  
       $name = $_POST['name'];  
       $subject = $_POST['subject'];  
       $phone = $_POST['phone'];  
@@ -110,8 +112,7 @@ if(isset($_POST['register']))
               <div class="col-sm-12">
                 <textarea class="con-field" name="message" id="message" rows="6" placeholder="Your Message"></textarea>
                 <div class="submit-area">
-                 <!--  <button class="btn-one" name="register" >Send Message</button> -->
-                      <input class="btn-one" type="submit" name="register" value="Send Message" required="required">
+                    <input class="btn-one" type="submit" name="register" value="Send Message" required="required">
                 </div>
               </div>
             </div>

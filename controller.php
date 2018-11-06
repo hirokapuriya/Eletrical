@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL); 
+ini_set('display_errors', 1);  
   include("model.php");
   class controller
   {
@@ -37,12 +39,14 @@
             echo "<script>alert('Subscribed Not Successful')</script>";  
         }
       }
+      //Image Show Function
       public function get_image_ctrl(){
         $get_img_frunt = new model;
         $get_img = $get_img_frunt->get_image_frunt();
         
         return $get_img;
       }
+      
   } 
 
 ?>
