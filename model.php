@@ -24,7 +24,15 @@
       
       return $get_gallery_image;
         
-      }
+    }
+    //get Service name and details Queyry
+    public function get_service_name_model(){
+      global $con;
+
+      $get_service_model = mysqli_query($con,"SELECT * FROM `service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id");
+      
+       return $get_service_model;
+    }
     
   }
 

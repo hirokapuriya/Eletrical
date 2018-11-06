@@ -3,7 +3,7 @@
 	session_start();
  
 	//Include database connection details
-	require_once('connection.php');
+	Include('connection/connection.php');
  
 	//Array to store validation errors
 	$errmsg_arr = array();
@@ -24,7 +24,7 @@
 	//Sanitize the POST values
 	$username = $_POST['username'];
 	$password = $_POST['password'];
- 
+ 	//var_dump($username); var_dump($password); die('not');
 	//Input Validations
 	if($username == '') {
 		$errmsg_arr[] = 'Username missing';
@@ -44,8 +44,9 @@
 	}
  
 	//Create query
-	$qry="SELECT * FROM login WHERE username='$username' AND password='$password'";
-	$result=mysqli_query($bd, $qry);
+	$Query ="SELECT * FROM login WHERE username='$username' AND password='$password'";
+	$result=mysqli_query($con, $Query);
+	//var_dump($result); die('llll');
  
 	//Check whether the query was successful or not
 	if($result) {
@@ -57,13 +58,14 @@
 			$_SESSION['SESS_FIRST_NAME'] = $member['username'];
 			$_SESSION['SESS_LAST_NAME'] = $member['password'];
 			session_write_close();
-			header("location: ../index.php");
+			header("location: home.php");
 			exit();
 		}else {
 			//Login failed
 			$errmsg_arr[] = 'user name and password not found';
 			$errflag = true;
-			if($errflag) {
+			if($errflag) 
+			{
 				$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 				session_write_close();
 				header("location: index.php");

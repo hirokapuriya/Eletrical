@@ -46,6 +46,12 @@ ini_set('display_errors', 1);
         
         return $get_img;
       }
+      //Service tabe show data and display service tab
+      public function show_service_tab(){
+        $get_service_name = new model;
+        $get_service_ctrl = $get_service_name->get_service_name_model();
+        return $get_service_ctrl;
+      }
       
   } 
 

@@ -187,6 +187,13 @@ ini_set('display_errors', TRUE);
       $get_contact = $get_contact_list->get_contact_list();
       return $get_contact;
     }
+    //Show Gallery Image in Backend Grid Function
+    public function show_image(){
+      $get_grid_img = new model();
+      $get_grid_img_ctrl = $get_grid_img->grid_image_model();
+
+      return $get_grid_img_ctrl;
+    }
   } 
 
 ?>

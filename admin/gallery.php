@@ -1,8 +1,9 @@
-﻿<?php
+﻿<?php require_once('auth.php'); ?>
+
+<?php
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);  
 include('controller.php');
-
 
 //Pagination Data Limi and Satting
 $limit = 5;  
@@ -13,10 +14,6 @@ $get_gallery_image = mysqli_fetch_row($gallery_page_details);
 $total_records = $get_gallery_image[0];  
 $total_pages = ceil($total_records / $limit);  
 //Pagination Code Ending
-
-
-
-$get_gallery_image = mysqli_query($con,"SELECT * FROM gallery_image LIMIT $start_from, $limit");
 
 if(isset($_POST['submit_image']))
 {
@@ -169,7 +166,12 @@ if(isset($_REQUEST['edit_image'])){
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                              <?php while ($reslut_image = mysqli_fetch_assoc($get_gallery_image)) {?>
+                                              <?php 
+
+                                                $get_img_grid = new controller();
+                                                $get_gallery_image = $get_img_grid->show_image();
+
+                                                while ($reslut_image = mysqli_fetch_assoc($get_gallery_image)) {?>
                                                 <tr>
                                                     <td><?php echo $reslut_image['id']; ?></td>
                                                     <td><img src="Gallery/<?php echo $reslut_image['gallery_img'];?>" height="100" width="100"></td>

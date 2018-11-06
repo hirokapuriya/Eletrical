@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 02, 2018 at 04:44 PM
+-- Generation Time: Nov 06, 2018 at 03:42 PM
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
@@ -42,7 +42,12 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `subject`, `phone`, `email`, `message`, `created`, `updated`) VALUES
-(2, 'hiren', 'hello', 1234567890, 'kapuriyahiren8899@gmail.com', 'jhgjhgjkjkhgkg', '2018-10-22 13:00:31', '2018-10-22 13:00:31');
+(2, 'hiren', 'hello', 1234567890, 'kapuriyahiren8899@gmail.com', 'jhgjhgjkjkhgkg', '2018-10-22 13:00:31', '2018-10-22 13:00:31'),
+(3, 'fasdf', 'asdf', 1234567890, 'kapuriyahiren8899@gmail.com', 'asdf', '2018-11-05 12:07:36', '2018-11-05 12:07:36'),
+(4, 'asf', 'asdf', 1234567890, 'kapuriyahiren8899@gmail.com', 'sdafdasf', '2018-11-05 12:48:35', '2018-11-05 12:48:35'),
+(5, 'adsfdsadasf', 'dasfadsf', 1234567890, 'kapuriyahiren8899@gmail.com', 'asdfdasfdasfdasf', '2018-11-05 12:48:46', '2018-11-05 12:48:46'),
+(8, 'dasf', 'asdf', 1234567890, 'kapuriyahiren8899@gmail.com', 'adsfdasfsdaf', '2018-11-05 12:49:31', '2018-11-05 12:49:31'),
+(9, 'happy diwali', 'kapuriya', 1234567890, 'kapuriyahiren8899@gmail.com', 'easfdfg', '2018-11-06 04:59:00', '2018-11-06 04:59:00');
 
 -- --------------------------------------------------------
 
@@ -63,8 +68,20 @@ CREATE TABLE `gallery_image` (
 --
 
 INSERT INTO `gallery_image` (`id`, `gallery_img`, `name`, `created`, `updated`) VALUES
-(59, '36548.jpg', 'ddd', '2018-11-01 10:07:33', '2018-11-01 10:07:33'),
-(63, '53675-dairy-milk.jpg', 'aaaaaaaaaaaaaaaaaaaaaaaa', '2018-11-02 10:13:01', '2018-11-02 10:13:01');
+(67, '2100Happy-Diwali-Background-Wallpapers-25451.jpg', 'fsgfsgsdfgfg', '2018-11-02 11:42:26', '2018-11-02 11:42:26'),
+(68, '9180IMG_20180203_113804.jpg', 'hiren', '2018-11-02 12:50:41', '2018-11-02 12:50:41'),
+(74, '70948.jpg', 'aaaa', '2018-11-02 12:54:45', '2018-11-02 12:54:45'),
+(76, '4787IMG_20180203_113804.jpg', 'dfsgh', '2018-11-02 12:55:00', '2018-11-02 12:55:00'),
+(77, '7817IMG_20180203_114227.jpg', 'aaaaa', '2018-11-02 12:56:07', '2018-11-02 12:56:07'),
+(78, '8677IMG_20170128_173112 (1).jpg', 'aaaa', '2018-11-02 12:56:17', '2018-11-02 12:56:17'),
+(79, '671images (2).jpeg', 'aaaaaaaaaaaaaaaaa', '2018-11-02 12:56:26', '2018-11-02 12:56:26'),
+(80, '4625images (1).jpeg', 'a1223', '2018-11-02 12:56:42', '2018-11-02 12:56:42'),
+(81, '2621images (4).jpeg', 'aaaaaaaaaaaaa', '2018-11-02 12:56:58', '2018-11-02 12:56:58'),
+(82, '5789image_yK.png', 'aaaaaaa', '2018-11-02 12:57:14', '2018-11-02 12:57:14'),
+(100, '3919Untitled-4.png', 'gfhcgf', '2018-11-02 14:37:57', '2018-11-02 14:37:57'),
+(101, '3718image1.jpeg', 'sz', '2018-11-02 14:38:23', '2018-11-02 14:38:23'),
+(102, '5681images (1).jpeg', 'qqqq', '2018-11-02 14:40:46', '2018-11-02 14:40:46'),
+(103, '5567Cloud-White-Wallpaper-Simple.jpeg', 'dark image', '2018-11-06 05:53:03', '2018-11-06 05:53:03');
 
 -- --------------------------------------------------------
 
@@ -88,35 +105,26 @@ INSERT INTO `login` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Service_tab_details`
+-- Table structure for table `service_tab_details`
 --
 
-CREATE TABLE `Service_tab_details` (
-  `id` int(10) NOT NULL,
-  `service_name_opt` int(10) NOT NULL,
-  `service_description` varchar(240) NOT NULL,
+CREATE TABLE `service_tab_details` (
+  `id` int(11) NOT NULL,
+  `service_name_opt` int(11) NOT NULL,
+  `service_description` text,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Service_tab_details`
+-- Dumping data for table `service_tab_details`
 --
 
-INSERT INTO `Service_tab_details` (`id`, `service_name_opt`, `service_description`, `created`, `updated`) VALUES
-(11, 26, '<p>abcd</p>', '2018-10-30 10:03:49', '2018-11-01 06:22:22'),
-(13, 24, '<p>hello hiren kapuriya ssssssssssssssss</p>', '2018-10-30 10:04:18', '2018-11-01 07:02:35'),
-(19, 21, '<p>asdfsdafsadf</p>', '2018-10-30 12:55:29', '2018-10-30 12:55:29'),
-(20, 21, '<p>asdfasdfsda</p>', '2018-10-30 12:55:33', '2018-10-30 12:55:33'),
-(21, 21, '<p>asdfsdaf</p>', '2018-10-30 12:55:36', '2018-10-30 12:55:36'),
-(22, 21, '<p>adsfasdf</p>', '2018-10-30 12:55:42', '2018-10-30 12:55:42'),
-(23, 21, '<p>xczvxcvxcvxzdsafdsfdsaf</p>', '2018-10-30 12:55:46', '2018-10-30 12:55:46'),
-(24, 21, '<p>asdfdafasdfasdfasdffdafasdf</p>', '2018-10-30 12:55:51', '2018-10-30 12:55:51'),
-(25, 21, '<p>sadfsdfasdfasfadfadsfdas</p>', '2018-10-30 12:55:56', '2018-10-30 12:55:56'),
-(26, 21, '<p>asfasdfadsfasfadsfasdf</p>', '2018-10-30 12:56:01', '2018-10-30 12:56:01'),
-(27, 21, '<p>sbgdgdfsgsfg</p>', '2018-10-30 13:25:21', '2018-10-30 13:25:21'),
-(28, 24, '<p><strong><em>aaaaaaaaaaaaaA<br></em></strong></p>', '2018-10-31 04:53:48', '2018-10-31 04:53:48'),
-(30, 25, '<p>aaaaaaa</p>', '2018-10-31 08:50:42', '2018-10-31 08:50:42');
+INSERT INTO `service_tab_details` (`id`, `service_name_opt`, `service_description`, `created`, `updated`) VALUES
+(4, 3, '<p>sdfdsfasdfas</p><p>df</p><p>sdf</p><p>asdf</p><p><br></p>', '2018-11-05 11:43:32', '2018-11-05 11:43:32'),
+(5, 3, '<p>asf</p><p>sdf</p><p>dfs</p><p>sdf</p><p>asdf</p><p>sd</p><p>fsd</p><p>fsd</p><p>f</p>', '2018-11-05 11:43:40', '2018-11-05 11:43:40'),
+(9, 3, '<p>sdf</p><p>sd</p><p>fsd</p><p>f</p><p>sdaf</p><p>d</p><p>fsd</p><p>f</p><p>df</p><p><br></p>', '2018-11-05 11:44:11', '2018-11-05 11:44:11'),
+(20, 3, '<p>aaaaaaaaaaaaa</p><p><br></p>', '2018-11-06 04:54:15', '2018-11-06 04:54:27');
 
 -- --------------------------------------------------------
 
@@ -125,8 +133,8 @@ INSERT INTO `Service_tab_details` (`id`, `service_name_opt`, `service_descriptio
 --
 
 CREATE TABLE `service_tab_name` (
-  `service_id` int(10) NOT NULL,
-  `service_name` varchar(240) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `service_name` varchar(255) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -136,12 +144,8 @@ CREATE TABLE `service_tab_name` (
 --
 
 INSERT INTO `service_tab_name` (`service_id`, `service_name`, `created`, `updated`) VALUES
-(21, 'AC & DC', '2018-10-30 10:00:05', '2018-10-30 10:00:05'),
-(22, 'asfdfasf', '2018-10-30 10:03:41', '2018-10-30 10:03:41'),
-(23, 'SMI & PCL', '2018-10-30 10:05:49', '2018-10-30 10:05:49'),
-(24, 'aaaaaaaaaaaaaaa', '2018-10-31 04:53:26', '2018-10-31 04:53:26'),
-(25, '123456', '2018-10-31 08:50:33', '2018-10-31 08:50:33'),
-(26, 'hiren', '2018-11-01 05:57:22', '2018-11-01 05:57:22');
+(3, 'abc', '2018-11-05 11:43:05', '2018-11-05 11:43:05'),
+(8, 'aaaa', '2018-11-06 04:54:05', '2018-11-06 04:54:05');
 
 -- --------------------------------------------------------
 
@@ -161,15 +165,10 @@ CREATE TABLE `subscribe` (
 --
 
 INSERT INTO `subscribe` (`id`, `subscribe_email`, `created`, `updated`) VALUES
-(1, '', '2018-10-25 09:58:06', '2018-10-25 09:58:06'),
-(2, '', '2018-10-25 09:58:34', '2018-10-25 09:58:34'),
-(3, '', '2018-10-25 10:05:43', '2018-10-25 10:05:43'),
-(4, 'kapuriyahiren8899@gmail.com', '2018-10-25 10:13:30', '2018-10-25 10:13:30'),
-(5, 'sdfgfsd', '2018-10-25 11:29:38', '2018-10-25 11:29:38'),
-(6, 'kapuriyahiren8899@gmail.com', '2018-10-26 07:15:28', '2018-10-26 07:15:28'),
-(7, 'sdfg', '2018-10-26 08:17:49', '2018-10-26 08:17:49'),
-(8, 'asfdsdaf', '2018-10-26 10:02:25', '2018-10-26 10:02:25'),
-(9, '".$subscribe_email."', '2018-10-26 11:40:29', '2018-10-26 11:40:29');
+(10, 'kapuriyahiren8899@gmail.com', '2018-11-05 07:04:57', '2018-11-05 07:04:57'),
+(11, 'hardik.parmar@commercepundit.com', '2018-11-05 07:05:33', '2018-11-05 07:05:33'),
+(12, 'hiren.kapuriya@commercepundit.com', '2018-11-05 07:25:27', '2018-11-05 07:25:27'),
+(13, 'kapuriyahiren8899@gmail.com', '2018-11-06 04:57:33', '2018-11-06 04:57:33');
 
 --
 -- Indexes for dumped tables
@@ -194,10 +193,11 @@ ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Service_tab_details`
+-- Indexes for table `service_tab_details`
 --
-ALTER TABLE `Service_tab_details`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `service_tab_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_service_tab_name` (`service_name_opt`);
 
 --
 -- Indexes for table `service_tab_name`
@@ -219,32 +219,42 @@ ALTER TABLE `subscribe`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `gallery_image`
 --
 ALTER TABLE `gallery_image`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `Service_tab_details`
+-- AUTO_INCREMENT for table `service_tab_details`
 --
-ALTER TABLE `Service_tab_details`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+ALTER TABLE `service_tab_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `service_tab_name`
 --
 ALTER TABLE `service_tab_name`
-  MODIFY `service_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `subscribe`
 --
 ALTER TABLE `subscribe`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `service_tab_details`
+--
+ALTER TABLE `service_tab_details`
+  ADD CONSTRAINT `service_tab_details_ibfk_1` FOREIGN KEY (`service_name_opt`) REFERENCES `service_tab_name` (`service_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

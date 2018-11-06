@@ -104,6 +104,16 @@ ini_set('display_errors', TRUE);
 
       return $select_contact;
     }
+    public function grid_image_model(){
+      global $con;
+      $limit = 5;  
+      if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+      $start_from = ($page-1) * $limit;
+
+      $get_gallery_image_model = mysqli_query($con,"SELECT * FROM gallery_image LIMIT $start_from, $limit");
+
+      return $get_gallery_image_model;
+    }
   }
 
 ?>

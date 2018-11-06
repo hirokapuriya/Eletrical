@@ -1,4 +1,5 @@
-﻿<?php
+﻿<?php require_once('auth.php'); ?>
+<?php
 error_reporting(E_ALL); 
 ini_set('display_errors',1);  
 include("controller.php");

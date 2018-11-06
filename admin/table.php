@@ -1,4 +1,6 @@
-﻿<?php 
+﻿<?php require_once('auth.php'); ?>
+
+<?php 
    include("controller.php");
     
     if(isset($_REQUEST['del_id']))

@@ -1,3 +1,8 @@
+<?php 
+  error_reporting(E_ALL); 
+  ini_set('display_errors',1);  
+  include("controller.php");
+?>
 <!DOCTYPE html>
 <html class="gr__sbtechnosoft_com" lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -74,11 +79,18 @@
   <div class="container">
     <div class="service-details-tabs">
       <ul class="nav nav-tabs">
-        <li class="show active"><a data-target="#menu1" data-toggle="tab" href="#" aria-expanded="true">Electrical Maintenance</a></li>
-        <li class=""><a data-toggle="tab" data-target="#menu2" href="#menu2" aria-expanded="false">Lighting and Repair</a></li>
+        <?php
+            $get_service_tabe_name = new controller();
+            $get_service_display = $get_service_tabe_name->show_service_tab();
+
+            while ($result_service = mysqli_fetch_assoc($get_service_display)) {?>
+         
+      <li><a data-target="#menu1" data-toggle="tab" href="#" aria-expanded="true"><?php echo $result_service['service_name']; ?></a></li>
+        <!--<li class=""><a data-toggle="tab" data-target="#menu2" href="#menu2" aria-expanded="false">Lighting and Repair</a></li>
         <li><a data-toggle="tab" data-target="#menu3" href="#menu3">Electrical Installation</a></li>
         <li><a data-toggle="tab" data-target="#menu4" href="#menu4">Air Conditioning</a></li>
-        <li><a data-toggle="tab" data-target="#menu5" href="#menu5">Services5</a></li>
+        <li><a data-toggle="tab" data-target="#menu5" href="#menu5">Services5</a></li> -->
+      <?php } ?>
       </ul>
       <div class="tab-content">
         <div id="menu1" class="tab-pane fade active in">
@@ -131,7 +143,7 @@ tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
             </div>
           </div>
         </div>
-        <div id="menu2" class="tab-pane fade">
+       <!--  <div id="menu2" class="tab-pane fade">
         <div class="row">
             <div class="col-sm-6">
               <div class="pgwSlider narrow"><div class="ps-current" style="height: 0px;"><ul><li class="elt_1" style="display: none; opacity: 0; z-index: 1;"><img src="images/service-details-img1.jpg" alt=""></li><li class="elt_2" style="z-index: 2; display: list-item; opacity: 1;"><img src="images/service-details-img2.jpg" alt=""></li></ul><span class="ps-caption"></span></div><ul class="ps-list">
@@ -163,8 +175,8 @@ tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
               </div>
             </div>
           </div>
-        </div>
-        <div id="menu3" class="tab-pane fade">
+        </div> -->
+        <!-- <div id="menu3" class="tab-pane fade">
          <div class="row">
             <div class="col-sm-6">
               <div class="pgwSlider narrow"><div class="ps-current" style="height: 0px;"><ul><li class="elt_1" style="display: none; opacity: 0; z-index: 1;"><img src="images/service-details-img1.jpg" alt=""></li><li class="elt_2" style="z-index: 2; display: list-item; opacity: 1;"><img src="images/service-details-img2.jpg" alt=""></li></ul><span class="ps-caption"></span></div><ul class="ps-list">
@@ -196,8 +208,8 @@ tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
               </div>
             </div>
           </div>
-        </div>
-        <div id="menu4" class="tab-pane fade">
+        </div> -->
+        <!-- <div id="menu4" class="tab-pane fade">
          <div class="row">
             <div class="col-sm-6">
               <div class="pgwSlider narrow"><div class="ps-current" style="height: 0px;"><ul><li class="elt_1" style="display: none; opacity: 0; z-index: 1;"><img src="images/service-details-img1.jpg" alt=""></li><li class="elt_2" style="z-index: 2; display: list-item; opacity: 1;"><img src="images/service-details-img2.jpg" alt=""></li></ul><span class="ps-caption"></span></div><ul class="ps-list">
@@ -229,8 +241,8 @@ tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
               </div>
             </div>
           </div>
-        </div>
-        <div id="menu5" class="tab-pane fade">
+        </div> -->
+        <!-- <div id="menu5" class="tab-pane fade">
           <div class="row">
             <div class="col-sm-6">
               <div class="pgwSlider narrow"><div class="ps-current" style="height: 0px;"><ul><li class="elt_1" style="display: none; opacity: 0; z-index: 1;"><img src="images/service-details-img1.jpg" alt=""></li><li class="elt_2" style="z-index: 2; display: list-item; opacity: 1;"><img src="images/service-details-img2.jpg" alt=""></li></ul><span class="ps-caption"></span></div><ul class="ps-list">
@@ -263,7 +275,7 @@ tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
