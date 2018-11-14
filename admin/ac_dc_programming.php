@@ -1,4 +1,4 @@
-﻿<?php require_once('auth.php'); ?>
+﻿<?php //require_once('auth.php'); ?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

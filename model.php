@@ -26,14 +26,31 @@
         
     }
     //get Service name and details Queyry
-    public function get_service_name_model(){
+    public function get_service_name_model()
+    {
       global $con;
 
       $get_service_model = mysqli_query($con,"SELECT * FROM `service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id");
       
        return $get_service_model;
     }
-    
+    //Insert Service Registration Form in Database
+    public function register_model($name,$email,$message,$contact,$comman_drive,$drive_no,$capcity,$machine_name)
+    {
+      global $con;
+
+      $insert_register = mysqli_query($con,"INSERT INTO registration(name,email,message,contact,comman_drive,drive_no,capcity,machine_name) values('".$name."','".$email."','".$message."','".$contact."','".$comman_drive."','".$drive_no."','".$capcity."','".$machine_name."')") or die(mysqli_error('this is not completed for registration'));
+
+       return $insert_register;
+    }
+    //Get Service_form Data In Grid
+    public function get_service_From_Data_model(){
+      global $con;
+
+       $get_service_data = mysqli_query($con,"SELECT * FROM registration");
+       return $get_service_data;
+
+    }
   }
 
 ?>
