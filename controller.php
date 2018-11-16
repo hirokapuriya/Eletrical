@@ -4,61 +4,84 @@ ini_set('display_errors', 1);
   include("model.php");
   class controller
   {
+      /**
+       * @param $name
+       * @param $subject
+       * @param $phone
+       * @param $email
+       * @param $message
+       */
     /*Contact Form Function*/
     public function con_register($name,$subject,$phone,$email,$message)
     {
-      
+
       $ins=new model;
-      
-        $register = $ins->contact($name,$subject,$phone,$email,$message); 
+
+        $register = $ins->contact($name,$subject,$phone,$email,$message);
         if($register)
-        {  
-             echo "<script>alert('Registration Successful')</script>";  
+        {
+             echo "<script>alert('Registration Successful')</script>";
              header("location:contact.php");
         }
         else
-        {  
-            echo "<script>alert('Registration Not Successful')</script>";  
+        {
+            echo "<script>alert('Registration Not Successful')</script>";
         }
       }
-      
-      /*Subscriber Function*/
+      /**
+       * @param $subscribe_email
+       */
       public function subscriber_registration($subscribe_email)
       {
-        
-        $subscriber_ctrl=new model;
-      
-        $subscriber_customer = $subscriber_ctrl->subscriber_model($subscribe_email);  
-        if($subscriber_customer)
-        {  
-             echo "<script>alert('Subscribed Successful')</script>";  
-             header("location:../index.php");
-        }
-        else
-        {  
-            echo "<script>alert('Subscribed Not Successful')</script>";  
-        }
+
+          $subscriber_ctrl = new model;
+
+          $subscriber_customer = $subscriber_ctrl->subscriber_model($subscribe_email);
+          if ($subscriber_customer) {
+              echo "<script>alert('Subscribed Successful')</script>";
+              header("location:../index.php");
+          } else {
+              echo "<script>alert('Subscribed Not Successful')</script>";
+          }
       }
-      //Image Show Function
+      /**
+       * @return bool|mysqli_result
+       */
       public function get_image_ctrl(){
         $get_img_frunt = new model;
         $get_img = $get_img_frunt->get_image_frunt();
         
         return $get_img;
       }
-      //Service tabe show data and display service tab
+      /**
+       * @return bool|mysqli_result
+       * Service tabe show data and display service tab
+       */
       public function show_service_tab(){
         $get_service_name = new model;
         $get_service_ctrl = $get_service_name->get_service_name_model();
         return $get_service_ctrl;
       }
-      //Serivice Data inserted and Store in Database
+      /**
+       * @param $name
+       * @param $email
+       * @param $message
+       * @param $contact
+       * @param $comman_drive
+       * @param $drive_no
+       * @param $capcity
+       * @param $machine_name
+       * Serivice Data inserted and Store in Database
+       */
       public function service_register($name,$email,$message,$contact,$comman_drive,$drive_no,$capcity,$machine_name){
         $register_ctrl = new model;
 
         $register_complete = $register_ctrl->register_model($name,$email,$message,$contact,$comman_drive,$drive_no,$capcity,$machine_name);
       }
-      //Show Service_form all Data in Grid-Backend side
+      /**
+       * @return bool|mysqli_result
+       * Show Service_form all Data in Grid-Backend side
+       */
       public function show_service_form_data_ctrl()
       {
         $get_service_list = new model;
