@@ -63,6 +63,15 @@ ini_set('display_errors', 1);
         return $get_service_ctrl;
       }
       /**
+       * @return bool|mysqli_result
+       * Service tabe show data and display service tab_details
+       */
+      public function show_service_tab_details(){
+        $get_service_name_details = new model;
+        $get_service_ctrl_details = $get_service_name_details->get_service_name_detals_model();
+        return $get_service_ctrl_details;
+      }
+      /**
        * @param $name
        * @param $email
        * @param $message

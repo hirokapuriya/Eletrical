@@ -82,10 +82,11 @@
         <?php
             $get_service_tabe_name = new controller();
             $get_service_display = $get_service_tabe_name->show_service_tab();
+            foreach ($get_service_display as $result_service) {?>
+          <li>
 
-            while ($result_service = mysqli_fetch_assoc($get_service_display)) {?>
-         
-      <li><a data-target="#menu1" data-toggle="tab" href="#" aria-expanded="true"><?php echo $result_service['service_name']; ?></a></li>
+            <a data-target="#<?php echo $result_service['service_id']; ?>" data-toggle="tab" href="#<?php echo $result_service['service_id']; ?>" aria-expanded="true"><?php echo $result_service['service_name']; ?></a>
+          </li>
         <!--<li class=""><a data-toggle="tab" data-target="#menu2" href="#menu2" aria-expanded="false">Lighting and Repair</a></li>
         <li><a data-toggle="tab" data-target="#menu3" href="#menu3">Electrical Installation</a></li>
         <li><a data-toggle="tab" data-target="#menu4" href="#menu4">Air Conditioning</a></li>
@@ -93,57 +94,44 @@
       <?php } ?>
       </ul>
       <div class="tab-content">
-        <div id="menu1" class="tab-pane fade active in">
+      <?php
+         $get_service_tabe_details = new controller();
+         $get_service_display_details = $get_service_tabe_details->show_service_tab_details();
+        foreach ($get_service_display_details as $result_service_details) {?>
+      <div id="<?php echo $result_service_details['service_name_opt']; ?>" class="tab-pane fade active in">
           <div class="row">
           <div class="col-sm-6">
               <div class="pgwSlider wide">
-                <!-- <div class="ps-current" style="height: 323.383px;">
-                  <ul>
-                    <li class="elt_1" style="display: none; opacity: 0; z-index: 1;">
-                      <img src="images/service-details-img1.jpg" alt="">
+                  <!-- <div class="ps-current" style="height: 323.383px;">
+                    <ul>
+                      <li class="elt_1" style="display: none; opacity: 0; z-index: 1;">
+                        <img src="images/service-details-img1.jpg" alt="">
+                      </li>
+                      <li class="elt_2" style="z-index: 2; display: list-item; opacity: 1;">
+                        <img src="images/service-details-img2.jpg" alt="">
+                      </li>
+                    </ul>
+                    <span class="ps-caption"></span>
+                  </div>
+                  <ul class="ps-list">
+                    <li class="elt_1" style="cursor: pointer; opacity: 0.6; width: 50%; height: 158.692px;">
+                        <img src="images/service-details-img1.jpg" alt="">
                     </li>
-                    <li class="elt_2" style="z-index: 2; display: list-item; opacity: 1;">
+                    <li class="elt_2" style="cursor: pointer; opacity: 1; width: 50%; height: 158.692px;">
                       <img src="images/service-details-img2.jpg" alt="">
                     </li>
-                  </ul>
-                  <span class="ps-caption"></span>
-                </div>
-                <ul class="ps-list">
-                  <li class="elt_1" style="cursor: pointer; opacity: 0.6; width: 50%; height: 158.692px;">
-                      <img src="images/service-details-img1.jpg" alt="">
-                  </li>
-                  <li class="elt_2" style="cursor: pointer; opacity: 1; width: 50%; height: 158.692px;">
-                    <img src="images/service-details-img2.jpg" alt="">
-                  </li>
-                </ul> -->
+                  </ul> -->
               </div>
             </div>
             <div class="col-sm-6">
               <div class="tabs-content-right">
-                <h3>Finibus Bonorum Malorum</h3>
-                <p>Eque porro quisquam est, qui dolorem ipsum quia dolor
- sit amet, consectetur, adipisci velit, sed quia non numquam eius modi 
-tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-Eque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-                <h3>Air Condition</h3>
-                <p>Eque porro quisquam est, qui dolorem ipsum quia dolor
- sit amet, consectetur, adipisci velit, sed quia non numquam eius modi 
-tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                <ul>
-                  <li>Powerfull HTML5 Template</li>
-                  <li>Quality Design and more</li>
-                  <li>Smooth Design</li>
-                  <li>It's ferfect for any business website</li>
-                  <li>Powerfull HTML5 Template</li>
-                  <li>Quality Design and more</li>
-                  <li>Smooth Design</li>
-                  <li>It's ferfect for any business website</li>
-                </ul>
+                  <?php echo $result_service_details['service_description']; ?>
               </div>
             </div>
           </div>
         </div>
-       <!--  <div id="menu2" class="tab-pane fade">
+      <?php } ?>
+      <!--  <div id="menu2" class="tab-pane fade">
         <div class="row">
             <div class="col-sm-6">
               <div class="pgwSlider narrow"><div class="ps-current" style="height: 0px;"><ul><li class="elt_1" style="display: none; opacity: 0; z-index: 1;"><img src="images/service-details-img1.jpg" alt=""></li><li class="elt_2" style="z-index: 2; display: list-item; opacity: 1;"><img src="images/service-details-img2.jpg" alt=""></li></ul><span class="ps-caption"></span></div><ul class="ps-list">
@@ -316,6 +304,5 @@ tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
 <script src="js/wow.min.js"></script> 
 <script src="js/slider.js"></script> 
 <script src="js/custom.js"></script>
-
 
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: none;"><i class="fa fa-angle-up"></i></a></body></html>
