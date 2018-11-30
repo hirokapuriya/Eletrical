@@ -3,22 +3,37 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE); 
   include('connection/connection.php');
   class model
-  { 
-    //Contact Delete Query
+  {
+      /**
+       * Contact Delete Query
+       * @param $del
+       * @return bool|mysqli_result
+       */
     public function delete($del){
       global $con;
       $execute_delete = mysqli_query($con,"delete from contact where id='$del'");
 
       return $execute_delete;
     }
-    //Add Gallery Image Query
+    /**
+     * Add Gallery Image Query
+     * @param $gallery_img
+     * @param $name
+     * @return bool|mysqli_result
+     */
     public function gallery_model($gallery_img,$name){
       global $con;
 
       $add_image =  mysqli_query($con, "INSERT INTO gallery_image(gallery_img,name) values('".$gallery_img."','".$name."')") or die(mysqli_error('this is not completed for add gallery_img'));  
       return $add_image;
     }
-    //Edit Gallery Image Query
+    /**
+     * Edit Gallery Image Query
+     * @param $gallery_img
+     * @param $name
+     * @param $edit_image_id
+     * @return bool|mysqli_result
+    */
     public function edit_gallery_model($gallery_img,$name,$edit_image_id){
       
       global $con;
@@ -26,7 +41,11 @@ ini_set('display_errors', TRUE);
       $imge_gallery_edit = mysqli_query($con,"UPDATE `gallery_image` SET gallery_img='$gallery_img',name = '$name' WHERE `id`=$edit_image_id");      
       return $imge_gallery_edit;
     }
-    //Delete Gallery Image Folder & Table Query
+    /**
+     * Delete Gallery Image Folder & Table Query
+     * @param $image_delete_id
+     * @return bool|mysqli_result
+     */
     public function img_delete_model($image_delete_id){
       global $con;
       //This is used of delete image in folder using unlink function
@@ -37,14 +56,21 @@ ini_set('display_errors', TRUE);
       $img_delete = mysqli_query($con,"delete from gallery_image where id='$image_delete_id'");
       return $img_delete;
     }
-   
-    //Service name Add Query
+    /**
+     * Service name Add Query
+     * @param $service_name
+     * @return bool|mysqli_result
+     */
     public function Add_service_model($service_name){
       global $con;
       $service_query= mysqli_query($con,"INSERT INTO service_tab_name(service_name) values('".$service_name."')") or die(mysqli_error('this is not completed for add service_name'));  
       return $service_query;
     }
-    //Delete Service name in list Query
+    /**
+     * Delete Service name in list Query
+     * @param $id
+     * @return bool|mysqli_result
+    */
     public function service_list_delete_model($id){
       global $con;
 
@@ -53,7 +79,12 @@ ini_set('display_errors', TRUE);
       }
       return $service_list_del_model;
     }
-    //Service Data Add Query
+    /**
+     * Service Data Add Query
+     * @param $select_dp_service
+     * @param $service_desc
+     * @return bool|mysqli_result
+     */
     public function Add_service_description_model($select_dp_service,$service_desc){
 
         global $con;
@@ -61,15 +92,25 @@ ini_set('display_errors', TRUE);
       return $add_service_desc;
 
     }
-    //Service Data Edit Query
+    /**
+     * Service Data Edit Query
+     * @param $edit_select_dp_service
+     * @param $edit_service_desc
+     * @param $edit_service_id
+     * @return bool|mysqli_result
+     */
     public function service_edit_model($edit_select_dp_service,$edit_service_desc,$edit_service_id)
     {
       global $con;
       $service_edit = mysqli_query($con,"UPDATE `service_tab_details` SET service_name_opt='$edit_select_dp_service' , service_description = '$edit_service_desc' WHERE `id`= '$edit_service_id'");      
 
       return $service_edit;
-    }
-    //Service Data Delete Query
+    }  
+   /**
+    * Service Data Delete Query
+    * @param $option_delete
+    * @return bool|mysqli_result
+   */
     public function service_delete_model($option_delete)
     {
       global $con;
@@ -77,22 +118,31 @@ ini_set('display_errors', TRUE);
 
       return $service_delete;
     }
-   
-    //Subscriber Fetch Query
+    /**
+       * Subscriber Fetch Query
+       * @return bool|mysqli_result
+       */
     public function get_subscriber_model(){
       global $con;
 
       $get_subscriber_deatils = mysqli_query($con,"select * From subscribe");
       return $get_subscriber_deatils;
     }
-    //Subscriber Delete Query
+   /**
+       * Subscriber Delete Query
+       * @param $id
+       * @return bool|mysqli_result
+       */
     public function delete_subscriber_model($id){
       global $con;
       $delete_sub = mysqli_query($con,"delete from subscribe where id='$id'");
 
       return $delete_sub;
     }
-    //Show Contact in contact page and display list query
+   /**
+       * Show Contact in contact page and display list query
+       * @return bool|mysqli_result
+       */
     public function get_contact_list(){
       global $con;
       
@@ -104,6 +154,9 @@ ini_set('display_errors', TRUE);
 
       return $select_contact;
     }
+      /**
+       * @return bool|mysqli_result
+       */
     public function grid_image_model(){
       global $con;
       $limit = 5;  

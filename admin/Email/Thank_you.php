@@ -1,6 +1,7 @@
 ﻿<?php
+        $email_msg = $_REQUEST['email_msg'];
         foreach ($to as $value) 
-        {
+        {   //var_dump($value['email_msg']); die('opo');
             $message='<!DOCTYPE>';
             $message.='<html xmlns="http://www.w3.org/1999/xhtml">';
             $message.='<head>';
@@ -58,7 +59,12 @@
               border: 1px solid #e9e9e9;
               border-radius: 3px;
             }
-
+            .custom-img{
+                background-image: url("http://127.0.0.1/Eletrical/admin/Email/join-bg.jpg") no-repeat;
+                width: 100%;
+                height: 200px;
+                display: block;
+            }
             .content-wrap {
               padding: 20px;
             }
@@ -233,11 +239,62 @@
                       'X-Mailer: PHP/' . phpversion();
               $headers .= "MIME-Version: 1.0\r\n";
               $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-              $message.='</head><body><table class="body-wrap"><tr><td></td><td class="container" width="600"><div class="content"><table class="main" width="100%" cellpadding="0" cellspacing="0"><tr><td class="alert alert-warning">Farmingarms</td></tr><tr><td class="content-wrap"><table width="100%" cellpadding="0" cellspacing="0"><tr><td class="content-block">Hi</td></tr><tr><td class="content-block"> If you believe this is an error, please click on the button below to visit our support portal, through which you can contact our support team</tr></td><br><tr><td class="content-block"></td></tr><br><tr><td class="content-block">Thanks for choosing Farmingarms.</td></tr></table></td></tr></table><div class="footer"><table width="100%"><tr><td class="aligncenter content-block"><a href="www.farmingarms.com">Unsubscribe</a> from these alerts.</td></tr></table></div></div></td><td></td></tr></table></body></html>';
-                      if(mail($value, $subject, $message, $headers))
-                      {
-                          $error = "Mail sended susccessfully";
-                      }
+              $message.='</head>
+                            <body class="custom-img">
+                                <table class="body-wrap">
+                                    <tr>
+                                        <td></td>
+                                        <td class="container" width="600">
+                                            <div class="content">
+                                                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td class="alert alert-warning">'.$email_msg.'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="content-wrap">
+                                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                                <tr>
+                                                                    <td class="content-block">Hi</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="content-block"> 
+                                                                        If you believe this is an error, please click on the button below to visit our support portal, through which you can contact our support team
+                                                                    </td>
+                                                                </tr>
+                                                                <br>
+                                                                 <tr>
+                                                                    <td class="content-block">
+                                                                    </td>
+                                                                 </tr>
+                                                                 <br>
+                                                                 <tr>
+                                                                    <td class="content-block">Thanks for choosing Farmingarms.</td>
+                                                                 </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                   <!-- <tr>
+                                                        <td><div class="custom-img"><img src="http://127.0.0.1/Eletrical/admin/Email/join-bg.jpg"></div></td>
+                                                    </tr>-->
+                                                </table>
+                                                <div class="footer">
+                                                    <table width="100%">
+                                                        <tr>
+                                                            <td class="aligncenter content-block"><a href="www.farmingarms.com">Unsubscribe</a> from these alerts.</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </body>
+                         </html>';
+                if(mail($value, $subject, $message, $headers))
+                {
+                    $error = "Mail sended susccessfully";
+                }
             }
-            
+            //return $error;
         ?>

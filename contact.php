@@ -92,7 +92,7 @@ if(isset($_POST['register']))
       <span class="title-border-color"><i class="fa fa-bolt" aria-hidden="true"></i></span> </div>
   <div class="row">
   <div class="col-sm-8 col-sm-offset-2 col-xs-offset-0">
-  <div class="contact-form">
+      <div class="contact-form">
           <form method="post" id="contact-form">
             <div class="row">
               <div class="col-sm-6">

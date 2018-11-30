@@ -274,7 +274,6 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
-
   <script type="text/javascript" src="Editor/js/froala_editor.min.js" ></script>
   <script type="text/javascript" src="Editor/js/plugins/align.min.js"></script>
   <script type="text/javascript" src="Editor/js/plugins/char_counter.min.js"></script>

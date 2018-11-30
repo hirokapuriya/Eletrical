@@ -1,4 +1,4 @@
-﻿<?php require_once('auth.php'); ?>
+﻿<?php //require_once('auth.php'); ?>
 
 <?php 
    include("controller.php");

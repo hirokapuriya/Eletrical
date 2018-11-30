@@ -1,4 +1,4 @@
-﻿<?php require_once('auth.php'); ?>
+﻿<?php //require_once('auth.php'); ?>
 
 <?php
 error_reporting(E_ALL); 
@@ -20,7 +20,17 @@ ini_set('display_errors', TRUE);
         $subject = $_POST['subject'];
 
         $send_mail_ctrl = new controller;
-        $send_mail_ctrl->send_mail_ctrl($to,$subject,$email_msg);
+        $mail_complete = $send_mail_ctrl->send_mail_ctrl($to,$subject,$email_msg);
+        /*if($mail_complete){?>
+            <script type="text/javascript">
+                alert("Mail Send Successfully");
+            </script>
+        <?php }else{ ?>
+            <script type="text/javascript">
+                alert("Mail Not Send");
+            </script>
+        <?php } */
+
    }
 
 ?>

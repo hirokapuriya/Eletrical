@@ -41,7 +41,6 @@ include('controller.php');
 
 		$get_service_data_grid1 = new controller();
         $get_service_data_done1 = $get_service_data_grid1->show_service_form_data_ctrl();
-
         while ($row1 = mysqli_fetch_assoc($get_service_data_done1)) {
         	if($row1['email'] !== ""){
         ?>
