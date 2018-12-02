@@ -131,6 +131,8 @@ ini_set('display_errors', TRUE);
         $service_ctrl=new model();
          
         $service_done = $service_ctrl->Add_service_model($service_name);
+
+        return $service_done;
         if($service_done){
         	header("location:add_service.php");
         }else{
@@ -237,6 +239,12 @@ ini_set('display_errors', TRUE);
       $get_grid_img_ctrl = $get_grid_img->grid_image_model();
 
       return $get_grid_img_ctrl;
+    }
+    public function Show_regisration_data(){
+      $get_grid_registration = new model();
+      $get_grid_reg_ctrl = $get_grid_registration->get_register_model();
+
+      return $get_grid_reg_ctrl; 
     }
   } 
 

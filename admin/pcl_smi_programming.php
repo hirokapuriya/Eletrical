@@ -1,4 +1,7 @@
-﻿<?php require_once('auth.php'); ?>
+﻿<?php //require_once('auth.php'); ?>
+<?php 
+   include("controller.php");
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -45,18 +48,18 @@
                 <!-- /. ROW  -->
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="alert alert-info">
+                       <!--  <div class="alert alert-info">
                             This is a free responsive admin under cc3.0 license, so you can use it for personal and commercial use.
                           <br />
                             Enjoy this admin and for more please keep looking <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-md-12">
                   <!--   Kitchen Sink -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Gallery Image List
+                            Registration Service List
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -64,27 +67,39 @@
                                     <thead>
                                         <tr>
                                             <th width="5%">Id</th>
-                                            <th width="25%">Image</th>
-                                            <th width="25%">Content</th>
+                                            <th width="25%">Name</th>
+                                            <th width="25%">Email</th>
+                                            <th width="25%">Contact</th>
+                                            <th width="25%">Message</th>
                                             <th width="13%">Createdat</th>
                                             <th width="13%">Updated</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                       <?php
+                                              $get_register_view_list = new controller;
+                                              $get_register_ctrl_list = $get_register_view_list->Show_regisration_data();
+                                        foreach ($get_register_ctrl_list as $result) 
+                                        {
+                                            if ($result['name'] !== "" && $result['email'] !== "" && $result['contact'] !== "" && $result['message'] !== "") { ?>    
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>content</td>
-                                            <td>02/05/2018</td>
-                                            <td>02/05/2018</td>
+                                            <td><?php echo $result['id']; ?></td>
+                                            <td><?php echo $result['name']; ?></td>
+                                            <td><?php echo $result['email']; ?></td>
+                                            <td><?php echo $result['contact']; ?></td>
+                                            <td><?php echo $result['message']; ?></td>
+                                            <td><?php echo $result['created_at']; ?></td>
+                                            <td><?php echo $result['updated_at']; ?></td>
                                             <td>
-                                              <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button>
+                                              <!-- <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button> -->
                                               <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
                                         </tr>
+                                         <?php  }} ?>
                                     </tbody>
                                 </table>
                             </div>
+                            <!-- <div class="alert alert-success"></div> -->
                         </div>
                     </div>
                      <!-- End  Kitchen Sink -->

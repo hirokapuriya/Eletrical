@@ -139,7 +139,7 @@ if (isset($_REQUEST['ragister']))
                           <input class="con-field" name="contact" required="" id="contact" placeholder="Phone No" type="text">
                         </div>
                         <!--AC & DC Drive Reparing-->
-                        <?php if ($result_service_details['id'] == 19) {?>
+                        <?php if ($result_service_details['id'] == 31) {?>
                           <div class="col-sm-6">
                             <input class="con-field" name="company_drive" id="name" required="" placeholder="Company-Drive" type="text">
                           </div>
@@ -148,7 +148,7 @@ if (isset($_REQUEST['ragister']))
                           </div>
                         <?php } ?>
                         <!--PLC & SMI Programming-->
-                        <?php if ($result_service_details['id'] == 20) {?>
+                        <?php if ($result_service_details['id'] == 32) {?>
                           <div class="col-sm-6">
                             <input class="con-field" name="capcity" id="name" required="" placeholder="Capcity" type="text">
                           </div>

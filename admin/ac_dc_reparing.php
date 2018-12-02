@@ -1,4 +1,7 @@
 ﻿<?php //require_once('auth.php'); ?>
+<?php 
+   include("controller.php");
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -63,26 +66,40 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th width="5%">Id</th>
-                                            <th width="25%">Image</th>
-                                            <th width="25%">Content</th>
-                                            <th width="13%">Createdat</th>
-                                            <th width="13%">Updated</th>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone-No</th>
+                                            <th>Message</th>
+                                            <th>Comman-Drive</th>
+                                            <th>Drive-Model No.</th>
+                                            <th>Createdat</th>
+                                            <th>Updated</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                              $get_register_view_list = new controller;
+                                              $get_register_ctrl_list = $get_register_view_list->Show_regisration_data();
+                                        foreach ($get_register_ctrl_list as $result) 
+                                        {   
+                                            if ($result['capcity'] !== "" && $result['machine_name'] !== "") { ?>    
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>content</td>
-                                            <td>02/05/2018</td>
-                                            <td>02/05/2018</td>
+                                            <td><?php echo $result['id']; ?></td>
+                                            <td><?php echo $result['name']; ?></td>
+                                            <td><?php echo $result['email']; ?></td>
+                                            <td><?php echo $result['contact']; ?></td>
+                                            <td><?php echo $result['message']; ?></td>
+                                            <td><?php echo $result['capcity']; ?></td>
+                                            <td><?php echo $result['machine_name']; ?></td>
+                                            <td><?php echo $result['created_at']; ?></td>
+                                            <td><?php echo $result['updated_at']; ?></td>
                                             <td>
-                                              <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button>
-                                              <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button>
-                                          </td>
+                                              <!-- <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button> -->
+                                              <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
                                         </tr>
+                                         <?php  }} ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -167,6 +167,16 @@ ini_set('display_errors', TRUE);
 
       return $get_gallery_image_model;
     }
+    /**
+       * Register Fetch Query
+       * @return bool|mysqli_result
+       */
+    public function get_register_model(){
+      global $con;
+
+      $get_registration_deatils = mysqli_query($con,"select * From registration");
+      return $get_registration_deatils;
+    }
   }
 
 ?>

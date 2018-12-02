@@ -36,7 +36,12 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
   {
       $service_name = $_POST['service_name']; 
       $service_view= new controller;
-      $service_view->Add_service_admin_ctrl($service_name); 
+      $himaliya = $service_view->Add_service_admin_ctrl($service_name); 
+      if($himaliya){ ?>
+        <script type="text/javascript">
+            alert('opopopo');
+        </script>
+      <?php } 
   }
   //Add Service Details and Description
   if(isset($_POST['add_services'])){

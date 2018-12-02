@@ -78,6 +78,7 @@
        */
     public function register_model($name,$email,$message,$contact,$comman_drive,$drive_no,$capcity,$machine_name)
     {
+      //var_dump($name,$email,$message,$contact,$comman_drive,$drive_no,$capcity,$machine_name); die('iooioioi');
       global $con;
 
       $insert_register = mysqli_query($con,"INSERT INTO registration(name,email,message,contact,comman_drive,drive_no,capcity,machine_name) values('".$name."','".$email."','".$message."','".$contact."','".$comman_drive."','".$drive_no."','".$capcity."','".$machine_name."')") or die(mysqli_error('this is not completed for registration'));
