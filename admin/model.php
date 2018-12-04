@@ -177,6 +177,12 @@ ini_set('display_errors', TRUE);
       $get_registration_deatils = mysqli_query($con,"select * From registration");
       return $get_registration_deatils;
     }
+    public function Delete_ac_dc_model($id){
+      global $con;
+      $ac_dc_mass_delete = mysqli_query($con,"delete from registration where id='$id'");
+
+      return $ac_dc_mass_delete;
+    }
   }
 
 ?>

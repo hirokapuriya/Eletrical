@@ -89,8 +89,8 @@
                                             <td><?php echo $result['email']; ?></td>
                                             <td><?php echo $result['contact']; ?></td>
                                             <td><?php echo $result['message']; ?></td>
-                                            <td><?php echo $result['created_at']; ?></td>
-                                            <td><?php echo $result['updated_at']; ?></td>
+                                            <td><?php echo $result['created']; ?></td>
+                                            <td><?php echo $result['updated']; ?></td>
                                             <td>
                                               <!-- <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button> -->
                                               <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
@@ -98,8 +98,7 @@
                                          <?php  }} ?>
                                     </tbody>
                                 </table>
-                            </div>
-                            <!-- <div class="alert alert-success"></div> -->
+                            </div><div class="alert alert-success">$message</div>
                         </div>
                     </div>
                      <!-- End  Kitchen Sink -->

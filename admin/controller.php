@@ -246,6 +246,13 @@ ini_set('display_errors', TRUE);
 
       return $get_grid_reg_ctrl; 
     }
+    public function delete_mass_ac_dc($id)
+    {
+      $Delete_ac_dc = new model();
+      $Delete_ac_dc_ctrl = $Delete_ac_dc->Delete_ac_dc_model($id);
+
+      return $Delete_ac_dc_ctrl;  
+    }
   } 
 
 ?>

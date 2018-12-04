@@ -1,14 +1,26 @@
 ﻿<?php //require_once('auth.php'); ?>
+
 <?php 
-   include("controller.php");
+error_reporting(E_ALL); 
+ini_set('display_errors',1);  
+include("controller.php");
+   //Delete service list delete_service_list
+   if(isset($_POST['bulk_delete_submit'])){
+      $id = $_POST['checked_id'];
+      //var_dump($id); die('jiijij');
+      $delete_ac_dc = new controller;
+      $delete_ac_dc->delete_mass_ac_dc($id);
+   }
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <?php include('admin_include/mass_delete.php') ?>   
     <title>Responsive Bootstrap Advance Admin Template</title>
-
     <?php include('admin_include/inc_css.php') ?>
 </head>
 <body>
@@ -66,6 +78,7 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th><input type="checkbox" id="select_all" value=""/></th>
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Email</th>
@@ -80,12 +93,13 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                              $get_register_view_list = new controller;
-                                              $get_register_ctrl_list = $get_register_view_list->Show_regisration_data();
+                                          $get_register_view_list = new controller;
+                                          $get_register_ctrl_list = $get_register_view_list->Show_regisration_data();
                                         foreach ($get_register_ctrl_list as $result) 
                                         {
                                             if ($result['drive_no'] !== "" && $result['comman_drive'] !== "") { ?>    
                                         <tr>
+                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"/></td>
                                             <td><?php echo $result['id']; ?></td>
                                             <td><?php echo $result['name']; ?></td>
                                             <td><?php echo $result['email']; ?></td>
@@ -93,13 +107,15 @@
                                             <td><?php echo $result['message']; ?></td>
                                             <td><?php echo $result['comman_drive']; ?></td>
                                             <td><?php echo $result['drive_no']; ?></td>
-                                            <td><?php echo $result['created_at']; ?></td>
-                                            <td><?php echo $result['updated_at']; ?></td>
+                                            <td><?php echo $result['created']; ?></td>
+                                            <td><?php echo $result['updated']; ?></td>
                                             <td>
                                               <!-- <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button> -->
                                               <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
                                         </tr>
                                          <?php  }} ?>
+                                        <!--  <input type="submit" class="btn btn-danger" name="bulk_delete_submit" value="DELETE"/> -->
+                                          <button class="btn btn-danger1" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home1"></i>Delete</button>
                                     </tbody>
                                 </table>
                             </div>
