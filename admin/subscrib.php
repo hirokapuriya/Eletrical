@@ -21,17 +21,7 @@ ini_set('display_errors', TRUE);
 
         $send_mail_ctrl = new controller;
         $mail_complete = $send_mail_ctrl->send_mail_ctrl($to,$subject,$email_msg);
-        /*if($mail_complete){?>
-            <script type="text/javascript">
-                alert("Mail Send Successfully");
-            </script>
-        <?php }else{ ?>
-            <script type="text/javascript">
-                alert("Mail Not Send");
-            </script>
-        <?php } */
-
-   }
+    }
 
 ?>
 <!DOCTYPE html>

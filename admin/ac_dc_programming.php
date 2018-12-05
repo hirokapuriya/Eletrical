@@ -6,12 +6,12 @@ ini_set('display_errors',1);
 include("controller.php");
    //Delete service list delete_service_list
    if(isset($_POST['bulk_delete_submit'])){
+      
       $id = $_POST['checked_id'];
-      //var_dump($id); die('jiijij');
+      
       $delete_ac_dc = new controller;
       $delete_ac_dc->delete_mass_ac_dc($id);
    }
-
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -75,6 +75,7 @@ include("controller.php");
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
+                                <form method="post" action="">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -88,7 +89,7 @@ include("controller.php");
                                             <th>Drive-Model No.</th>
                                             <th>Createdat</th>
                                             <th>Updated</th>
-                                            <th>Action</th>
+                                            <!-- <th>Action</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -99,25 +100,24 @@ include("controller.php");
                                         {
                                             if ($result['drive_no'] !== "" && $result['comman_drive'] !== "") { ?>    
                                         <tr>
-                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"/></td>
+                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $result['id']; ?></td>
                                             <td><?php echo $result['name']; ?></td>
                                             <td><?php echo $result['email']; ?></td>
                                             <td><?php echo $result['contact']; ?></td>
-                                            <td><?php echo $result['message']; ?></td>
+                                            <td><div style="overflow-y:scroll; height:80px;"><?php echo $result['message']; ?></div></td>
                                             <td><?php echo $result['comman_drive']; ?></td>
                                             <td><?php echo $result['drive_no']; ?></td>
                                             <td><?php echo $result['created']; ?></td>
                                             <td><?php echo $result['updated']; ?></td>
-                                            <td>
-                                              <!-- <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button> -->
-                                              <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
+                                            <!-- <td>
+                                                <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td> -->
                                         </tr>
                                          <?php  }} ?>
-                                        <!--  <input type="submit" class="btn btn-danger" name="bulk_delete_submit" value="DELETE"/> -->
-                                          <button class="btn btn-danger1" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home1"></i>Delete</button>
                                     </tbody>
                                 </table>
+                                <button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>

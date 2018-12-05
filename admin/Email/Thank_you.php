@@ -1,5 +1,6 @@
 ﻿<?php
-        $email_msg = $_REQUEST['email_msg'];
+        //$email_msg = $_REQUEST['email_msg'];
+        //$subscribe_email
         foreach ($to as $value) 
         {   //var_dump($value['email_msg']); die('opo');
             $message='<!DOCTYPE>';

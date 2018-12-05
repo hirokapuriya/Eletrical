@@ -16,8 +16,11 @@ ini_set('display_errors', 1);
     {
 
       $ins=new model;
+        
+        include('admin/Email/registartion_auto_mail.php');
 
-        $register = $ins->contact($name,$subject,$phone,$email,$message);
+        $register = $ins->contact_model($name,$subject,$phone,$email,$message);
+        
         if($register)
         {
              echo "<script>alert('Registration Successful')</script>";
@@ -35,8 +38,9 @@ ini_set('display_errors', 1);
       {
 
           $subscriber_ctrl = new model;
-
+          include('admin/Email/auto_subscrib.php');
           $subscriber_customer = $subscriber_ctrl->subscriber_model($subscribe_email);
+
           if ($subscriber_customer) {
               echo "<script>alert('Subscribed Successful')</script>";
               header("location:../index.php");

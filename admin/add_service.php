@@ -37,19 +37,23 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
       $service_name = $_POST['service_name']; 
       $service_view= new controller;
       $himaliya = $service_view->Add_service_admin_ctrl($service_name); 
-      if($himaliya){ ?>
+      /*if($himaliya){ ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script type="text/javascript"> 
           window.location = "add_service.php";
+            $("#123").append("Completed");
+            //alert('opopop');
         </script>
-      <?php } 
+      <?php } */
   }
   //Add Service Details and Description
-  if(isset($_POST['add_services'])){
-       
-       $select_dp_service = $_POST['service_name_opt'];
-       $service_desc = $_POST['Service_description'];
-       $service_ctrl_select = new controller;
-       $service_ctrl_select->Add_service_description_ctrl($select_dp_service,$service_desc);
+  if(isset($_POST['add_services']))
+  {
+    $select_dp_service = $_POST['service_name_opt'];
+    $service_desc = $_POST['Service_description'];
+    $service_ctrl_select = new controller;
+    $service_ctrl_select->Add_service_description_ctrl($select_dp_service,$service_desc);
   }
   //Delete Service Tab and data(option_del_id) 
   if(isset($_REQUEST['option_del_id']))
@@ -84,7 +88,29 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Bootstrap Advance Admin Template</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <?php include('admin_include/inc_css.php'); ?>
+    <?php //include('admin_include/validation_js.php'); ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+          $('.btn btn-default').click(function(){
+              //validateForm();
+              var names = $('#nameInput').val();
+              var inputVal = new Array(names);
+
+              var inputMessage = new Array("name");
+
+              $('.error').hide();
+
+              if(inputVal[0] == ""){
+                  $('#nameLabel').after('<span class="error"> Please enter your ' + inputMessage[0] + '</span>');
+              }
+          });
+      });
+
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -125,11 +151,11 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                             <div class="panel-heading">
                                Tab Form
                             </div>
-                            <!-- <div class="alert alert-success"></div> -->
+                            <div class="alert alert-success" id="123"></div>
                             <div class="panel-body">
                                 <form role="form" method="post">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Please Enter Service-Tab" required="" class="form-control" name="service_name" />
+                                        <input type="text" placeholder="Please Enter Service-Tab" class="form-control" name="service_name" id="nameInput" />
                                         <span class="form-group input-group-btn">
                                             <button class="btn btn-default" type="submit" name="service" value="TabService" type="button">Go!</button>
                                         </span>

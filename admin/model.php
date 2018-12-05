@@ -179,9 +179,20 @@ ini_set('display_errors', TRUE);
     }
     public function Delete_ac_dc_model($id){
       global $con;
-      $ac_dc_mass_delete = mysqli_query($con,"delete from registration where id='$id'");
-
+      foreach ($id as $delete_mass) 
+      {
+        $ac_dc_mass_delete = mysqli_query($con,"delete from registration where id='$delete_mass'");
+      }
       return $ac_dc_mass_delete;
+    }
+    public function mass_delete_contact_model($id_contact){
+      global $con;
+      
+      $contact_del = implode(",", $id_contact);
+      
+      $delete_contact = mysqli_query($con ,"DELETE FROM `contact` WHERE id IN ($contact_del)");
+      
+      return $delete_contact;
     }
   }
 

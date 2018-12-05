@@ -109,7 +109,7 @@ if (isset($_REQUEST['ragister']))
 <!-- Inner Page Wrapper Start -->
 <div class="inner-page-wrapper service-details-wrapper">
   <div class="container">
-    <div class="service-details-tabs">
+    <div class="service-details-tabs" style="margin-bottom: 150px;">
       <ul class="nav nav-tabs">
         <?php
             $get_service_tabe_name = new controller();
@@ -138,8 +138,8 @@ if (isset($_REQUEST['ragister']))
                         <div class="col-sm-6">
                           <input class="con-field" name="contact" required="" id="contact" placeholder="Phone No" type="text">
                         </div>
-                        <!--AC & DC Drive Reparing-->
-                        <?php if ($result_service_details['id'] == 31) {?>
+                        <!--AC & DC Drive Programming-->
+                        <?php if ($result_service_details['id'] == 18) {?>
                           <div class="col-sm-6">
                             <input class="con-field" name="company_drive" id="name" required="" placeholder="Company-Drive" type="text">
                           </div>
@@ -147,8 +147,8 @@ if (isset($_REQUEST['ragister']))
                             <input class="con-field" name="drive_no" required="" id="contact" placeholder="Drive Model No" type="text">
                           </div>
                         <?php } ?>
-                        <!--PLC & SMI Programming-->
-                        <?php if ($result_service_details['id'] == 32) {?>
+                        <!--AC & DC Drive Reparing-->
+                        <?php if ($result_service_details['id'] == 19) {?>
                           <div class="col-sm-6">
                             <input class="con-field" name="capcity" id="name" required="" placeholder="Capcity" type="text">
                           </div>
@@ -187,7 +187,7 @@ if (isset($_REQUEST['ragister']))
 <!-- Footer Wrapper Start -->
 <footer class="footer-wrapper">
   <div class="container">
-    <div class="row" style="margin-top: 150px;">
+    <div class="row">
       <?php include("Include/include_subscribe.php") ?>
     </div>
     <div class="row">

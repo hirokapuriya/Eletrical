@@ -25,7 +25,23 @@
                     $('#select_all').prop('checked',false);
                 }
             });
+            //$("#select_count").html($("input.emp_checkbox:checked").length+" Selected");
         });
+
+        function delete_confirm()
+        {
+            if($('.checkbox:checked').length > 0){
+                var result = confirm("Are you sure to delete selected users?");
+                if(result){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                alert('Select at least 1 record to delete.');
+                return false;
+            }
+        }
     </script>
 </head>
 <body>

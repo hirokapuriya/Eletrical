@@ -10,6 +10,14 @@
         $obj->delete($del);
         header("location:table.php");
     }
+    //Delete service list delete_service_list
+   if(isset($_POST['bulk_delete_submit'])){
+      
+      $id_contact = $_POST['checked_id'];
+      
+      $mass_delete_contact = new controller;
+      $mass_delete_contact->mass_delete_contact($id_contact);
+   }
     //Pagination page
     $limit = 5;  
     if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
@@ -25,6 +33,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <?php include('admin_include/mass_delete.php') ?>
     <title>Responsive Bootstrap Advance Admin Template</title>
     <?php include('admin_include/inc_css.php') ?>
 </head>
@@ -73,9 +82,11 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
+                                <form action="" method="post">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th><input type="checkbox" id="select_all" value=""/></th>
                                             <th width="5%">Id</th>
                                             <th width="10%">Name</th>
                                             <th width="15%">Subject</th>
@@ -94,6 +105,7 @@
                                           while ($result = mysqli_fetch_assoc($get_contact_ctrl_list)) 
                                           {?>
                                         <tr>
+                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $result['id']; ?></td>
                                             <td><?php echo $result['name']; ?></td>
                                             <td><?php echo $result['subject']; ?></td>
@@ -110,6 +122,8 @@
                                 <?php for ($i=1; $i<=$total_pages; $i++) {  
                                     echo  $pagLink = "<a class=".'btn btn-danger'." href='table.php?page=".$i."'>".$i."</a>";  
                                 } ?>
+                                <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -253,6 +253,12 @@ ini_set('display_errors', TRUE);
 
       return $Delete_ac_dc_ctrl;  
     }
+    public function mass_delete_contact($id_contact){
+      $mass_delete_contact_ctrl = new model();
+      $mass_delete_contact_complete = $mass_delete_contact_ctrl->mass_delete_contact_model($id_contact);
+
+      return $mass_delete_contact_complete;
+    }
   } 
 
 ?>

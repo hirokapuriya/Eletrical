@@ -7,6 +7,7 @@ if(isset($_POST['subscriber']))
   {
       $subscribe_email = $_POST['subscribe_email']; 
       $subscriber_view= new controller;
-      $subscriber_view->subscriber_registration($subscribe_email); 
+      $subscriber_view->subscriber_registration($subscribe_email);
+     
   }
 ?> 

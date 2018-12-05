@@ -1,6 +1,16 @@
 ﻿<?php //require_once('auth.php'); ?>
 <?php 
-   include("controller.php");
+error_reporting(E_ALL); 
+ini_set('display_errors',1);  
+include("controller.php");
+//Delete service list delete_service_list
+   if(isset($_POST['bulk_delete_submit'])){
+      
+      $id = $_POST['checked_id'];
+      
+      $delete_ac_dc = new controller;
+      $delete_ac_dc->delete_mass_ac_dc($id);
+   }
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,7 +18,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Bootstrap Advance Admin Template</title>
-
+    <?php include('admin_include/mass_delete.php') ?>
    <?php include('admin_include/inc_css.php') ?>
 </head>
 <body>
@@ -63,9 +73,11 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
+                                <form method="post" action="">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th><input type="checkbox" id="select_all" value=""/></th>
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Email</th>
@@ -75,7 +87,7 @@
                                             <th>Drive-Model No.</th>
                                             <th>Createdat</th>
                                             <th>Updated</th>
-                                            <th>Action</th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,22 +98,25 @@
                                         {   
                                             if ($result['capcity'] !== "" && $result['machine_name'] !== "") { ?>    
                                         <tr>
+                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $result['id']; ?></td>
                                             <td><?php echo $result['name']; ?></td>
                                             <td><?php echo $result['email']; ?></td>
                                             <td><?php echo $result['contact']; ?></td>
-                                            <td><?php echo $result['message']; ?></td>
+                                            <td><div style="overflow-y:scroll; height:80px;"><?php echo $result['message']; ?></div></td>
                                             <td><?php echo $result['capcity']; ?></td>
                                             <td><?php echo $result['machine_name']; ?></td>
                                             <td><?php echo $result['created']; ?></td>
                                             <td><?php echo $result['updated']; ?></td>
                                             <td>
-                                              <!-- <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button> -->
-                                              <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td>
+                                             
+                                             <!--  <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td> -->
                                         </tr>
                                          <?php  }} ?>
                                     </tbody>
                                 </table>
+                                <button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>
