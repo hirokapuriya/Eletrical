@@ -24,6 +24,16 @@ if(isset($_REQUEST['option_edit_id']))
      $get_services_edit=mysqli_query($con,"SELECT * FROM `service_tab_name` WHERE `service_id`=".$row_option['service_name_opt']);
      $row_edit_option =mysqli_fetch_assoc($get_services_edit);
 }
+
+  //Delete service list delete_service_list
+   if(isset($_POST['bulk_delete_submit'])){
+      
+      $id_service_display = $_POST['checked_id'];
+      
+      $mass_delete_service = new controller;
+      $mass_delete_service->mass_delete_service($id_service_display);
+   }
+
         
 //This $get_services_drop using Drop-down option
 $get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
@@ -34,6 +44,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
   //Add Service name in list  
   if(isset($_POST['service']))
   {
+      //$fname = isset($_GET['service']) ? $_GET['service'] : '';
       $service_name = $_POST['service_name']; 
       $service_view= new controller;
       $himaliya = $service_view->Add_service_admin_ctrl($service_name); 
@@ -91,6 +102,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <?php include('admin_include/inc_css.php'); ?>
+    <?php include('admin_include/mass_delete.php') ?>
     <?php //include('admin_include/validation_js.php'); ?>
     <script type="text/javascript">
       $(document).ready(function(){
@@ -151,11 +163,11 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                             <div class="panel-heading">
                                Tab Form
                             </div>
-                            <div class="alert alert-success" id="123"></div>
+                            <div class="alert alert-success"></div>
                             <div class="panel-body">
                                 <form role="form" method="post">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Please Enter Service-Tab" class="form-control" name="service_name" id="nameInput" />
+                                        <input type="text" placeholder="Please Enter Service-Tab" class="form-control" name="service_name" id="nameInput" value="" />
                                         <span class="form-group input-group-btn">
                                             <button class="btn btn-default" type="submit" name="service" value="TabService" type="button">Go!</button>
                                         </span>
@@ -245,9 +257,11 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
+                              <form action="" method="post">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th>Mass-Delete<br/><input type="checkbox" id="select_all" value=""/></th>
                                             <th width="5%">Id</th>
                                             <th width="25%">Service Name</th>
                                             <th width="25%">Content</th>
@@ -259,6 +273,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                     <tbody>
                                      <?php while ($option_details = mysqli_fetch_assoc($get_service_details)) { ?>
                                         <tr>
+                                          <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $option_details['id']; ?></td>
                                             <td><?php echo $option_details['service_name']; ?></td>
                                             <td><div style="overflow-y:scroll; height:100px;"><?php echo $option_details['service_description']; ?></div></td>
@@ -275,7 +290,9 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                 </table>
                                 <?php for ($i=1; $i<=$total_pages; $i++) {  
                                     echo  $pagLink = "<a class=".'btn btn-danger'." href='add_service.php?page=".$i."'>".$i."</a>";  
-                                } ?>  
+                                } ?> 
+                                <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                </form> 
                             </div>
                         </div>
                     </div>

@@ -122,7 +122,8 @@ ini_set('display_errors', TRUE);
        * Subscriber Fetch Query
        * @return bool|mysqli_result
        */
-    public function get_subscriber_model(){
+    public function get_subscriber_model()
+    {
       global $con;
 
       $get_subscriber_deatils = mysqli_query($con,"select * From subscribe");
@@ -133,7 +134,8 @@ ini_set('display_errors', TRUE);
        * @param $id
        * @return bool|mysqli_result
        */
-    public function delete_subscriber_model($id){
+    public function delete_subscriber_model($id)
+    {
       global $con;
       $delete_sub = mysqli_query($con,"delete from subscribe where id='$id'");
 
@@ -143,7 +145,8 @@ ini_set('display_errors', TRUE);
        * Show Contact in contact page and display list query
        * @return bool|mysqli_result
        */
-    public function get_contact_list(){
+    public function get_contact_list()
+    {
       global $con;
       
       $limit = 5;  
@@ -157,7 +160,8 @@ ini_set('display_errors', TRUE);
       /**
        * @return bool|mysqli_result
        */
-    public function grid_image_model(){
+    public function grid_image_model()
+    {
       global $con;
       $limit = 5;  
       if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
@@ -171,13 +175,15 @@ ini_set('display_errors', TRUE);
        * Register Fetch Query
        * @return bool|mysqli_result
        */
-    public function get_register_model(){
+    public function get_register_model()
+    {
       global $con;
 
       $get_registration_deatils = mysqli_query($con,"select * From registration");
       return $get_registration_deatils;
     }
-    public function Delete_ac_dc_model($id){
+    public function Delete_ac_dc_model($id)
+    {
       global $con;
       foreach ($id as $delete_mass) 
       {
@@ -185,7 +191,8 @@ ini_set('display_errors', TRUE);
       }
       return $ac_dc_mass_delete;
     }
-    public function mass_delete_contact_model($id_contact){
+    public function mass_delete_contact_model($id_contact)
+    {
       global $con;
       
       $contact_del = implode(",", $id_contact);
@@ -193,6 +200,37 @@ ini_set('display_errors', TRUE);
       $delete_contact = mysqli_query($con ,"DELETE FROM `contact` WHERE id IN ($contact_del)");
       
       return $delete_contact;
+    }
+    public function mass_delete_subscrib_model($id_subscribe)
+    {
+      global $con;
+      
+      $subscrib_del = implode(",", $id_subscribe);
+      
+      $subscrib_contact = mysqli_query($con ,"DELETE FROM `subscribe` WHERE id IN ($subscrib_del)");
+      
+      return $subscrib_contact;
+    }
+    public function mass_delete_service_model($id_service_display)
+    {
+      global $con;
+
+      $service_delete = implode(",", $id_service_display);
+
+      $servie_delete_model = mysqli_query($con,"DELETE FROM `service_tab_details` WHERE id IN ($service_delete)");
+
+      return $service_delete_model;
+    }
+    public function mass_delete_gallery_model($id_gallery)
+    {
+       global $con;
+
+      $gallery_row_delete = implode(",", $id_gallery);
+
+      $mass_gallery_delete_model = mysqli_query($con,"DELETE FROM `gallery_image` WHERE id IN ($gallery_row_delete)");
+
+      return $mass_gallery_delete_model;
+
     }
   }
 

@@ -22,6 +22,14 @@ ini_set('display_errors', TRUE);
         $send_mail_ctrl = new controller;
         $mail_complete = $send_mail_ctrl->send_mail_ctrl($to,$subject,$email_msg);
     }
+    //Delete service list delete_service_list
+   if(isset($_POST['bulk_delete_submit'])){
+      
+      $id_subscribe = $_POST['checked_id'];
+      
+      $mass_delete_subscribe = new controller;
+      $mass_delete_subscribe->mass_delete_subscribe($id_subscribe);
+   }
 
 ?>
 <!DOCTYPE html>
@@ -30,6 +38,7 @@ ini_set('display_errors', TRUE);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Bootstrap Advance Admin Template</title>
+    <?php include('admin_include/mass_delete.php') ?>
     <?php include('admin_include/inc_css.php') ?>
 </head>
 <body>
@@ -79,10 +88,12 @@ ini_set('display_errors', TRUE);
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
+                                <form action="" method="POST">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Checkbox</th>
+                                            <th>Mass-Delete<br/><input type="checkbox" id="select_all" value=""/></th>
+                                            <th>Mail</th>
                                             <th>Id</th>
                                             <th>Email</th>
                                             <th>Action</th>
@@ -96,6 +107,7 @@ ini_set('display_errors', TRUE);
                                   while ($get_subscrib_row = mysqli_fetch_assoc($get_subscriber_get_ctrl)) 
                                   {?>
                                         <tr>
+                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><input type="checkbox" name="mail[]" value="<?php echo $get_subscrib_row['subscribe_email']; ?>"></td>
                                             <td width="5%"><?php echo $i; ?></td>
                                             <td width="80%"><?php echo $get_subscrib_row['subscribe_email']; ?></td>
@@ -107,13 +119,15 @@ ini_set('display_errors', TRUE);
                                     <?php $i++; } ?>
                                     </tbody>
                                 </table>
+                                <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <!--  End  Striped Rows Table  -->
                 </div>
             </div>
-            <div class="row" style="padding-bottom: 100px; `">
+            <div class="row" style="padding-bottom: 100px;">
                     <div class="col-md-12">
                         <div id="comments-sec">
                             <h4><strong>Compose Support Ticket </strong></h4>
@@ -137,7 +151,7 @@ ini_set('display_errors', TRUE);
                 <!-- /. ROW  -->
             </div>
             <!-- /. PAGE INNER  -->
-        </div>
+         </div>
         </form>
         <!-- /. PAGE WRAPPER  -->
     </div>
@@ -155,7 +169,5 @@ ini_set('display_errors', TRUE);
     <script src="assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
-
-
 </body>
 </html>

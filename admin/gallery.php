@@ -45,7 +45,14 @@ if(isset($_REQUEST['edit_image'])){
     $edit_image= new controller;
     $edit_image->image_gallery($gallery_img,$name,$edit_image_id); 
 } 
-
+  //Delete service list delete_service_list
+   if(isset($_POST['bulk_delete_submit'])){
+      
+      $id_gallery = $_POST['checked_id'];
+      
+      $mass_delete_gallery_row = new controller;
+      $mass_delete_gallery_row->mass_delete_gallery_ctrl($id_gallery);
+   }
 
 ?>
 <!DOCTYPE html>
@@ -55,6 +62,7 @@ if(isset($_REQUEST['edit_image'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Bootstrap Advance Admin Template</title>
     <?php include('admin_include/inc_css.php') ?>
+    <?php include('admin_include/mass_delete.php') ?>
 </head>
 <body>
     <div id="wrapper">
@@ -154,9 +162,11 @@ if(isset($_REQUEST['edit_image'])){
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
+                                      <form action="" method="post">
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
+                                                  <th>Mass-Delete<br/><input type="checkbox" id="select_all" value=""/></th>
                                                     <th width="5%">Id</th>
                                                     <th width="25%">Image</th>
                                                     <th width="25%">Content</th>
@@ -173,6 +183,7 @@ if(isset($_REQUEST['edit_image'])){
 
                                                 while ($reslut_image = mysqli_fetch_assoc($get_gallery_image)) {?>
                                                 <tr>
+                                                  <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                                     <td><?php echo $reslut_image['id']; ?></td>
                                                     <td><img src="Gallery/<?php echo $reslut_image['gallery_img'];?>" height="100" width="100"></td>
                                                     <td><?php echo $reslut_image['name']; ?></td>
@@ -189,6 +200,8 @@ if(isset($_REQUEST['edit_image'])){
                                          <?php for ($i=1; $i<=$total_pages; $i++) {  
                                               echo  $pagLink = "<a class=".'btn btn-danger'." href='gallery.php?page=".$i."'>".$i."</a>";  
                                           } ?>  
+                                          <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

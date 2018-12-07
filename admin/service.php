@@ -1,19 +1,20 @@
-﻿<?php require_once('auth.php'); ?>
+﻿<?php //require_once('auth.php'); ?>
 
 <?php
 error_reporting(E_ALL); 
 ini_set('display_errors', TRUE);  
 include("controller.php");
-include("admin_include/inc_css.php");
+//include("admin_include/inc_css.php");
 
 $get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
 $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
 $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id");
 
+if($_GET['service'])
+{
 
   if(isset($_POST['service']))
   {
-      
       $service_name = $_POST['service_name']; 
       $service_view= new controller;
       $service_view->Add_service_admin_ctrl($service_name); 
@@ -25,7 +26,6 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
        $service_ctrl_select = new controller;
        $service_ctrl_select->Add_service_description_ctrl($select_dp_service,$service_desc);
   }
-
 ?>
 <form role="form" method="post">
     <div class="input-group">

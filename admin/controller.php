@@ -253,11 +253,32 @@ ini_set('display_errors', TRUE);
 
       return $Delete_ac_dc_ctrl;  
     }
-    public function mass_delete_contact($id_contact){
+    public function mass_delete_contact($id_contact)
+    {
       $mass_delete_contact_ctrl = new model();
       $mass_delete_contact_complete = $mass_delete_contact_ctrl->mass_delete_contact_model($id_contact);
 
       return $mass_delete_contact_complete;
+    }
+    public function mass_delete_subscribe($id_subscribe)
+    {
+      $mass_delete_subscrib_ctrl = new model();
+      $mass_delete_subscrib_complete = $mass_delete_subscrib_ctrl->mass_delete_subscrib_model($id_subscribe);
+
+      return $mass_delete_subscrib_complete;
+    }
+    public function mass_delete_service($id_service_display)
+    {
+      $mass_delete_display_service_ctrl = new model();
+      $mass_delete_service_complete = $mass_delete_display_service_ctrl->mass_delete_service_model($id_service_display);
+
+      return $mass_delete_service_complete;
+    }
+    public function mass_delete_gallery_ctrl($id_gallery){
+      $mass_delete_gallery = new model();
+
+      $mass_delete_gallery_complete = $mass_delete_gallery->mass_delete_gallery_model($id_gallery);
+      return $mass_delete_gallery_complete;
     }
   } 
 
