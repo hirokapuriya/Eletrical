@@ -107,7 +107,7 @@ ini_set('display_errors', TRUE);
                                   while ($get_subscrib_row = mysqli_fetch_assoc($get_subscriber_get_ctrl)) 
                                   {?>
                                         <tr>
-                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
+                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $get_subscrib_row['id']; ?>"></td>
                                             <td><input type="checkbox" name="mail[]" value="<?php echo $get_subscrib_row['subscribe_email']; ?>"></td>
                                             <td width="5%"><?php echo $i; ?></td>
                                             <td width="80%"><?php echo $get_subscrib_row['subscribe_email']; ?></td>

@@ -1,93 +1,192 @@
-﻿<?php //require_once('auth.php'); ?>
+﻿<?php echo "This Is tray page"//require_once('auth.php'); ?>
 
-<?php
-error_reporting(E_ALL); 
-ini_set('display_errors', TRUE);  
-include("controller.php");
-//include("admin_include/inc_css.php");
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js" />
+  <script type="text/javascript">
+    // Wait for the DOM to be ready
+$(function() {
+  // Initialize form validation on the registration form.
+  // It has the name attribute "registration"
+  $("form[name='registration']").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      firstname: "required",
+      lastname: "required",
+      email: {
+        required: true,
+        // Specify that email should be validated
+        // by the built-in "email" rule
+        email: true
+      },
+      password: {
+        required: true,
+        minlength: 5
+      }
+    },
+    // Specify validation error messages
+    messages: {
+      firstname: "Please enter your firstname",
+      lastname: "Please enter your lastname",
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 5 characters long"
+      },
+      email: "Please enter a valid email address"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+  </script>
+  <style type="text/css">
+    /* Styles */
+    @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+* {
+  margin: 0;
+  padding: 0;
+}
 
-$get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
-$get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
-$get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id");
+body {
+  font-family: "Open Sans";
+  font-size: 14px;
+}
 
-if($_GET['service'])
-{
+.container {
+  width: 500px;
+  margin: 25px auto;
+}
 
-  if(isset($_POST['service']))
-  {
-      $service_name = $_POST['service_name']; 
-      $service_view= new controller;
-      $service_view->Add_service_admin_ctrl($service_name); 
+form {
+  padding: 20px;
+  background: #2c3e50;
+  color: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+form label,
+form input,
+form button {
+  border: 0;
+  margin-bottom: 3px;
+  display: block;
+  width: 100%;
+}
+form input {
+  height: 25px;
+  line-height: 25px;
+  background: #fff;
+  color: #000;
+  padding: 0 6px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+form button {
+  height: 30px;
+  line-height: 30px;
+  background: #e67e22;
+  color: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+}
+form .error {
+  color: #ff0000;
+}
+@import "compass";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+/* Color settings */
+$formBg: #2c3e50;
+$formColor: #fff;
+$inputBg: #fff;
+$inputColor: #000;
+$buttonBg: #e67e22;
+$buttonColor: #fff;
+$errorMsgColor: #ff0000;
+
+/* Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open Sans";
+  font-size: 14px;
+}
+
+.container {
+  width: 500px;
+  margin: 25px auto;
+}
+
+form {
+  padding: 20px;
+  background: $formBg;
+  color: $formColor;
+  @include border-radius(4px);
+
+  label,
+  input,
+  button {
+    border: 0;
+    margin-bottom: 3px;
+    display: block;
+    width: 100%;
   }
-  if(isset($_POST['add_services'])){
-       
-       $select_dp_service = $_POST['service_name_opt'];
-       $service_desc = $_POST['Service_description'];
-       $service_ctrl_select = new controller;
-       $service_ctrl_select->Add_service_description_ctrl($select_dp_service,$service_desc);
+  input {
+    height: 25px;
+    line-height: 25px;
+    background: $inputBg;
+    color: $inputColor;
+    padding: 0 6px;
+    @include box-sizing(border-box);
   }
-?>
-<form role="form" method="post">
-    <div class="input-group">
-      <span class="form-group input-group-btn">
-        <input type="text" placeholder="Enter Service Name" class="form-control" name="service_name" />
-        <button class="btn btn-default" type="submit" name="service" value="TabService" type="button">Go!</button>
-      </span>
-    </div>
-</form>
+  button {
+    height: 30px;
+    line-height: 30px;
+    background: $buttonBg;
+    color: $buttonColor;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .error {
+    color: $errorMsgColor;
+  }
+}
 
-<form method="post">
-<table>
-    <?php while ($row = mysqli_fetch_assoc($get_services_name)) { ?>
-      <tr>
-        <td>
-          <?php echo $row['service_name']; ?>  
-        </td>
-    </tr>  
-      
-    <?php } ?>
-    
-    <tr>
-        <td>
-            <select name="service_name_opt">
-                <?php while ($result = mysqli_fetch_assoc($get_services_drop)) 
-                {
-                     echo '<option value='.$result["service_id"].'>'.$result["service_name"].'</option>';
-                } ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
-      <td>
-        <span>ggggg</span>
-        <div id="editor">
-              <textarea id='edit' style="margin-top: 30px;" name="Service_description"></textarea>
-        </div>
-        <span>ggggg</span>
-      </td>
+  </style>
+</head>
+<body>
+  <div class="container">
+  <h2>Registration</h2>
+  <form action="" method="POST" name="registration">
 
-       <!-- <td>
-        </td>
-        --> 
-        <td><button class="btn btn-default" type="submit" name="add_services" value="add_services_data" type="button">Add Data</button></td>
-    </tr>
-</table>
-</form>
+    <label for="firstname">First Name</label>
+    <input type="text" name="firstname" id="firstname" placeholder="John"/><br>
 
+    <label for="lastname">Last Name</label>
+    <input type="text" name="lastname" id="lastname" placeholder="Doe"/><br>
 
-<table>
-  <tr>
-    <td>Service_name</td>
-    <td>Service_description</td>
-  </tr>
-  <?php while ($option_details = mysqli_fetch_assoc($get_service_details)) { ?>
-    <tr>
-      <td><?php echo $option_details['service_name']; ?></td>
-      <td><?php echo $option_details['service_description']; ?></td>
-    </tr>
-<?php } ?>
-  
-</table>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="john@doe.com"/><br>
 
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"/><br>
 
-  
+    <button type="submit">Register</button>
+
+  </form>
+</div>
+</body>
+</html>

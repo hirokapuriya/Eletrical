@@ -273,7 +273,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                     <tbody>
                                      <?php while ($option_details = mysqli_fetch_assoc($get_service_details)) { ?>
                                         <tr>
-                                          <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
+                                          <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $option_details['id']; ?>"></td>
                                             <td><?php echo $option_details['id']; ?></td>
                                             <td><?php echo $option_details['service_name']; ?></td>
                                             <td><div style="overflow-y:scroll; height:100px;"><?php echo $option_details['service_description']; ?></div></td>

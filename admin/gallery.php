@@ -183,7 +183,7 @@ if(isset($_REQUEST['edit_image'])){
 
                                                 while ($reslut_image = mysqli_fetch_assoc($get_gallery_image)) {?>
                                                 <tr>
-                                                  <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
+                                                  <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $reslut_image['id']; ?>"></td>
                                                     <td><?php echo $reslut_image['id']; ?></td>
                                                     <td><img src="Gallery/<?php echo $reslut_image['gallery_img'];?>" height="100" width="100"></td>
                                                     <td><?php echo $reslut_image['name']; ?></td>
