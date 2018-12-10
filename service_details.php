@@ -43,6 +43,7 @@ if (isset($_REQUEST['ragister']))
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <?php include("Include/css_inc.php"); ?>
+  
 </head>
 <body data-gr-c-s-loaded="true">
 <!-- Pre Loader -->
@@ -52,7 +53,7 @@ if (isset($_REQUEST['ragister']))
   <div class="top-wrapper hidden-xs">
     <div class="container">
       <div class="row">
-        <?php include("Include/include_bookonline.php") ?>
+        <?php include("Include/include_bookonline.php")?>
       </div>
     </div>
   </div>
@@ -134,9 +135,11 @@ if (isset($_REQUEST['ragister']))
                       <div class="row">
                         <div class="col-sm-6">
                           <input class="con-field" name="name" id="name" required="" placeholder="Name" type="text">
+                          <span id="error_name" style="display:none;color:#003769;">Wrong Name</span>
                         </div>
                         <div class="col-sm-6">
-                          <input class="con-field" name="contact" required="" id="contact" placeholder="Phone No" type="text">
+                          <input class="con-field" name="contact" required="" maxlength="10" autocomplete="off" id="phone" placeholder="Phone No" type="text">
+                          <span id="phonealert" style="color: #003769;"></span>
                         </div>
                         <!--AC & DC Drive Programming-->
                         <?php if ($result_service_details['id'] == 18) {?>
@@ -150,14 +153,15 @@ if (isset($_REQUEST['ragister']))
                         <!--AC & DC Drive Reparing-->
                         <?php if ($result_service_details['id'] == 19) {?>
                           <div class="col-sm-6">
-                            <input class="con-field" name="capcity" id="name" required="" placeholder="Capcity" type="text">
+                            <input class="con-field" name="capcity" id="capcity" required="" placeholder="Capcity" type="text">
                           </div>
                           <div class="col-sm-6">
                             <input class="con-field" name="machine_name" required="" id="contact" placeholder="Machine-Name" type="text">
                           </div>
                         <?php } ?>
                         <div class="col-sm-12">
-                          <input class="con-field" name="email" required="" id="email" placeholder="Email" type="text">
+                          <input class="con-field" name="email" required="" id="email_address" placeholder="Email" type="text">
+                          <span id="error_email" style="display:none;color:#003769;">Wrong Email</span>
                         </div>
                       </div>
                       <div class="row">
@@ -220,5 +224,8 @@ if (isset($_REQUEST['ragister']))
 <script src="js/wow.min.js"></script> 
 <script src="js/slider.js"></script> 
 <script src="js/custom.js"></script>
+
+
+<?php include("Include/validation.php") ?>
 
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: none;"><i class="fa fa-angle-up"></i></a></body></html>

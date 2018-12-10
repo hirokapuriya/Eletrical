@@ -24,6 +24,7 @@ if(isset($_POST['register']))
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <?php include("Include/css_inc.php") ?>
+
 </head>
 <body data-gr-c-s-loaded="true">
 <!-- Pre Loader -->
@@ -97,15 +98,17 @@ if(isset($_POST['register']))
             <div class="row">
               <div class="col-sm-6">
                 <input class="con-field" name="name" id="name" required="" placeholder="Name" type="text">
+                <span id="error_name" style="display:none;color:#003769;">Wrong Name</span>
               </div>
               <div class="col-sm-6">
                 <input class="con-field" name="subject" required="" id="subject" placeholder="Subject" type="text">
               </div>
               <div class="col-sm-6">
                 <input class="con-field" name="phone" required="" id="phone" placeholder="Phone" type="text">
+                <span id="phonealert" style="color: #003769;"></span>
               </div>
               <div class="col-sm-6">
-                <input class="con-field" name="email" required="" id="email" placeholder="Email" type="text">
+                <input class="con-field" name="email" required="" id="email_address" placeholder="Email" type="email"><span id="error_email" style="display:none;color:#003769;">Wrong Email</span>
               </div>
             </div>
             <div class="row">
@@ -126,7 +129,7 @@ if(isset($_POST['register']))
   <script>
   function myMap() {
   var mapProp= {
-      center:new google.maps.LatLng(23.031778,72.551332),
+      center:new google.maps.LatLng(22.439837,70.065917),
       zoom:5,
   };
   var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
@@ -276,14 +279,17 @@ if(isset($_POST['register']))
 </div>
 <!-- Copyright Wrapper End --> 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="images/jquery-3.1.1.min.js"></script> 
-<script src="images/plugins.js"></script> 
-<script src="images/slicknav.min.js"></script> 
-<script src="images/bootstrap.min.js"></script> 
-<script src="images/jquery.animateNumber.min.js"></script> 
-<script src="images/owl.carousel.js"></script> 
-<script src="images/wow.min.js"></script> 
-<script src="images/slider.js"></script> 
-<script src="images/custom.js"></script>
+
+<script src="js/jquery-3.1.1.min.js"></script> 
+<script src="js/plugins.js"></script> 
+<script src="js/slicknav.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.animateNumber.min.js"></script> 
+<script src="js/owl.carousel.js"></script> 
+<script src="js/wow.min.js"></script> 
+<script src="js/slider.js"></script> 
+<script src="js/custom.js"></script>
+
+<?php include("Include/validation.php") ?>
 
 <a id="scrollUp" href="http://sbtechnosoft.com/electricshop/contact.html#top" style="position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a></body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>

@@ -11,6 +11,53 @@ $get_services_drop = mysqli_query($con,"SELECT * FROM service_tab_name");
 $get_services_name = mysqli_query($con,"SELECT * FROM service_tab_name");
 $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`service_tab_name` WHERE service_name_opt = service_id");
 
+if (isset($_POST["service"])) 
+{
+    // process the form contents...
+  $nameErr = $addrErr = $emailErr = $howManyErr = $favFruitErr = "";
+  $name = $address = $email = $howMany = "";
+  $favFruit = array();
+
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["service_name"])) {
+        $nameErr = "Missing";
+    }
+    else {
+        $name = $_POST["service_name"];
+    }
+
+   /* if (empty($_POST["address"])) {
+        $addrErr = "Missing";
+    }
+    else {
+        $address = $_POST["address"];
+    }
+
+    if (empty($_POST["email"]))  {
+        $emailErr = "Missing";
+    }
+    else {
+        $email = $_POST["email"];
+    }
+
+    if (!isset($_POST["howMany"])) {
+        $howManyErr = "You must select 1 option";
+    }
+    else {
+        $howMany = $_POST["howMany"];
+    }
+
+    if (empty($_POST["favFruit"])) {
+        $favFruitErr = "You must select 1 or more";
+    }
+    else {
+        $favFruit = $_POST["favFruit"];
+    }*/
+}
+
+}
+
 
   if(isset($_POST['service']))
   {
@@ -26,16 +73,17 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
        $service_ctrl_select->Add_service_description_ctrl($select_dp_service,$service_desc);
      }
 ?>
-<form role="form" method="post">
+<form role="form" method="post" action="">
     <div class="input-group">
       <span class="form-group input-group-btn">
-        <input type="text" placeholder="Enter Service Name" class="form-control" name="service_name" />
-        <button class="btn btn-default" type="submit" name="service" value="TabService" type="button">Go!</button>
+        <input type="text" placeholder="Enter Service Name" class="form-control" value="" name="service_name" /><span>
+          
+        <button class="btn btn-default" name="service" value="TabService" type="submit">Go!</button><?php if(isset($nameErr)){ echo $nameErr;}?></span>
       </span>
     </div>
 </form>
 
-<form method="post">
+<!-- <form method="post">
 <table>
     <?php while ($row = mysqli_fetch_assoc($get_services_name)) { ?>
       <tr>
@@ -65,16 +113,16 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
         <span>ggggg</span>
       </td>
 
-       <!-- <td>
+       <!- <td>
         </td>
-        --> 
+        -> 
         <td><button class="btn btn-default" type="submit" name="add_services" value="add_services_data" type="button">Add Data</button></td>
     </tr>
 </table>
 </form>
+ -->
 
-
-<table>
+<!-- <table>
   <tr>
     <td>Service_name</td>
     <td>Service_description</td>
@@ -86,7 +134,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `Service_tab_details`,`s
     </tr>
 <?php } ?>
   
-</table>
+</table> -->
 
 
   
