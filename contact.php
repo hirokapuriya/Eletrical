@@ -6,14 +6,21 @@ include_once('controller.php');
 if(isset($_POST['register']))
   {  
       $name = $_POST['name'];  
-      $subject = $_POST['subject'];  
       $phone = $_POST['phone'];  
       $email = $_POST['email'];
       $message = $_POST['message'];
 
       $reg= new controller;
 
-      $reg->con_register($name,$subject,$phone,$email,$message); 
+      $result_contact = $reg->con_register($name,$phone,$email,$message); ?>
+      <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+      <script type="text/javascript">
+         $(document).ready(function () {
+          $("#flash-msg").css("display", "block");
+            $("#flash-msg").delay(3000).fadeOut("slow");
+          });
+      </script>
+<?php 
   }
 ?>
 <!DOCTYPE html>
@@ -24,7 +31,15 @@ if(isset($_POST['register']))
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <?php include("Include/css_inc.php") ?>
-
+  <script src="js/jquery-3.1.1.min.js"></script> 
+<script src="js/plugins.js"></script> 
+<script src="js/slicknav.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.animateNumber.min.js"></script> 
+<script src="js/owl.carousel.js"></script> 
+<script src="js/wow.min.js"></script> 
+<script src="js/slider.js"></script> 
+<script src="js/custom.js"></script>
 </head>
 <body data-gr-c-s-loaded="true">
 <!-- Pre Loader -->
@@ -101,13 +116,10 @@ if(isset($_POST['register']))
                 <span id="error_name" style="display:none;color:#003769;">Wrong Name</span>
               </div>
               <div class="col-sm-6">
-                <input class="con-field" name="subject" required="" id="subject" placeholder="Subject" type="text">
-              </div>
-              <div class="col-sm-6">
-                <input class="con-field" name="phone" required="" id="phone" placeholder="Phone" type="text">
+                <input class="con-field" name="phone" required="" id="phone" maxlength="10" placeholder="Phone" type="text">
                 <span id="phonealert" style="color: #003769;"></span>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <input class="con-field" name="email" required="" id="email_address" placeholder="Email" type="email"><span id="error_email" style="display:none;color:#003769;">Wrong Email</span>
               </div>
             </div>
@@ -119,13 +131,31 @@ if(isset($_POST['register']))
                 </div>
               </div>
             </div>
+            <div class="alert alert-success fade in" id="flash-msg" style="display: none;">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Success!</strong> Your message has been sent successfully.
+            </div>
           </form>
         </div>
   </div>
   </div>
   </div>
  <div class="google-map">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198710.35112897935!2d-98.51489117772236!3d38.904562823631146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sin!4v1471865832140" allowfullscreen=""></iframe>
+  <div id="googleMap" style="width:100%;height:600px;"></div>
+
+    <script>
+    function myMap() {
+    var mapProp= {
+        center:new google.maps.LatLng(22.439837,70.065917),
+        zoom:5,
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    }
+    </script>
+    <!-- AIzaSyBbW71MpJYIKWwyK6mLu7gNxyYzOUiq9mE || AIzaSyA53OIySRO-_Thzi0ohhhRPKKQfRG13A-Q -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA53OIySRO-_Thzi0ohhhRPKKQfRG13A-Q&callback=myMap"></script>
+    
+<!--   <iframe src="https://www.google.com/maps/embed?pb=AIzaSyA53OIySRO-_Thzi0ohhhRPKKQfRG13A-Q" allowfullscreen=""></iframe>
   <script>
   function myMap() {
   var mapProp= {
@@ -134,16 +164,16 @@ if(isset($_POST['register']))
   };
   var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
   }
-  </script>
+  </script> -->
 
   <div class="contact-info-main">
   <div class="container">
   <div class="contact-info">
   <div class="title">
       <h2>Contact Info</h2>
-	  <span class="border"></span>
+    <span class="border"></span>
   </div>
-	<div class="row">
+  <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="contact-box border"> <img src="images/phone-icon.png" alt="">
           <h3>Phone</h3>
@@ -243,16 +273,16 @@ if(isset($_POST['register']))
         </div>
       </div>
     </div>
-	<div class="footer-cta-wrapper">
-	<div class="row">
+  <div class="footer-cta-wrapper">
+  <div class="row">
       <div class="col-sm-9">
-	    <img src="images/footer-cta-icon.png" alt="">
+      <img src="images/footer-cta-icon.png" alt="">
         <h3>Do you need any help for electrical maintenance?</h3>
         <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
       </div>
       <div class="col-sm-3"> <a href="javascript:void(0)" class="pull-right">Get A Quote</a> </div>
     </div>
-	</div>
+  </div>
   </div>
 </footer>
 <!-- Footer Wrapper End --> 

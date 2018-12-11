@@ -44,20 +44,18 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
   //Add Service name in list  
   if(isset($_POST['service']))
   {
-      //$fname = isset($_GET['service']) ? $_GET['service'] : '';
       $service_name = $_POST['service_name']; 
       $service_view= new controller;
-      $himaliya = $service_view->Add_service_admin_ctrl($service_name); 
-      /*if($himaliya){ ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script type="text/javascript"> 
-          window.location = "add_service.php";
-            $("#123").append("Completed");
-            //alert('opopop');
-        </script>
-      <?php } */
-  }
+      $himaliya = $service_view->Add_service_admin_ctrl($service_name); ?>
+      <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $("#flash-msg").css("display", "block");
+            $("#flash-msg").delay(3000).fadeOut("slow");
+          });
+      </script>
+
+  <?php }
   //Add Service Details and Description
   if(isset($_POST['add_services']))
   {
@@ -163,7 +161,12 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                             <div class="panel-heading">
                                Tab Form
                             </div>
-                            <div class="alert alert-success"></div>
+                            <!-- Tab Added alert -->
+                             <div class="alert alert-success fade in" id="flash-msg" style="display: none;">
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <strong>Success!</strong> Your Tab Add successfully.
+                            </div>
+                            <!-- End Tab Added alert -->
                             <div class="panel-body">
                                 <form role="form" method="post">
                                     <div class="input-group">

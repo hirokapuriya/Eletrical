@@ -3,12 +3,12 @@
        /* foreach ($to as $value) 
         { */  //var_dump($value['email_msg']); die('opo');
             $subject = 'Thank You For Visit My Site';
-            $message='<!DOCTYPE>';
-            $message.='<html xmlns="http://www.w3.org/1999/xhtml">';
-            $message.='<head>';
-            $message.='<meta name="viewport" content="width=device-width" />';
-            $message.='<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
-            $message.='<style>
+            $msg_email='<!DOCTYPE>';
+            $msg_email.='<html xmlns="http://www.w3.org/1999/xhtml">';
+            $msg_email.='<head>';
+            $msg_email.='<meta name="viewport" content="width=device-width" />';
+            $msg_email.='<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
+            $msg_email.='<style>
             * {
               margin: 0;
               padding: 0;
@@ -240,7 +240,7 @@
                       'X-Mailer: PHP/' . phpversion();
               $headers .= "MIME-Version: 1.0\r\n";
               $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-              $message.='</head>
+              $msg_email.='</head>
                             <body class="custom-img">
                                 <table class="body-wrap">
                                     <tr>
@@ -249,7 +249,7 @@
                                             <div class="content">
                                                 <table class="main" width="100%" cellpadding="0" cellspacing="0">
                                                     <tr>
-                                                        <td class="alert alert-warning">'.$email.'</td>
+                                                        <td class="alert alert-warning">'.$name.'</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="content-wrap">
@@ -259,7 +259,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="content-block"> 
-                                                                        Thanks For Subscribing
+                                                                        <b>Thanks For Visit My Side</b>
                                                                     </td>
                                                                 </tr>
                                                                 <br>
@@ -269,7 +269,7 @@
                                                                  </tr>
                                                                  <br>
                                                                  <tr>
-                                                                    <td class="content-block">Thanks for choosing Farmingarms.</td>
+                                                                    <td class="content-block">Marvel Eletronics</td>
                                                                  </tr>
                                                             </table>
                                                         </td>
@@ -281,7 +281,7 @@
                                                 <div class="footer">
                                                     <table width="100%">
                                                         <tr>
-                                                            <td class="aligncenter content-block"><a href="www.farmingarms.com">Unsubscribe</a> from these alerts.</td>
+                                                            <td class="aligncenter content-block"><a href="www.farmingarms.com">Unsubscribe</a>from these alerts.</td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -292,7 +292,7 @@
                                 </table>
                             </body>
                          </html>';
-                if(mail($email, $subject, $message, $headers))
+                if(mail($email, $subject, $msg_email, $headers))
                 {
                     $error = "Mail sended susccessfully";
                 }

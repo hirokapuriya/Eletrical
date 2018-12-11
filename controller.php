@@ -12,25 +12,17 @@ ini_set('display_errors', 1);
        * @param $message
        */
     /*Contact Form Function*/
-    public function con_register($name,$subject,$phone,$email,$message)
+    public function con_register($name,$phone,$email,$message)
     {
 
-      $ins=new model;
+        $ins=new model;
         
         include('admin/Email/registartion_auto_mail.php');
 
-        $register = $ins->contact_model($name,$subject,$phone,$email,$message);
+        $register = $ins->contact_model($name,$phone,$email,$message);
         
-        if($register)
-        {
-             echo "<script>alert('Registration Successful')</script>";
-             header("location:contact.php");
-        }
-        else
-        {
-            echo "<script>alert('Registration Not Successful')</script>";
-        }
-      }
+        return $register;
+    }
       /**
        * @param $subscribe_email
        */
@@ -80,7 +72,7 @@ ini_set('display_errors', 1);
        * @param $email
        * @param $message
        * @param $contact
-       * @param $comman_drive
+       * @param $con_register
        * @param $drive_no
        * @param $capcity
        * @param $machine_name

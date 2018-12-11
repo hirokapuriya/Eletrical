@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2018 at 07:01 PM
+-- Generation Time: Dec 11, 2018 at 06:58 PM
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
@@ -29,8 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `contact` (
   `id` int(10) NOT NULL,
   `name` varchar(240) NOT NULL,
-  `subject` varchar(240) NOT NULL,
-  `phone` int(10) NOT NULL,
+  `phone` varchar(240) NOT NULL,
   `email` varchar(240) NOT NULL,
   `message` varchar(240) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -41,13 +40,48 @@ CREATE TABLE `contact` (
 -- Dumping data for table `contact`
 --
 
-INSERT INTO `contact` (`id`, `name`, `subject`, `phone`, `email`, `message`, `created`, `updated`) VALUES
-(2, 'hiren', 'hello', 1234567890, 'kapuriyahiren8899@gmail.com', 'jhgjhgjkjkhgkg', '2018-10-22 13:00:31', '2018-10-22 13:00:31'),
-(3, 'fasdf', 'asdf', 1234567890, 'kapuriyahiren8899@gmail.com', 'asdf', '2018-11-05 12:07:36', '2018-11-05 12:07:36'),
-(4, 'asf', 'asdf', 1234567890, 'kapuriyahiren8899@gmail.com', 'sdafdasf', '2018-11-05 12:48:35', '2018-11-05 12:48:35'),
-(5, 'adsfdsadasf', 'dasfadsf', 1234567890, 'kapuriyahiren8899@gmail.com', 'asdfdasfdasfdasf', '2018-11-05 12:48:46', '2018-11-05 12:48:46'),
-(8, 'dasf', 'asdf', 1234567890, 'kapuriyahiren8899@gmail.com', 'adsfdasfsdaf', '2018-11-05 12:49:31', '2018-11-05 12:49:31'),
-(9, 'happy diwali', 'kapuriya', 1234567890, 'kapuriyahiren8899@gmail.com', 'easfdfg', '2018-11-06 04:59:00', '2018-11-06 04:59:00');
+INSERT INTO `contact` (`id`, `name`, `phone`, `email`, `message`, `created`, `updated`) VALUES
+(10, 'hiren', '1234567890', 'kapuriyahiren8899@gmail.com', 'jhgjhgjkjkhgkg', '2018-10-22 07:30:31', '2018-10-22 07:30:31'),
+(11, 'fasdf', '1234567890', 'kapuriyahiren8899@gmail.com', 'asdf', '2018-11-05 06:37:36', '2018-11-05 06:37:36'),
+(12, 'asf', '1234567890', 'kapuriyahiren8899@gmail.com', 'sdafdasf', '2018-11-05 07:18:35', '2018-11-05 07:18:35'),
+(13, 'adsfdsadasf', '1234567890', 'kapuriyahiren8899@gmail.com', 'asdfdasfdasfdasf', '2018-11-05 07:18:46', '2018-11-05 07:18:46'),
+(14, 'dasf', '1234567890', 'kapuriyahiren8899@gmail.com', 'adsfdasfsdaf', '2018-11-05 07:19:31', '2018-11-05 07:19:31'),
+(15, 'happy diwali', '1234567890', 'kapuriyahiren8899@gmail.com', 'easfdfg', '2018-11-05 23:29:00', '2018-11-05 23:29:00'),
+(16, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '9978001901', 'kapuriyahiren8899@gmail.com', 'ngjhgkjg', '2018-12-05 14:05:31', '2018-12-05 14:05:31'),
+(17, 'hiren', '9978001901', 'kapuriyahiren8899@gmail.com', 'hiihihihihi', '2018-12-05 14:06:07', '2018-12-05 14:06:07'),
+(18, 'aaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaaaaaaaa', '2018-12-11 06:30:08', '2018-12-11 06:30:08'),
+(19, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaaaaaaaaaa', '2018-12-11 06:30:27', '2018-12-11 06:30:27'),
+(20, 'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwdddddddddddddddddddddddddddddddddddddddddddddddd', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2018-12-11 06:31:26', '2018-12-11 06:31:26'),
+(21, '".$name."', '".$phone."', '".$email."', '".$message."', '2018-12-11 06:41:20', '2018-12-11 06:41:20'),
+(22, 'aaa', '9978001901', 'hiren.kapuriya@commercepundit.com', 'aanananananan', '2018-12-11 09:40:39', '2018-12-11 09:40:39'),
+(23, 'hiren kapuriya', '1234567890', 'hiren.kapuriya@commercepundit.com', 'helllllllllllllll', '2018-12-11 09:49:36', '2018-12-11 09:49:36'),
+(24, 'aaaa', '', '9978001901', 'hiren.kapuriya@commercepundit.com', '2018-12-11 11:13:13', '2018-12-11 11:13:13'),
+(25, 'aaaa', '9978001901', 'hiren.kapuriya@commercepundit.com', 'aaaaaaaaa', '2018-12-11 11:14:01', '2018-12-11 11:14:01'),
+(26, 'hiren', '1234567890', 'hiren.kapuriya@commercepundit.com', 'aaaaaaaa', '2018-12-11 11:14:21', '2018-12-11 11:14:21'),
+(27, 'hiren', '1234567890', 'hiren.kapuriya@commercepundit.com', 'aaaaaaaa', '2018-12-11 11:15:11', '2018-12-11 11:15:11'),
+(28, 'fasdf', '9978001901', 'kapuriyahiren8899@gmail.com', 'aaaaaaaaaaaaaaaaa', '2018-12-11 11:15:33', '2018-12-11 11:15:33'),
+(29, 'hiiii', '9978001901', 'kapuriyahiren8899@gmail.com', 'aaaaaaaaaaaa', '2018-12-11 11:41:39', '2018-12-11 11:41:39'),
+(30, 'hiiii', '9978001901', 'kapuriyahiren8899@gmail.com', 'aaaaaaaaaaaa', '2018-12-11 11:42:32', '2018-12-11 11:42:32'),
+(31, 'hiiii', '9978001901', 'kapuriyahiren8899@gmail.com', 'aaaaaaaaaaaa', '2018-12-11 11:44:26', '2018-12-11 11:44:26'),
+(32, 'hiiii', '9978001901', 'kapuriyahiren8899@gmail.com', 'aaaaaaaaaaaa', '2018-12-11 11:45:06', '2018-12-11 11:45:06'),
+(33, 'hiiii', '9978001901', 'kapuriyahiren8899@gmail.com', 'aaaaaaaaaaaa', '2018-12-11 11:52:23', '2018-12-11 11:52:23'),
+(34, 'hiiii', '9978001901', 'kapuriyahiren8899@gmail.com', 'aaaaaaaaaaaa', '2018-12-11 11:53:01', '2018-12-11 11:53:01'),
+(35, 'aaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaa', '2018-12-11 11:58:34', '2018-12-11 11:58:34'),
+(36, 'aaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaa', '2018-12-11 11:59:53', '2018-12-11 11:59:53'),
+(37, 'aaa', '9978001901', 'tyagu@gmail.com', 'aaaaaa', '2018-12-11 12:19:19', '2018-12-11 12:19:19'),
+(38, 'aaaaaaaaa', '9978001901', 'dddd@fsf.fgddd', 'aaaaaaaaaaaaaa', '2018-12-11 12:20:41', '2018-12-11 12:20:41'),
+(39, 'aaaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaa', '2018-12-11 12:22:28', '2018-12-11 12:22:28'),
+(40, 'aaaaa', '9978001901', 'ssssss@ffffff.dgdfgdsg', 'sdfgddddddddddddddddd', '2018-12-11 12:30:00', '2018-12-11 12:30:00'),
+(41, 'zzzzzzzzzzzz', '9978001901', 'tyagu@gmail.com', 'zzzzzzzzzzzzzzzz', '2018-12-11 12:31:04', '2018-12-11 12:31:04'),
+(42, 'aaaaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaaa', '2018-12-11 12:59:25', '2018-12-11 12:59:25'),
+(43, 'aaaaaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaa', '2018-12-11 13:01:41', '2018-12-11 13:01:41'),
+(44, 'aaaaaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaa', '2018-12-11 13:02:35', '2018-12-11 13:02:35'),
+(45, 'kjhkjh', '9978001901', 'tyagu@gmail.com', 'sadfdssadsadssds', '2018-12-11 13:18:58', '2018-12-11 13:18:58'),
+(46, 'kjhkjh', '9978001901', 'tyagu@gmail.com', 'sadfdssadsadssds', '2018-12-11 13:20:08', '2018-12-11 13:20:08'),
+(47, 'aaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaa', '2018-12-11 13:22:50', '2018-12-11 13:22:50'),
+(48, 'aaaaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaaaaaa', '2018-12-11 13:23:29', '2018-12-11 13:23:29'),
+(49, 'aaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaa', '2018-12-11 13:24:36', '2018-12-11 13:24:36'),
+(50, 'aaaaaaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaa', '2018-12-11 13:25:21', '2018-12-11 13:25:21');
 
 -- --------------------------------------------------------
 
@@ -131,9 +165,33 @@ INSERT INTO `registration` (`id`, `name`, `email`, `contact`, `message`, `comman
 (38, '', '', '978001901', '', '', '', '', '', '2018-11-26 06:44:58', '2018-11-26 06:44:58'),
 (39, '', '', '', 'hirenkapapappapa', '', '', '', '', '2018-11-26 06:45:24', '2018-11-26 06:45:24'),
 (40, '', 'hiiii', 'hiiii', 'hiiii', '', '', '', '', '2018-11-26 06:45:41', '2018-11-26 06:45:41'),
-(41, 'tyag', 'kapuriyahiren8899@gmail.com', '1234567890', 'hello tray', 'hiiii', '789485500', '', '', '2018-11-30 11:24:24', '2018-11-30 11:24:24'),
-(42, 'adf', 'hiren.kapuriya@commercepundit.com', '1234567890', 'lbhhkjg', 'ioioi', '454', '', '', '2018-11-30 11:30:04', '2018-11-30 11:30:04'),
-(43, 'dsfv', 'kapuriyahiren8899@gmail.com', '1234567890', 'dsfasaf', '44444', '123444444', '', '', '2018-11-30 11:47:54', '2018-11-30 11:47:54');
+(47, 'aaa', 'kapuriyahiren8899@gmail.com', '789', 'hello', '', '', '', '', '2018-12-05 09:49:11', '2018-12-05 09:49:11'),
+(48, 'a', 'aaaaaaaaaaa', 'a', 'a', '', '', '', '', '2018-12-05 09:49:19', '2018-12-05 09:49:19'),
+(49, 'aasd', 'dsaf', 'asdf', 'dsaf', '', '', '', '', '2018-12-05 09:49:27', '2018-12-05 09:49:27'),
+(50, 'a', 'a', 'a', 'aaaaaaa', '', '', 'a', 'a', '2018-12-05 11:33:27', '2018-12-05 11:33:27'),
+(51, 'a', 'rr', 'a', 'rrr', 'rr', 'rr', '', '', '2018-12-05 11:34:25', '2018-12-05 11:34:25'),
+(52, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaa@ddd.hhh', 'aaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaa', '', '', '2018-12-05 14:04:31', '2018-12-05 14:04:31'),
+(53, '', '', '', '', '', '', '', '', '2018-12-10 09:07:38', '2018-12-10 09:07:38'),
+(54, '', '', '', '', '', '', '', '', '2018-12-10 09:10:03', '2018-12-10 09:10:03'),
+(55, '', '', '', '', '', '', '', '', '2018-12-10 09:10:10', '2018-12-10 09:10:10'),
+(56, '', '', '', '', '', '', '', '', '2018-12-10 09:10:33', '2018-12-10 09:10:33'),
+(57, '', '', '', '', '', '', '', '', '2018-12-10 09:10:47', '2018-12-10 09:10:47'),
+(58, '', '', '', '', '', '', '', '', '2018-12-10 09:11:30', '2018-12-10 09:11:30'),
+(59, '', '', '', '', '', '', '', '', '2018-12-10 09:11:38', '2018-12-10 09:11:38'),
+(60, '', '', '', '', '', '', '', '', '2018-12-10 10:23:44', '2018-12-10 10:23:44'),
+(61, '', '', '', '', '', '', '', '', '2018-12-10 10:24:18', '2018-12-10 10:24:18'),
+(62, '', '', '', '', '', '', '', '', '2018-12-10 10:24:27', '2018-12-10 10:24:27'),
+(63, '', '', '', '', '', '', '', '', '2018-12-10 10:24:42', '2018-12-10 10:24:42'),
+(64, '', '', '', '', '', '', '', '', '2018-12-10 10:25:34', '2018-12-10 10:25:34'),
+(65, '', '', '', '', '', '', '', '', '2018-12-10 10:25:37', '2018-12-10 10:25:37'),
+(66, '', '', '', '', '', '', '', '', '2018-12-10 10:25:46', '2018-12-10 10:25:46'),
+(67, '', '', '', '', '', '', '', '', '2018-12-10 10:25:55', '2018-12-10 10:25:55'),
+(68, '', '', '', '', '', '', '', '', '2018-12-10 11:05:12', '2018-12-10 11:05:12'),
+(69, '', '', '', '', '', '', '', '', '2018-12-10 11:06:46', '2018-12-10 11:06:46'),
+(70, '', '', '', '', '', '', '', '', '2018-12-10 11:07:20', '2018-12-10 11:07:20'),
+(71, '', '', '', '', '', '', '', '', '2018-12-10 11:08:11', '2018-12-10 11:08:11'),
+(72, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'tyagu@gmail.com', '1245678900', 'aaaaaaaaaa', 'aaa', 'aaa', '', '', '2018-12-11 06:27:34', '2018-12-11 06:27:34'),
+(73, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'tyagu@gmail.com', '1245678900', 'aaaaaaaaaa', 'aaa', 'aaa', '', '', '2018-12-11 09:03:50', '2018-12-11 09:03:50');
 
 -- --------------------------------------------------------
 
@@ -178,7 +236,35 @@ CREATE TABLE `service_tab_name` (
 INSERT INTO `service_tab_name` (`service_id`, `service_name`, `created`, `updated`) VALUES
 (12, 'AC&DC Drive Programming', '2018-11-30 09:02:23', '2018-11-30 09:02:23'),
 (13, 'AC&DC Drive Reparing', '2018-11-30 09:02:41', '2018-11-30 09:02:41'),
-(14, 'PLC & SMI Programming', '2018-11-30 09:02:59', '2018-11-30 09:02:59');
+(14, 'PLC & SMI Programming', '2018-11-30 09:02:59', '2018-11-30 09:02:59'),
+(15, 'aaaaaaaaaaaa', '2018-12-07 11:54:59', '2018-12-07 11:54:59'),
+(16, '', '2018-12-07 11:55:05', '2018-12-07 11:55:05'),
+(17, 'aaaaa', '2018-12-07 11:55:17', '2018-12-07 11:55:17'),
+(18, 'a', '2018-12-07 11:55:25', '2018-12-07 11:55:25'),
+(19, 'a', '2018-12-07 11:55:27', '2018-12-07 11:55:27'),
+(20, '', '2018-12-07 11:55:31', '2018-12-07 11:55:31'),
+(21, '', '2018-12-07 11:55:33', '2018-12-07 11:55:33'),
+(22, '', '2018-12-07 11:55:34', '2018-12-07 11:55:34'),
+(23, '', '2018-12-07 11:55:35', '2018-12-07 11:55:35'),
+(24, '', '2018-12-07 11:55:35', '2018-12-07 11:55:35'),
+(25, '', '2018-12-07 11:55:36', '2018-12-07 11:55:36'),
+(26, '', '2018-12-07 11:58:51', '2018-12-07 11:58:51'),
+(27, '', '2018-12-07 11:58:54', '2018-12-07 11:58:54'),
+(28, '', '2018-12-07 11:58:55', '2018-12-07 11:58:55'),
+(29, '', '2018-12-07 11:58:56', '2018-12-07 11:58:56'),
+(30, '', '2018-12-07 11:58:56', '2018-12-07 11:58:56'),
+(31, '', '2018-12-07 11:58:57', '2018-12-07 11:58:57'),
+(32, '', '2018-12-07 11:59:09', '2018-12-07 11:59:09'),
+(33, '', '2018-12-07 11:59:13', '2018-12-07 11:59:13'),
+(34, '', '2018-12-07 12:00:26', '2018-12-07 12:00:26'),
+(35, '', '2018-12-07 12:00:29', '2018-12-07 12:00:29'),
+(36, '', '2018-12-07 12:00:29', '2018-12-07 12:00:29'),
+(37, '', '2018-12-07 12:02:54', '2018-12-07 12:02:54'),
+(38, '', '2018-12-07 12:03:16', '2018-12-07 12:03:16'),
+(39, '', '2018-12-07 12:03:17', '2018-12-07 12:03:17'),
+(40, '', '2018-12-07 12:03:18', '2018-12-07 12:03:18'),
+(41, '', '2018-12-10 10:11:16', '2018-12-10 10:11:16'),
+(42, '', '2018-12-10 10:11:17', '2018-12-10 10:11:17');
 
 -- --------------------------------------------------------
 
@@ -201,7 +287,17 @@ INSERT INTO `subscribe` (`id`, `subscribe_email`, `created`, `updated`) VALUES
 (11, 'hardik.parmar@commercepundit.com', '2018-11-05 07:05:33', '2018-11-05 07:05:33'),
 (12, 'hiren.kapuriya@commercepundit.com', '2018-11-05 07:25:27', '2018-11-05 07:25:27'),
 (13, 'kapuriyahiren8899@gmail.com', '2018-11-06 04:57:33', '2018-11-06 04:57:33'),
-(14, 'hardik.parmar@commercepundit.com', '2018-11-28 09:13:42', '2018-11-28 09:13:42');
+(14, 'hardik.parmar@commercepundit.com', '2018-11-28 09:13:42', '2018-11-28 09:13:42'),
+(15, 'kapuriyahiren8899@gmail.com', '2018-12-05 12:28:03', '2018-12-05 12:28:03'),
+(16, 'kapuriyahiren8899@gmail.com', '2018-12-05 12:29:48', '2018-12-05 12:29:48'),
+(17, 'kapuriyahiren8899@gmail.com', '2018-12-05 12:34:01', '2018-12-05 12:34:01'),
+(18, 'kapuriyahiren8899@gmail.com', '2018-12-05 12:36:48', '2018-12-05 12:36:48'),
+(19, 'kapuriyahiren8899@gmail.com', '2018-12-05 12:37:52', '2018-12-05 12:37:52'),
+(20, 'kapuriyahiren8899@gmail.com', '2018-12-05 12:40:39', '2018-12-05 12:40:39'),
+(21, 'hiren.kapuriya@commercepundit.com', '2018-12-05 12:40:54', '2018-12-05 12:40:54'),
+(22, '', '2018-12-05 13:02:23', '2018-12-05 13:02:23'),
+(23, 'kapuriyahiren8899@gmail.com', '2018-12-05 13:02:30', '2018-12-05 13:02:30'),
+(24, 'hiren.kapuriya@commercepundit.com', '2018-12-11 09:04:03', '2018-12-11 09:04:03');
 
 --
 -- Indexes for dumped tables
@@ -258,7 +354,7 @@ ALTER TABLE `subscribe`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `gallery_image`
 --
@@ -273,7 +369,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 --
 -- AUTO_INCREMENT for table `service_tab_details`
 --
@@ -283,12 +379,12 @@ ALTER TABLE `service_tab_details`
 -- AUTO_INCREMENT for table `service_tab_name`
 --
 ALTER TABLE `service_tab_name`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `subscribe`
 --
 ALTER TABLE `subscribe`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- Constraints for dumped tables
 --

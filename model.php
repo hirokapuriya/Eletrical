@@ -11,13 +11,13 @@
        * @return bool|mysqli_result
        */
     //Contact Page Data Add Query
-  	public function contact_model($name,$subject,$phone,$email,$message)
+  	public function contact_model($name,$phone,$email,$message)
   	{
-      //var_dump($name,$subject,$phone,$email,$message); die('model');
       global $con;
-          $Contact_Query = mysqli_query($con,"INSERT INTO contact(name,subject,phone,email,message) values('".$name."','".$subject."','".$phone."','".$email."','".$message."')") or die(mysqli_error('This Is Not Completed'));  
-          return $Contact_Query;
-  	}
+
+      $reg_try_query = mysqli_query($con,"INSERT INTO `contact`(`name`, `phone`, `email`, `message`) VALUES('".$name."','".$phone."','".$email."','".$message."')") or die(mysqli_error('This is not completed for registration'));
+      return $reg_try_query;
+    }
       /**
        * @param $subscribe_email
        * @return bool|mysqli_result

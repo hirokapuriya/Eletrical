@@ -131,13 +131,8 @@ ini_set('display_errors', TRUE);
         $service_ctrl=new model();
          
         $service_done = $service_ctrl->Add_service_model($service_name);
-
         return $service_done;
-        if($service_done){
-        	header("location:add_service.php");
-        }else{
-        	header('contact.php');
-        }
+        
 	   }
       /**
        * Delete Name In Service List

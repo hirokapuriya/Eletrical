@@ -12,7 +12,7 @@
     }
   });
   $('#name').on('keypress', function() {
-    var name = /^[a-zA-Z\s]+$/.test(this.value);
+    var name = /^[a-zA-Z\s]+$/.test(this.value); 
     if(!name) {
         $('#error_name').show();
     } else {
