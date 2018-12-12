@@ -16,8 +16,18 @@
       $id_contact = $_POST['checked_id'];
       
       $mass_delete_contact = new controller;
-      $mass_delete_contact->mass_delete_contact($id_contact);
-   }
+      $success_delete = $mass_delete_contact->mass_delete_contact($id_contact);
+
+      if ($success_delete){ ?>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+          <script type="text/javascript">
+             $(document).ready(function () {
+              $("#flash-msg").css("display", "block");
+                $("#flash-msg").delay(3000).fadeOut("slow");
+              });
+          </script>
+    <?php }
+    }
     //Pagination page
     $limit = 5;  
     if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
@@ -26,6 +36,12 @@
     $get_contact_ctrl_list = mysqli_fetch_row($contact_page_details);  
     $total_records = $get_contact_ctrl_list[0];  
     $total_pages = ceil($total_records / $limit);
+
+    //Count recored Data
+    $count = mysqli_query($con,"SELECT COUNT(*)FROM contact");
+
+    $row = mysqli_fetch_array($count);
+    $total = $row[0];
 
 ?>
 <!DOCTYPE html>
@@ -81,20 +97,24 @@
                             Kitchen Sink
                         </div>
                         <div class="panel-body">
+                              <div class="alert alert-success fade in" id="flash-msg" style="display: none;">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Success!</strong> Your message has been Deleted successfully.
+                              </div>
                             <div class="table-responsive">
+                                <div style="color: #96a0a9;"><?php echo "Total Records:(" . $total.")"; ?></div>
                                 <form action="" method="post">
-                                <table class="table table-striped table-bordered table-hover">
+                                <table class="table table-striped table-bordered table-hover" width="50%">
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox" id="select_all" value=""/></th>
-                                            <th width="5%">Id</th>
-                                            <th width="10%">Name</th>
-                                            <th width="15%">Subject</th>
-                                            <th width="15%">Phone</th>
-                                            <th width="25%">Email</th>
-                                            <th width="50%">Message</th>
-                                            <th width="50%">Created_At</th>
-                                            <th width="50%">Updated_At</th>
+                                            <th width="">Id</th>
+                                            <th width="">Name</th>
+                                            <th width="">Phone</th>
+                                            <th width="">Email</th>
+                                            <th width="">Message</th>
+                                           <!--  <th width="50%">Created_At</th>
+                                            <th width="50%">Updated_At</th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -107,15 +127,41 @@
                                         <tr>
                                             <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $result['id']; ?></td>
-                                            <td><?php echo $result['name']; ?></td>
-                                            <td><?php echo $result['subject']; ?></td>
+                                            <td><div style="overflow-y:scroll; height:50px; max-width: 100px;"><?php echo $result['name']; ?></div></td>
                                             <td><?php echo $result['phone']; ?></td>
                                             <td><?php echo $result['email']; ?></td>
-                                            <td><?php echo $result['message']; ?></td>
-                                            <td><?php echo $result['created']; ?></td>
-                                            <td><?php echo $result['updated']; ?></td>
-                                            <td><a href="table.php?del_id=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</a></td>
+                                            <td><div style="overflow-y:scroll; height:100px; max-width: 100px"><?php echo $result['message']; ?></div></td>
+                                           <!--  <td><?php echo $result['created']; ?></td>
+                                            <td><?php echo $result['updated']; ?></td> -->
+                                            <td><a href="table.php?del_id=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</a>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button>
+                                            </td>
                                         </tr>
+                                        <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">This is&nbsp;<u><?php echo $result['name'];?></u>&nbsp;Detail</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <!-- <strong>Hello My Name <b ><?php echo $result['name'];?></b> I have Issue This</strong></br> -->
+                                                <label>ID&nbsp;-&nbsp;</label><?php echo $result['id'];?></br>
+                                                <label>Name&nbsp;-&nbsp;</label><?php echo $result['name'];?></br>
+                                                <label>Phone-No&nbsp;-&nbsp;</label><?php echo $result['phone']; ?></br>
+                                                <label>Email&nbsp;-&nbsp;</label><?php echo $result['email']; ?></br>
+                                                <label>Message&nbsp;-&nbsp;</label><?php echo $result['message']; ?></br>
+                                                <label>Created&nbsp;-&nbsp;</label><?php echo $result['created']; ?></br>
+                                                <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated']; ?>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                        </div>
                                       <?php  } ?>
                                     </tbody>
                                 </table>
@@ -125,6 +171,7 @@
                                 <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
                                 </form>
                             </div>
+
                         </div>
                     </div>
                      <!-- End  Kitchen Sink -->

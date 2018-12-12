@@ -46,16 +46,18 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
   {
       $service_name = $_POST['service_name']; 
       $service_view= new controller;
-      $himaliya = $service_view->Add_service_admin_ctrl($service_name); ?>
+      $himaliya = $service_view->Add_service_admin_ctrl($service_name); 
+      if($himaliya){ ?>
       <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
       <script type="text/javascript">
-        $(document).ready(function () {
+         $(document).ready(function () {
           $("#flash-msg").css("display", "block");
             $("#flash-msg").delay(3000).fadeOut("slow");
-          });
+          });//window.location('add_service.php');
       </script>
-
   <?php }
+
+   }
   //Add Service Details and Description
   if(isset($_POST['add_services']))
   {
@@ -170,7 +172,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                             <div class="panel-body">
                                 <form role="form" method="post">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Please Enter Service-Tab" class="form-control" name="service_name" id="nameInput" value="" />
+                                        <input type="text" placeholder="Please Enter Service-Tab" class="form-control" name="service_name" id="nameInput" value="" required="" />
                                         <span class="form-group input-group-btn">
                                             <button class="btn btn-default" type="submit" name="service" value="TabService" type="button">Go!</button>
                                         </span>
@@ -205,7 +207,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                     <div class="form-group">
                                         <label>Enter Description</label>
                                         <div id="editor">
-                                            <textarea id='edit' required="" style="margin-top: 30px;" name="Service_description">
+                                            <textarea id='edit' style="margin-top: 30px;" name="Service_description">
                                                 <?php echo isset($row_option['service_description'])?$row_option['service_description']:''; ?>
                                             </textarea>
                                         </div>
