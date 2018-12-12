@@ -1,3 +1,11 @@
+<?php
+    //Start session
+    session_start();    
+    //Unset the variables stored in session
+    unset($_SESSION['SESS_MEMBER_ID']);
+    unset($_SESSION['SESS_FIRST_NAME']);
+    unset($_SESSION['SESS_LAST_NAME']);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +19,7 @@
 </head>
 
 <body>
-<form>
+<form name="loginform" action="login_exec.php" method="post">
     <div class="svgContainer" >
         <div>
             <svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -102,19 +110,30 @@
             </svg>
         </div>
     </div>
-    
+    <?php
+        if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) 
+        {
+            echo '<ul class="err">';
+            foreach($_SESSION['ERRMSG_ARR'] as $msg) {
+                echo '<li>',$msg,'</li>'; 
+                }
+            echo '</ul>';
+            unset($_SESSION['ERRMSG_ARR']);
+        }
+    ?>
     <div class="inputGroup inputGroup1">
-        <label for="email1">Email</label>
-        <input type="text" id="email" class="email" maxlength="256"/>
+        <label for="email1">Username</label>
+        <input type="text" id="email" name="username" class="email" maxlength="256"/>
         <!-- <p class="helper helper1">email@domain.com</p> -->
         <span class="indicator"></span>
     </div>
     <div class="inputGroup inputGroup2">
         <label for="password">Password</label>
-        <input type="password" id="password" class="password" />
+        <input type="password" id="password" name="password" class="password" />
     </div>
     <div class="inputGroup inputGroup3">
-        <button id="login">Log in</button>
+        <!-- <button id="login">Log in</button> -->
+        <button type="submit" id="login" value="login" class="btn btn-primary">Login Now</button>
     </div>  
 </form>
 <script>

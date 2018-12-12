@@ -146,14 +146,14 @@
                                                 <h4 class="modal-title">This is&nbsp;<u><?php echo $result['name'];?></u>&nbsp;Detail</h4>
                                               </div>
                                               <div class="modal-body">
-                                                <!-- <strong>Hello My Name <b ><?php echo $result['name'];?></b> I have Issue This</strong></br> -->
-                                                <label>ID&nbsp;-&nbsp;</label><?php echo $result['id'];?></br>
-                                                <label>Name&nbsp;-&nbsp;</label><?php echo $result['name'];?></br>
-                                                <label>Phone-No&nbsp;-&nbsp;</label><?php echo $result['phone']; ?></br>
-                                                <label>Email&nbsp;-&nbsp;</label><?php echo $result['email']; ?></br>
-                                                <label>Message&nbsp;-&nbsp;</label><?php echo $result['message']; ?></br>
-                                                <label>Created&nbsp;-&nbsp;</label><?php echo $result['created']; ?></br>
-                                                <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated']; ?>
+                                                    <!-- <strong>Hello My Name <b ><?php echo $result['name'];?></b> I have Issue This</strong></br> -->
+                                                    <label>ID&nbsp;-&nbsp;</label><?php echo $result['id'];?></br>
+                                                    <label>Name&nbsp;-&nbsp;</label><?php echo $result['name'];?></br>
+                                                    <label>Phone-No&nbsp;-&nbsp;</label><?php echo $result['phone']; ?></br>
+                                                    <label>Email&nbsp;-&nbsp;</label><?php echo $result['email']; ?></br>
+                                                    <label>Message&nbsp;-&nbsp;</label><?php echo $result['message']; ?></br>
+                                                    <label>Created&nbsp;-&nbsp;</label><?php echo $result['created']; ?></br>
+                                                    <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated']; ?>
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

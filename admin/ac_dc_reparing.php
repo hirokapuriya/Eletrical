@@ -9,8 +9,15 @@ include("controller.php");
       $id = $_POST['checked_id'];
       
       $delete_ac_dc = new controller;
-      $delete_ac_dc->delete_mass_ac_dc($id);
-   }
+      $delete_ac_dc->delete_mass_ac_dc($id);?>
+      <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+          <script type="text/javascript">
+             $(document).ready(function () {
+              $("#flash-msg").css("display", "block");
+                $("#flash-msg").delay(3000).fadeOut("slow");
+              });
+          </script>
+   <?php }
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -72,6 +79,10 @@ include("controller.php");
                             Gallery Image List
                         </div>
                         <div class="panel-body">
+                            <div class="alert alert-success fade in" id="flash-msg" style="display: none;">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Success!</strong> Your message has been Deleted successfully.
+                              </div>
                             <div class="table-responsive">
                                 <form method="post" action="">
                                 <table class="table table-striped table-bordered table-hover">
@@ -85,8 +96,7 @@ include("controller.php");
                                             <th>Message</th>
                                             <th>Comman-Drive</th>
                                             <th>Drive-Model No.</th>
-                                            <th>Createdat</th>
-                                            <th>Updated</th>
+                                            <th>Action</th>
                                            
                                         </tr>
                                     </thead>
@@ -106,12 +116,34 @@ include("controller.php");
                                             <td><div style="overflow-y:scroll; height:80px;"><?php echo $result['message']; ?></div></td>
                                             <td><?php echo $result['capcity']; ?></td>
                                             <td><?php echo $result['machine_name']; ?></td>
-                                            <td><?php echo $result['created']; ?></td>
-                                            <td><?php echo $result['updated']; ?></td>
-                                            <td>
-                                             
-                                             <!--  <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td> -->
+                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button>&nbsp;<button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button></td>
                                         </tr>
+                                        <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">This is&nbsp;<u><?php echo $result['name'];?></u>&nbsp;Detail</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                    <label>ID&nbsp;-&nbsp;</label><?php echo $result['id'];?></br>
+                                                    <label>Name&nbsp;-&nbsp;</label><?php echo $result['name'];?></br>
+                                                    <label>Phone-No&nbsp;-&nbsp;</label><?php echo $result['contact']; ?></br>
+                                                    <label>Email&nbsp;-&nbsp;</label><?php echo $result['email']; ?></br>
+                                                    <label>Message&nbsp;-&nbsp;</label><?php echo $result['message']; ?></br>
+                                                    <label>Comman-Drive&nbsp;-&nbsp;</label><?php echo $result['capcity']; ?></br>
+                                                    <label>Drive-Model No.&nbsp;-&nbsp;</label><?php echo $result['machine_name']; ?></br>
+                                                    <label>Created&nbsp;-&nbsp;</label><?php echo $result['created_at']; ?></br>
+                                                    <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated_at']; ?>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                        </div>
                                          <?php  }} ?>
                                     </tbody>
                                 </table>

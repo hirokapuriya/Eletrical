@@ -28,8 +28,15 @@ ini_set('display_errors', TRUE);
       $id_subscribe = $_POST['checked_id'];
       
       $mass_delete_subscribe = new controller;
-      $mass_delete_subscribe->mass_delete_subscribe($id_subscribe);
-   }
+      $mass_delete_subscribe->mass_delete_subscribe($id_subscribe); ?>
+      <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+        <script type="text/javascript">
+             $(document).ready(function () {
+              $("#flash-msg").css("display", "block");
+                $("#flash-msg").delay(3000).fadeOut("slow");
+              });
+        </script>
+   <?php }
 
 ?>
 <!DOCTYPE html>
@@ -66,7 +73,7 @@ ini_set('display_errors', TRUE);
         <!-- /. NAV TOP  -->
         <?php include('admin_include/inc_menubar.php'); ?>
         <!-- /. NAV SIDE  -->
-        <form method="post">
+        <!-- <form method="post"> -->
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
@@ -87,39 +94,43 @@ ini_set('display_errors', TRUE);
                            <!-- Subscriber -->
                         </div>
                         <div class="panel-body">
+                            <div class="alert alert-success fade in" id="flash-msg" style="display: none;">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Success!</strong> Your message has been Deleted successfully.
+                              </div>
                             <div class="table-responsive">
                                 <form action="" method="POST">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Mass-Delete<br/><input type="checkbox" id="select_all" value=""/></th>
-                                            <th>Mail</th>
-                                            <th>Id</th>
-                                            <th>Email</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                   <?php
-                                      $get_subscriber_view = new controller;
-                                      $get_subscriber_get_ctrl = $get_subscriber_view->get_subscriber_ctrl();
-                                      $i = 1;
-                                  while ($get_subscrib_row = mysqli_fetch_assoc($get_subscriber_get_ctrl)) 
-                                  {?>
-                                        <tr>
-                                            <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $get_subscrib_row['id']; ?>"></td>
-                                            <td><input type="checkbox" name="mail[]" value="<?php echo $get_subscrib_row['subscribe_email']; ?>"></td>
-                                            <td width="5%"><?php echo $i; ?></td>
-                                            <td width="80%"><?php echo $get_subscrib_row['subscribe_email']; ?></td>
-                                            <td>                                            
-                                                <a href="subscrib.php?sub_del_id=<?php echo $get_subscrib_row['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger">Delete</td>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Mass-Delete<br/><input type="checkbox" id="select_all" value=""/></th>
+                                                <th>Mail</th>
+                                                <th>Id</th>
+                                                <th>Email</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                       <?php
+                                          $get_subscriber_view = new controller;
+                                          $get_subscriber_get_ctrl = $get_subscriber_view->get_subscriber_ctrl();
+                                          $i = 1;
+                                      while ($get_subscrib_row = mysqli_fetch_assoc($get_subscriber_get_ctrl)) 
+                                      {?>
+                                            <tr>
+                                                <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $get_subscrib_row['id']; ?>"></td>
+                                                <td><input type="checkbox" name="mail[]" value="<?php echo $get_subscrib_row['subscribe_email']; ?>"></td>
+                                                <td width="5%"><?php echo $i; ?></td>
+                                                <td width="80%"><?php echo $get_subscrib_row['subscribe_email']; ?></td>
+                                                <td>                                            
+                                                    <a href="subscrib.php?sub_del_id=<?php echo $get_subscrib_row['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger">Delete</td>
 
-                                            </td>
-                                        </tr>
-                                    <?php $i++; } ?>
-                                    </tbody>
-                                </table>
-                                <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                                </td>
+                                            </tr>
+                                        <?php $i++; } ?>
+                                        </tbody>
+                                    </table>
+                                    <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
                                 </form>
                             </div>
                         </div>
@@ -127,6 +138,7 @@ ini_set('display_errors', TRUE);
                     <!--  End  Striped Rows Table  -->
                 </div>
             </div>
+            <form method="post">
             <div class="row" style="padding-bottom: 100px;">
                     <div class="col-md-12">
                         <div id="comments-sec">
@@ -152,7 +164,7 @@ ini_set('display_errors', TRUE);
             </div>
             <!-- /. PAGE INNER  -->
          </div>
-        </form>
+       </form>
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->

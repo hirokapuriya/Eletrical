@@ -9,8 +9,15 @@ include("controller.php");
       $id = $_POST['checked_id'];
       
       $delete_ac_dc = new controller;
-      $delete_ac_dc->delete_mass_ac_dc($id);
-   }
+      $delete_ac_dc->delete_mass_ac_dc($id);?>
+      <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+      <script type="text/javascript">
+         $(document).ready(function () {
+          $("#flash-msg").css("display", "block");
+            $("#flash-msg").delay(3000).fadeOut("slow");
+          });
+    </script>
+   <?php }
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -73,6 +80,10 @@ include("controller.php");
                             Registration Service List
                         </div>
                         <div class="panel-body">
+                            <div class="alert alert-success fade in" id="flash-msg" style="display: none;">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Success!</strong> Your message has been Deleted successfully.
+                              </div>
                             <div class="table-responsive">
                                 <form action="" method="post" onSubmit="return delete_confirm();">
                                 <table class="table table-striped table-bordered table-hover">
@@ -84,8 +95,8 @@ include("controller.php");
                                             <th width="25%">Email</th>
                                             <th width="25%">Contact</th>
                                             <th width="25%">Message</th>
-                                            <th width="13%">Createdat</th>
-                                            <th width="13%">Updated</th>
+                                            <!-- <th width="13%">Createdat</th>
+                                            <th width="13%">Updated</th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -94,7 +105,7 @@ include("controller.php");
                                               $get_register_view_list = new controller;
                                               $get_register_ctrl_list = $get_register_view_list->Show_regisration_data();
                                         foreach ($get_register_ctrl_list as $result) 
-                                        {
+                                        {   
                                             if ($result['name'] !== "" && $result['email'] !== "" && $result['contact'] !== "" && $result['message'] !== "") { ?>    
                                         <tr>
                                             <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
@@ -103,12 +114,32 @@ include("controller.php");
                                             <td><?php echo $result['email']; ?></td>
                                             <td><?php echo $result['contact']; ?></td>
                                             <td><div style="overflow-y:scroll; height:80px;"><?php echo $result['message']; ?></div></td>
-                                            <td><?php echo $result['created']; ?></td>
-                                            <td><?php echo $result['updated']; ?></td>
-                                            <!-- <td>
-                                              <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>Edit</button>
-                                              <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td> -->
+                                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button></td>
                                         </tr>
+                                        <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">This is&nbsp;<u><?php echo $result['name'];?></u>&nbsp;Detail</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                    <label>ID&nbsp;-&nbsp;</label><?php echo $result['id'];?></br>
+                                                    <label>Name&nbsp;-&nbsp;</label><?php echo $result['name'];?></br>
+                                                    <label>Phone-No&nbsp;-&nbsp;</label><?php echo $result['contact']; ?></br>
+                                                    <label>Email&nbsp;-&nbsp;</label><?php echo $result['email']; ?></br>
+                                                    <label>Message&nbsp;-&nbsp;</label><?php echo $result['message']; ?></br>
+                                                    <label>Created&nbsp;-&nbsp;</label><?php echo $result['created_at']; ?></br>
+                                                    <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated_at']; ?>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                        </div>
                                          <?php  }} ?>
                                     </tbody>
                                 </table><!-- 
