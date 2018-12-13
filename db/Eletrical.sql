@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 11, 2018 at 06:58 PM
+-- Generation Time: Dec 13, 2018 at 11:07 AM
 -- Server version: 5.7.24-0ubuntu0.16.04.1
 -- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
@@ -41,20 +41,6 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `phone`, `email`, `message`, `created`, `updated`) VALUES
-(10, 'hiren', '1234567890', 'kapuriyahiren8899@gmail.com', 'jhgjhgjkjkhgkg', '2018-10-22 07:30:31', '2018-10-22 07:30:31'),
-(11, 'fasdf', '1234567890', 'kapuriyahiren8899@gmail.com', 'asdf', '2018-11-05 06:37:36', '2018-11-05 06:37:36'),
-(12, 'asf', '1234567890', 'kapuriyahiren8899@gmail.com', 'sdafdasf', '2018-11-05 07:18:35', '2018-11-05 07:18:35'),
-(13, 'adsfdsadasf', '1234567890', 'kapuriyahiren8899@gmail.com', 'asdfdasfdasfdasf', '2018-11-05 07:18:46', '2018-11-05 07:18:46'),
-(14, 'dasf', '1234567890', 'kapuriyahiren8899@gmail.com', 'adsfdasfsdaf', '2018-11-05 07:19:31', '2018-11-05 07:19:31'),
-(15, 'happy diwali', '1234567890', 'kapuriyahiren8899@gmail.com', 'easfdfg', '2018-11-05 23:29:00', '2018-11-05 23:29:00'),
-(16, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '9978001901', 'kapuriyahiren8899@gmail.com', 'ngjhgkjg', '2018-12-05 14:05:31', '2018-12-05 14:05:31'),
-(17, 'hiren', '9978001901', 'kapuriyahiren8899@gmail.com', 'hiihihihihi', '2018-12-05 14:06:07', '2018-12-05 14:06:07'),
-(18, 'aaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaaaaaaaa', '2018-12-11 06:30:08', '2018-12-11 06:30:08'),
-(19, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaaaaaaaaaa', '2018-12-11 06:30:27', '2018-12-11 06:30:27'),
-(20, 'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwdddddddddddddddddddddddddddddddddddddddddddddddd', '9978001901', 'tyagu@gmail.com', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2018-12-11 06:31:26', '2018-12-11 06:31:26'),
-(21, '".$name."', '".$phone."', '".$email."', '".$message."', '2018-12-11 06:41:20', '2018-12-11 06:41:20'),
-(22, 'aaa', '9978001901', 'hiren.kapuriya@commercepundit.com', 'aanananananan', '2018-12-11 09:40:39', '2018-12-11 09:40:39'),
-(23, 'hiren kapuriya', '1234567890', 'hiren.kapuriya@commercepundit.com', 'helllllllllllllll', '2018-12-11 09:49:36', '2018-12-11 09:49:36'),
 (24, 'aaaa', '', '9978001901', 'hiren.kapuriya@commercepundit.com', '2018-12-11 11:13:13', '2018-12-11 11:13:13'),
 (25, 'aaaa', '9978001901', 'hiren.kapuriya@commercepundit.com', 'aaaaaaaaa', '2018-12-11 11:14:01', '2018-12-11 11:14:01'),
 (26, 'hiren', '1234567890', 'hiren.kapuriya@commercepundit.com', 'aaaaaaaa', '2018-12-11 11:14:21', '2018-12-11 11:14:21'),
@@ -236,35 +222,7 @@ CREATE TABLE `service_tab_name` (
 INSERT INTO `service_tab_name` (`service_id`, `service_name`, `created`, `updated`) VALUES
 (12, 'AC&DC Drive Programming', '2018-11-30 09:02:23', '2018-11-30 09:02:23'),
 (13, 'AC&DC Drive Reparing', '2018-11-30 09:02:41', '2018-11-30 09:02:41'),
-(14, 'PLC & SMI Programming', '2018-11-30 09:02:59', '2018-11-30 09:02:59'),
-(15, 'aaaaaaaaaaaa', '2018-12-07 11:54:59', '2018-12-07 11:54:59'),
-(16, '', '2018-12-07 11:55:05', '2018-12-07 11:55:05'),
-(17, 'aaaaa', '2018-12-07 11:55:17', '2018-12-07 11:55:17'),
-(18, 'a', '2018-12-07 11:55:25', '2018-12-07 11:55:25'),
-(19, 'a', '2018-12-07 11:55:27', '2018-12-07 11:55:27'),
-(20, '', '2018-12-07 11:55:31', '2018-12-07 11:55:31'),
-(21, '', '2018-12-07 11:55:33', '2018-12-07 11:55:33'),
-(22, '', '2018-12-07 11:55:34', '2018-12-07 11:55:34'),
-(23, '', '2018-12-07 11:55:35', '2018-12-07 11:55:35'),
-(24, '', '2018-12-07 11:55:35', '2018-12-07 11:55:35'),
-(25, '', '2018-12-07 11:55:36', '2018-12-07 11:55:36'),
-(26, '', '2018-12-07 11:58:51', '2018-12-07 11:58:51'),
-(27, '', '2018-12-07 11:58:54', '2018-12-07 11:58:54'),
-(28, '', '2018-12-07 11:58:55', '2018-12-07 11:58:55'),
-(29, '', '2018-12-07 11:58:56', '2018-12-07 11:58:56'),
-(30, '', '2018-12-07 11:58:56', '2018-12-07 11:58:56'),
-(31, '', '2018-12-07 11:58:57', '2018-12-07 11:58:57'),
-(32, '', '2018-12-07 11:59:09', '2018-12-07 11:59:09'),
-(33, '', '2018-12-07 11:59:13', '2018-12-07 11:59:13'),
-(34, '', '2018-12-07 12:00:26', '2018-12-07 12:00:26'),
-(35, '', '2018-12-07 12:00:29', '2018-12-07 12:00:29'),
-(36, '', '2018-12-07 12:00:29', '2018-12-07 12:00:29'),
-(37, '', '2018-12-07 12:02:54', '2018-12-07 12:02:54'),
-(38, '', '2018-12-07 12:03:16', '2018-12-07 12:03:16'),
-(39, '', '2018-12-07 12:03:17', '2018-12-07 12:03:17'),
-(40, '', '2018-12-07 12:03:18', '2018-12-07 12:03:18'),
-(41, '', '2018-12-10 10:11:16', '2018-12-10 10:11:16'),
-(42, '', '2018-12-10 10:11:17', '2018-12-10 10:11:17');
+(14, 'PLC & SMI Programming', '2018-11-30 09:02:59', '2018-11-30 09:02:59');
 
 -- --------------------------------------------------------
 
@@ -379,7 +337,7 @@ ALTER TABLE `service_tab_details`
 -- AUTO_INCREMENT for table `service_tab_name`
 --
 ALTER TABLE `service_tab_name`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `subscribe`
 --

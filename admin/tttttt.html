@@ -1,11 +1,3 @@
-<?php
-    //Start session
-    session_start();    
-    //Unset the variables stored in session
-    unset($_SESSION['SESS_MEMBER_ID']);
-    unset($_SESSION['SESS_FIRST_NAME']);
-    unset($_SESSION['SESS_LAST_NAME']);
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +11,7 @@
 </head>
 
 <body>
-<form name="loginform" action="login_exec.php" method="post">
+<form>
     <div class="svgContainer">
         <div>
             <svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -110,33 +102,26 @@
             </svg>
         </div>
     </div>
-    <?php
-        if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
-        echo '<ul class="err">';
-        foreach($_SESSION['ERRMSG_ARR'] as $msg) {
-            echo '<li>',$msg,'</li>'; 
-            }
-        echo '</ul>';
-        unset($_SESSION['ERRMSG_ARR']);
-        }
-   ?>
+    
     <div class="inputGroup inputGroup1">
-        <label for="email1">Username</label>
-        <input type="text" id="email" name="username" class="email" maxlength="256"/>
+        <label for="email1">Email</label>
+        <input type="text" id="email" class="email" maxlength="256"/>
+        <p class="helper helper1">email@domain.com</p>
         <span class="indicator"></span>
     </div>
     <div class="inputGroup inputGroup2">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="password" />
+        <input type="password" id="password" class="password" />
     </div>
     <div class="inputGroup inputGroup3">
-        <button id="login" type="submit" value="login">Log in</button>
+        <button id="login">Log in</button>
     </div>  
 </form>
 </body>
 <script type="text/javascript">
     var email = document.querySelector('#email'), password = document.querySelector('#password'), mySVG = document.querySelector('.svgContainer'), armL = document.querySelector('.armL'), armR = document.querySelector('.armR'), eyeL = document.querySelector('.eyeL'), eyeR = document.querySelector('.eyeR'), nose = document.querySelector('.nose'), mouth = document.querySelector('.mouth'), mouthBG = document.querySelector('.mouthBG'), mouthSmallBG = document.querySelector('.mouthSmallBG'), mouthMediumBG = document.querySelector('.mouthMediumBG'), mouthLargeBG = document.querySelector('.mouthLargeBG'), mouthMaskPath = document.querySelector('#mouthMaskPath'), mouthOutline = document.querySelector('.mouthOutline'), tooth = document.querySelector('.tooth'), tongue = document.querySelector('.tongue'), chin = document.querySelector('.chin'), face = document.querySelector('.face'), eyebrow = document.querySelector('.eyebrow'), outerEarL = document.querySelector('.earL .outerEar'), outerEarR = document.querySelector('.earR .outerEar'), earHairL = document.querySelector('.earL .earHair'), earHairR = document.querySelector('.earR .earHair'), hair = document.querySelector('.hair');
 var caretPos, curEmailIndex, screenCenter, svgCoords, eyeMaxHorizD = 20, eyeMaxVertD = 10, noseMaxHorizD = 23, noseMaxVertD = 10, dFromC, eyeDistH, eyeLDistV, eyeRDistV, eyeDistR, mouthStatus = "small";
+
 function getCoord(e) {
     var     carPos = email.selectionEnd,
         div = document.createElement('div'),

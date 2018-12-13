@@ -20,8 +20,7 @@
 		}
 		return mysqli_real_escape_string($str);
 	}
- 
-	//Sanitize the POST values
+ 	//Sanitize the POST values
 	$username = $_POST['username'];
 	$password = $_POST['password'];
  	//var_dump($username); var_dump($password); die('not');
