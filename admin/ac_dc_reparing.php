@@ -3,7 +3,26 @@
 error_reporting(E_ALL); 
 ini_set('display_errors',1);  
 include("controller.php");
-//Delete service list delete_service_list
+
+    //Single Delete
+    if(isset($_REQUEST['del_id_service']))
+     {
+        $del_reg_ser=$_REQUEST['del_id_service'];
+        $obj_result= new controller;
+        $service_result = $obj_result->Single_delete_ragister_service($del_reg_ser);
+        if($service_result){ ?>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+        <script type="text/javascript">
+             $(document).ready(function () {
+              $("#flash-msg").css("display", "block");
+                $("#flash-msg").delay(3000).fadeOut("slow");
+              });
+        </script>
+        <?php }
+        
+    }
+
+   //Delete service list delete_service_list
    if(isset($_POST['bulk_delete_submit'])){
       
       $id = $_POST['checked_id'];
@@ -116,7 +135,7 @@ include("controller.php");
                                             <td><div style="overflow-y:scroll; height:80px;"><?php echo $result['message']; ?></div></td>
                                             <td><?php echo $result['capcity']; ?></td>
                                             <td><?php echo $result['machine_name']; ?></td>
-                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button>&nbsp;<button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button></td>
+                                            <td><a href="ac_dc_reparing.php?del_id_service=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</a>&nbsp;<button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button></td>
                                         </tr>
                                         <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog">
                                           <div class="modal-dialog">
@@ -134,8 +153,8 @@ include("controller.php");
                                                     <label>Message&nbsp;-&nbsp;</label><?php echo $result['message']; ?></br>
                                                     <label>Comman-Drive&nbsp;-&nbsp;</label><?php echo $result['capcity']; ?></br>
                                                     <label>Drive-Model No.&nbsp;-&nbsp;</label><?php echo $result['machine_name']; ?></br>
-                                                    <label>Created&nbsp;-&nbsp;</label><?php echo $result['created_at']; ?></br>
-                                                    <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated_at']; ?>
+                                                   <!--  <label>Created&nbsp;-&nbsp;</label><?php echo $result['created_at']; ?></br>
+                                                    <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated_at']; ?> -->
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

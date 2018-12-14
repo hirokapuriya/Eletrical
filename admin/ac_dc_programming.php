@@ -4,13 +4,41 @@
 error_reporting(E_ALL); 
 ini_set('display_errors',1);  
 include("controller.php");
+
+    //Single Delete
+    if(isset($_REQUEST['del_id_service']))
+     {
+        $del_reg_ser=$_REQUEST['del_id_service'];
+        $obj_result= new controller;
+        $service_result = $obj_result->Single_delete_ragister_service($del_reg_ser);
+        if($service_result){ ?>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+        <script type="text/javascript">
+             $(document).ready(function () {
+              $("#flash-msg").css("display", "block");
+                $("#flash-msg").delay(3000).fadeOut("slow");
+              });
+        </script>
+        <?php }
+        
+    }
+
    //Delete service list delete_service_list
    if(isset($_POST['bulk_delete_submit'])){
       
       $id = $_POST['checked_id'];
       
       $delete_ac_dc = new controller;
-      $delete_ac_dc->delete_mass_ac_dc($id);
+     $mass_delete = $delete_ac_dc->delete_mass_ac_dc($id);
+     if ($mass_delete) { ?>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+        <script type="text/javascript">
+             $(document).ready(function () {
+              $("#flash-msg").css("display", "block");
+                $("#flash-msg").delay(3000).fadeOut("slow");
+              });
+        </script>
+     <?php }
    }
 ?>
 <!DOCTYPE html>
@@ -74,6 +102,10 @@ include("controller.php");
                             Gallery Image List
                         </div>
                         <div class="panel-body">
+                             <div class="alert alert-success fade in" id="flash-msg" style="display: none;">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Success!</strong> Your message has been Deleted successfully.
+                              </div>
                             <div class="table-responsive">
                                 <form method="post" action="">
                                 <table class="table table-striped table-bordered table-hover">
@@ -87,9 +119,9 @@ include("controller.php");
                                             <th>Message</th>
                                             <th>Comman-Drive</th>
                                             <th>Drive-Model No.</th>
-                                            <th>Createdat</th>
-                                            <th>Updated</th>
-                                            <!-- <th>Action</th> -->
+                                          <!--   <th>Createdat</th>
+                                            <th>Updated</th> -->
+                                            <th>Action</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -102,14 +134,15 @@ include("controller.php");
                                         <tr>
                                             <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $result['id']; ?></td>
-                                            <td><?php echo $result['name']; ?></td>
+                                            <td><div style="overflow-y:scroll; height:80px; max-width: 150px;"><?php echo $result['name']; ?></div></td>
                                             <td><?php echo $result['email']; ?></td>
                                             <td><?php echo $result['contact']; ?></td>
-                                            <td><div style="overflow-y:scroll; height:80px;"><?php echo $result['message']; ?></div></td>
+                                            <td><div style="overflow-y:scroll; height:80px; "><?php echo $result['message']; ?></div></td>
                                             <td><?php echo $result['comman_drive']; ?></td>
                                             <td><?php echo $result['drive_no']; ?></td>
-                                            <td><?php echo $result['created']; ?></td>
-                                            <td><?php echo $result['updated']; ?></td>
+                                            <!-- <td><?php echo $result['created']; ?></td>
+                                            <td><?php echo $result['updated']; ?></td> -->
+                                            <td><a href="ac_dc_programming.php?del_id_service=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</a></td>
                                             <!-- <td>
                                                 <button class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</button></td> -->
                                         </tr>

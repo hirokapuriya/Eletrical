@@ -26,7 +26,8 @@ include("controller.php");
       $id = $_POST['checked_id'];
       
       $delete_ac_dc = new controller;
-      $delete_ac_dc->delete_mass_ac_dc($id); ?>
+      $mass_delete = $delete_ac_dc->delete_mass_ac_dc($id); 
+      if($mass_delete){?>
       <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
       <script type="text/javascript">
          $(document).ready(function () {
@@ -34,7 +35,7 @@ include("controller.php");
             $("#flash-msg").delay(3000).fadeOut("slow");
           });
     </script>
-   <?php }
+   <?php } }
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
