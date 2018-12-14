@@ -275,6 +275,14 @@ ini_set('display_errors', TRUE);
       $mass_delete_gallery_complete = $mass_delete_gallery->mass_delete_gallery_model($id_gallery);
       return $mass_delete_gallery_complete;
     }
+    public function Single_delete_ragister_service($del_reg_ser){
+        
+       $obj_delete_reg_ser=new model();
+
+       $del_reg_ser_ctrl = $obj_delete_reg_ser->Delete_reg_ser_model($del_reg_ser);
+       
+       return $del_reg_ser_ctrl;
+    }
   } 
 
 ?>

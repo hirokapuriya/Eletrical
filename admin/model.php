@@ -232,6 +232,13 @@ ini_set('display_errors', TRUE);
       return $mass_gallery_delete_model;
 
     }
+    public function Delete_reg_ser_model($del_reg_ser){
+      global $con;
+      
+      $delete_reg_service = mysqli_query($con,"delete from registration where id='$del_reg_ser'");
+
+      return $delete_reg_service;
+    }
   }
 
 ?>

@@ -3,13 +3,30 @@
 error_reporting(E_ALL); 
 ini_set('display_errors',1);  
 include("controller.php");
-//Delete service list delete_service_list
+    //Single Delete
+    if(isset($_REQUEST['del_id_service']))
+     {
+        $del_reg_ser=$_REQUEST['del_id_service'];
+        $obj_result= new controller;
+        $service_result = $obj_result->Single_delete_ragister_service($del_reg_ser);
+        if($service_result){ ?>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+        <script type="text/javascript">
+             $(document).ready(function () {
+              $("#flash-msg").css("display", "block");
+                $("#flash-msg").delay(3000).fadeOut("slow");
+              });
+        </script>
+        <?php }
+        
+    }
+    //Delete service list delete_service_list
    if(isset($_POST['bulk_delete_submit'])){
       
       $id = $_POST['checked_id'];
       
       $delete_ac_dc = new controller;
-      $delete_ac_dc->delete_mass_ac_dc($id);?>
+      $delete_ac_dc->delete_mass_ac_dc($id); ?>
       <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
       <script type="text/javascript">
          $(document).ready(function () {
@@ -110,11 +127,12 @@ include("controller.php");
                                         <tr>
                                             <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $result['id']; ?></td>
-                                            <td><?php echo $result['name']; ?></td>
-                                            <td><?php echo $result['email']; ?></td>
+                                            <td><div style="overflow-y:scroll; max-width: 100px;"><?php echo $result['name']; ?></div></td>
+                                            <td><div style="overflow-y:scroll; max-width: 100px;"><?php echo $result['email']; ?></div></td>
                                             <td><?php echo $result['contact']; ?></td>
-                                            <td><div style="overflow-y:scroll; height:80px;"><?php echo $result['message']; ?></div></td>
-                                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button></td>
+                                            <td><div style="overflow-y:scroll; max-width: 100px;"><?php echo $result['message']; ?></div></td>
+                                            <td><a href="pcl_smi_programming.php?del_id_service=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</a>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button></td>
                                         </tr>
                                         <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog">
                                           <div class="modal-dialog">
@@ -130,8 +148,8 @@ include("controller.php");
                                                     <label>Phone-No&nbsp;-&nbsp;</label><?php echo $result['contact']; ?></br>
                                                     <label>Email&nbsp;-&nbsp;</label><?php echo $result['email']; ?></br>
                                                     <label>Message&nbsp;-&nbsp;</label><?php echo $result['message']; ?></br>
-                                                    <label>Created&nbsp;-&nbsp;</label><?php echo $result['created_at']; ?></br>
-                                                    <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated_at']; ?>
+                                                    <label>Created&nbsp;-&nbsp;</label><?php echo $result['created']; ?></br>
+                                                    <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated']; ?>
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
