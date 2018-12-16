@@ -280,7 +280,7 @@
 </section>
 <!-- Latest Projects Wrapper End --> 
 <!-- Testimonials Wrapper Start -->
-<section class="testimonials-wrapper">
+<!-- <section class="testimonials-wrapper">
   <div class="container">
     <div class="title">
       <h2>Testimonials</h2>
@@ -315,20 +315,20 @@
           </div> 
           <div class="owl-dots">
             <div class="owl-dot active">
-              <!-- <span></span> -->
+              <!-- <span></span> ->
             </div>
             <div class="owl-dot">
-              <!-- <span></span> -->
+              <!-- <span></span> ->
             </div>
             <div class="owl-dot">
-              <!-- <span></span> -->
+              <!-- <span></span> ->
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- Testimonials Wrapper End --> 
 <!-- Counters Wrapper Start -->
 <div class="counters">

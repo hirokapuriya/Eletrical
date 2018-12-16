@@ -1,5 +1,5 @@
  <div class="col-sm-7">
-        <p>© Copyright <span id="year">2018</span>, ElectricalShop | All Rights Reserved.</p>
+        <a href="https://www.google.com/search?q=kapuriya+hiren&oq=kapuriya+hiren&aqs=chrome.0.69i59j69i61j69i60.1911j0j7&sourceid=chrome&ie=UTF-8"><!-- © Copyright <span id="year">2018</span> -->&nbsp;Developed By | Kapuriya's</a>
       </div>
       <div class="col-sm-5">
         <ul class="footer-social-icons">

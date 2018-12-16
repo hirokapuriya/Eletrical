@@ -50,24 +50,7 @@ include("controller.php");
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">COMPANY NAME</a>
-            </div>
-
-            <div class="header-right">
-
-              <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-                <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
-                <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
-
-
-            </div>
+           <?php include('admin_include/nav_bar.php'); ?>
         </nav>
         <!-- /. NAV TOP  -->
         <?php include('admin_include/inc_menubar.php'); ?>
@@ -76,8 +59,8 @@ include("controller.php");
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">BLANK PAGE</h1>
-                        <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
+                        <h1 class="page-head-line" style="border-color: #003769; color: #003769;">PCL & SMI Programming</h1>
+                       <!--  <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1> -->
 
                     </div>
                 </div>
@@ -93,8 +76,8 @@ include("controller.php");
                 </div>
                 <div class="col-md-12">
                   <!--   Kitchen Sink -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" style="border-color: #003769;">
+                        <div class="panel-heading" style="border-color: #003769; color: #ffcb36; background-color: #2b4761">
                             Registration Service List
                         </div>
                         <div class="panel-body">
@@ -109,13 +92,13 @@ include("controller.php");
                                         <tr>
                                             <th><input type="checkbox" id="select_all" value=""/></th>
                                             <th width="5%">Id</th>
-                                            <th width="25%">Name</th>
-                                            <th width="25%">Email</th>
-                                            <th width="25%">Contact</th>
-                                            <th width="25%">Message</th>
+                                            <th width="20%">Name</th>
+                                            <th width="20%">Email</th>
+                                            <th width="20%">Contact</th>
+                                            <th width="20%">Message</th>
                                             <!-- <th width="13%">Createdat</th>
                                             <th width="13%">Updated</th> -->
-                                            <th>Action</th>
+                                            <th width="20%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,12 +111,12 @@ include("controller.php");
                                         <tr>
                                             <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $result['id']; ?></td>
-                                            <td><div style="overflow-y:scroll; max-width: 100px;"><?php echo $result['name']; ?></div></td>
-                                            <td><div style="overflow-y:scroll; max-width: 100px;"><?php echo $result['email']; ?></div></td>
+                                            <td><div style="overflow-y:scroll;"><?php echo $result['name']; ?></div></td>
+                                            <td><div style="overflow-y:scroll; "><?php echo $result['email']; ?></div></td>
                                             <td><?php echo $result['contact']; ?></td>
-                                            <td><div style="overflow-y:scroll; max-width: 100px;"><?php echo $result['message']; ?></div></td>
-                                            <td><a href="pcl_smi_programming.php?del_id_service=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</a>
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button></td>
+                                            <td><div style="overflow-y:scroll;"><?php echo $result['message']; ?></div></td>
+                                            <td><a href="pcl_smi_programming.php?del_id_service=<?php echo $result['id']; ?>" class="btn btn-danger" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Delete</a>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">View</button></td>
                                         </tr>
                                         <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog">
                                           <div class="modal-dialog">
@@ -163,7 +146,7 @@ include("controller.php");
                                     </tbody>
                                 </table><!-- 
                                 <span class="rows_selected" id="select_count">0 Selected</span> -->
-                                 <button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                 <button class="btn btn-danger" type="submit" name="bulk_delete_submit" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">&nbsp;Mass Delete</button>
                                 </form>
                             </div>
                         </div>
@@ -177,9 +160,7 @@ include("controller.php");
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->
-    <div id="footer-sec">
-        &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
-    </div>
+    <?php include('admin_include/admin_footer.php'); ?>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->

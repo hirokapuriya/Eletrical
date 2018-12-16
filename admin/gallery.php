@@ -67,24 +67,7 @@ if(isset($_REQUEST['edit_image'])){
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">COMPANY NAME</a>
-            </div>
-
-            <div class="header-right">
-
-              <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-                <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
-                <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
-
-
-            </div>
+            <?php include('admin_include/nav_bar.php'); ?>
         </nav>
         <!-- /. NAV TOP  -->
         <?php include('admin_include/inc_menubar.php'); ?>
@@ -93,16 +76,16 @@ if(isset($_REQUEST['edit_image'])){
             <div id="page-inner">
                 <div class="row">   
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Advance Elements</h1>
-                        <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
-
+                        <h1 class="page-head-line" style="border-color: #003769;">Gallary Images</h1>
+                        <!-- <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
+ -->
                     </div>
                 </div>
                 <!-- /. ROW  -->
                 <div class="row">
                     <div class="col-md-12">
-                       <div class="panel panel-default">
-                        <div class="panel-heading">
+                       <div class="panel panel-default" style="border-color: #003769;">
+                        <div class="panel-heading" style="border-color: #003769; color: #ffcb36; background-color: #2b4761">
                            File Uploads
                         </div>
                         <div class="panel-body">
@@ -143,9 +126,9 @@ if(isset($_REQUEST['edit_image'])){
                                         <input type="text" name="name" value="<?php echo isset($image_row_option['name'])?$image_row_option['name']:''; ?>">
                                   </div>
                                   <?php if(isset($image_row_option)){?>
-                                      <button type="submit" name="edit_image" value="Edit Upload File Now" class="btn btn-info">Edit File</button>
+                                      <button type="submit" name="edit_image" value="Edit Upload File Now" class="btn btn-info" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Edit File</button>
                                   <?php }else{?>  
-                                    <button type="submit" name="submit_image" value="Upload File Now" class="btn btn-info">Upload File</button>
+                                    <button type="submit" name="submit_image" value="Upload File Now" class="btn btn-info" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Upload File</button>
                                   <?php } ?>
                                </div>
                           </div>
@@ -156,8 +139,8 @@ if(isset($_REQUEST['edit_image'])){
                       </div>
                         <div class="col-md-12">
                           <!--   Kitchen Sink -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
+                            <div class="panel panel-default" style="border-color: #003769;">
+                                <div class="panel-heading" style="border-color: #003769; color: #ffcb36; background-color: #2b4761">
                                     Gallery Image List
                                 </div>
                                 <div class="panel-body">
@@ -190,8 +173,8 @@ if(isset($_REQUEST['edit_image'])){
                                                     <td><?php echo $reslut_image['created']; ?></td>
                                                     <td><?php echo $reslut_image['updated']; ?></td>
                                                     <td>
-                                                      <a href="gallery.php?gallery_edit_id=<?php echo $reslut_image['id']; ?>" class="btn btn-primary">Edit</a>
-                                                      <a href="gallery.php?image_delete_id=<?php echo $reslut_image['id']; ?>" class="btn btn-danger">Delete</a>
+                                                      <a href="gallery.php?gallery_edit_id=<?php echo $reslut_image['id']; ?>" class="btn btn-primary" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Edit</a>
+                                                      <a href="gallery.php?image_delete_id=<?php echo $reslut_image['id']; ?>" class="btn btn-danger" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Delete</a>
                                                     </td>
                                                 </tr>
                                              <?php } ?>
@@ -200,7 +183,7 @@ if(isset($_REQUEST['edit_image'])){
                                          <?php for ($i=1; $i<=$total_pages; $i++) {  
                                               echo  $pagLink = "<a class=".'btn btn-danger'." href='gallery.php?page=".$i."'>".$i."</a>";  
                                           } ?>  
-                                          <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                          <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">&nbsp;Mass Delete</button>
                                         </form>
                                     </div>
                                 </div>
@@ -216,9 +199,7 @@ if(isset($_REQUEST['edit_image'])){
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->
-    <div id="footer-sec">
-        &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
-    </div>
+    <?php include('admin_include/admin_footer.php'); ?>
     <!-- /. FOOTER  -->
 
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->

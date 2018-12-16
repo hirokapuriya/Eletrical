@@ -142,7 +142,7 @@ if (isset($_REQUEST['ragister']))
                           <span id="phonealert" style="color: #003769;"></span>
                         </div>
                         <!--AC & DC Drive Programming-->
-                        <?php if ($result_service_details['id'] == 18) {?>
+                        <?php if ($result_service_details['id'] == 18) { ?>
                           <div class="col-sm-6">
                             <input class="con-field" name="company_drive" id="name" required="" placeholder="Company-Drive" type="text">
                           </div>
@@ -151,7 +151,7 @@ if (isset($_REQUEST['ragister']))
                           </div>
                         <?php } ?>
                         <!--AC & DC Drive Reparing-->
-                        <?php if ($result_service_details['id'] == 19) {?>
+                        <?php if ($result_service_details['id'] == 19) { ?>
                           <div class="col-sm-6">
                             <input class="con-field" name="capcity" id="capcity" required="" placeholder="Capcity" type="text">
                           </div>
@@ -225,7 +225,43 @@ if (isset($_REQUEST['ragister']))
 <script src="js/slider.js"></script> 
 <script src="js/custom.js"></script>
 
-
-<?php include("Include/validation.php") ?>
+<script type="text/javascript">
+ $('#email_address').on('keypress', function() {
+    var email = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
+    if(!email) {
+        $('#error_email').show();
+    } else {
+        $('#error_email').hide();
+    }
+  });
+  $('#name').on('keypress', function() {
+    var name = /^[a-zA-Z\s]+$/.test(this.value); 
+    if(!name) {
+        $('#error_name').show();
+    } else {
+        $('#error_name').hide();
+    }
+ })
+  $('#phone').keypress(function (event) {
+    var keycode = event.which;
+    if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+        event.preventDefault();
+    }
+  });
+  $("#phone").bind("keyup keydown", function() {    
+    var amount = parseFloat($(this).val());
+    if (amount) {
+        if (amount > 0 || amount < 10) {
+            $("#phonealert").html("Your number must be between 0 and 10");
+        } else
+    if(amount < 10) {
+            $("#phonealert").html("valid phone number");
+        }
+    } else {
+        $("#phonealert").html("Enter numbers only");
+    }
+});
+</script>
+<?php //include("Include/validation.php") ?>
 
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: none;"><i class="fa fa-angle-up"></i></a></body></html>

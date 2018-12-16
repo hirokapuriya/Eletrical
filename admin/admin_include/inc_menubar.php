@@ -1,17 +1,17 @@
 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
+                <ul class="nav" style="border-color: #003769; color: #ffcb36; background-color: #2b4761" id="main-menu">
                     <li>
-                        <div class="user-img-div">
+                        <!-- <div class="user-img-div">
                             <img src="assets/img/user.png" class="img-thumbnail" />
 
                             <div class="inner-text">
                                 Jhon Deo Alex
                            </div>
-                        </div>
+                        </div> -->
 
                     </li>
-                    <li>
+                    <li >
                         <a href="index.php">Dashboard</a>
                     </li>
                     <li>

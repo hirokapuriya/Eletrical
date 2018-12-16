@@ -56,24 +56,7 @@
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">COMPANY NAME</a>
-            </div>
-
-            <div class="header-right">
-
-              <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-                <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
-                <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
-
-
-            </div>
+           <?php include('admin_include/nav_bar.php'); ?>
         </nav>
         <!-- /. NAV TOP  -->
         <?php include('admin_include/inc_menubar.php'); ?>
@@ -82,7 +65,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Contact-us</h1>
+                        <h1 class="page-head-line" style="border-color: #003769; color: #003769;">Contact-us</h1>
                         <!-- <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1> -->
 
                     </div>
@@ -92,9 +75,9 @@
             <div class="row">
                 <div class="col-md-12">
                   <!--   Kitchen Sink -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Kitchen Sink
+                    <div class="panel panel-default" style="border-color: #003769;">
+                        <div class="panel-heading" style="border-color: #003769; color: #ffcb36; background-color: #2b4761">
+                            Contact Ragister
                         </div>
                         <div class="panel-body">
                               <div class="alert alert-success fade in" id="flash-msg" style="display: none;">
@@ -127,22 +110,22 @@
                                         <tr>
                                             <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $result['id']; ?>"></td>
                                             <td><?php echo $result['id']; ?></td>
-                                            <td><div style="overflow-y:scroll; height:50px; max-width: 100px;"><?php echo $result['name']; ?></div></td>
+                                            <td><div style="overflow-y:scroll; height:50px;"><?php echo $result['name']; ?></div></td>
                                             <td><?php echo $result['phone']; ?></td>
                                             <td><?php echo $result['email']; ?></td>
-                                            <td><div style="overflow-y:scroll; height:100px; max-width: 100px"><?php echo $result['message']; ?></div></td>
+                                            <td><div style="overflow-y:scroll; height:100px;"><?php echo $result['message']; ?></div></td>
                                            <!--  <td><?php echo $result['created']; ?></td>
                                             <td><?php echo $result['updated']; ?></td> -->
-                                            <td><a href="table.php?del_id=<?php echo $result['id']; ?>" class="btn btn-danger"><i class="glyphicon glyphicon-home"></i>Delete</a>
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>">View</button>
+                                            <td><a href="table.php?del_id=<?php echo $result['id']; ?>" class="btn btn-danger" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Delete</a>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">View</button>
                                             </td>
                                         </tr>
-                                        <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog">
-                                          <div class="modal-dialog">
+                                        <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog" >
+                                          <div class="modal-dialog" >
                                             <!-- Modal content-->
                                             <div class="modal-content">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                              <div class="modal-header" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">
+                                                <button type="button" class="close" data-dismiss="modal" style="color: #ffcb36;">&times;</button>
                                                 <h4 class="modal-title">This is&nbsp;<u><?php echo $result['name'];?></u>&nbsp;Detail</h4>
                                               </div>
                                               <div class="modal-body">
@@ -156,7 +139,7 @@
                                                     <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated']; ?>
                                               </div>
                                               <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Close</button>
                                               </div>
                                             </div>
 
@@ -168,7 +151,7 @@
                                 <?php for ($i=1; $i<=$total_pages; $i++) {  
                                     echo  $pagLink = "<a class=".'btn btn-danger'." href='table.php?page=".$i."'>".$i."</a>";  
                                 } ?>
-                                <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">&nbsp;Mass Delete</button>
                                 </form>
                             </div>
 
@@ -182,9 +165,7 @@
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->
-    <div id="footer-sec">
-        &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
-    </div>
+     <?php include('admin_include/admin_footer.php'); ?>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->

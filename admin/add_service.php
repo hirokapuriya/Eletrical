@@ -127,24 +127,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">COMPANY NAME</a>
-            </div>
-
-            <div class="header-right">
-
-              <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-                <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
-                <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
-
-
-            </div>
+            <?php include('admin_include/nav_bar.php'); ?>
         </nav>
         <!-- /. NAV TOP  -->
         <?php include('admin_include/inc_menubar.php'); ?>
@@ -153,14 +136,14 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Add Services</h1>
+                        <h1 class="page-head-line" style="border-color: #003769; color: #003769;">Add Services</h1>
                     </div>
                 </div>
                 <!-- /. ROW  -->
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                       <div class="panel panel-info">
-                            <div class="panel-heading">
+                       <div class="panel panel-info" style="border-color: #003769;">
+                            <div class="panel-heading" style="border-color: #003769; color: #ffcb36; background-color: #2b4761">
                                Tab Form
                             </div>
                             <!-- Tab Added alert -->
@@ -173,8 +156,8 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                 <form role="form" method="post">
                                     <div class="input-group">
                                         <input type="text" placeholder="Please Enter Service-Tab" class="form-control" name="service_name" id="nameInput" value="" required="" />
-                                        <span class="form-group input-group-btn">
-                                            <button class="btn btn-default" type="submit" name="service" value="TabService" type="button">Go!</button>
+                                        <span class="form-group input-group-btn" >
+                                            <button class="btn btn-default" type="submit" name="service" value="TabService" type="button" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Go!</button>
                                         </span>
                                     </div>
                                 </form>
@@ -182,7 +165,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                 <form method="post">
                                     <br>
                                     <div class="form-group">
-                                        <label>Select Service</label>
+                                        <label style="color:#2b4761;">Select Service</label>
                                         <?php if(isset($row_option))
                                               { ?>
                                                 <input type="hidden" name="id" value="<?php echo $row_option['id']; ?>">
@@ -205,7 +188,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Enter Description</label>
+                                        <label style="color:#2b4761;">Enter Description</label>
                                         <div id="editor">
                                             <textarea id='edit' style="margin-top: 30px;" name="Service_description">
                                                 <?php echo isset($row_option['service_description'])?$row_option['service_description']:''; ?>
@@ -213,9 +196,9 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                         </div>
                                     </div>
                                     <?php if(isset($row_option)) {?>
-                                        <button type="submit" type="submit" name="edit_services" value="edit_services_data" class="btn btn-info">Edit Data</button>
+                                        <button type="submit" type="submit" name="edit_services" value="edit_services_data" class="btn btn-info" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Edit Data</button>
                                     <?php }else{?>
-                                    <button type="submit" type="submit" name="add_services" value="add_services_data" class="btn btn-info">Add Data</button>
+                                    <button type="submit" type="submit" name="add_services" value="add_services_data" class="btn btn-info" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Add Data</button>
                                     <?php } ?>
                                 </form>
                             </div>
@@ -223,8 +206,8 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                     </div>
                     <form method="POST">
                       <div class="col-md-6">
-                          <div class="panel panel-success">
-                              <div class="panel-heading">
+                          <div class="panel panel-success" style="border-color: #003769;">
+                              <div class="panel-heading" style="border-color: #003769; color: #ffcb36; background-color: #2b4761">
                                 Service List
                               </div>
                               <div class="panel-body" style="padding: 0px;">
@@ -244,7 +227,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                           <!-- <a href="#" class="btn btn-info btn-block">Select All </a> -->
                                       </div>
                                       <div class="col-md-4">
-                                          <button type="submit" name="delete_service_list" value="hello_delete" class="btn btn-info btn-block">Delete</button>
+                                          <button type="submit" name="delete_service_list" value="hello_delete" class="btn btn-info btn-block" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Delete</button>
                                       </div>
                                     </div>
                                   </div>
@@ -256,8 +239,8 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                 <!--/.ROW-->
                 <div>
                   <!--   Kitchen Sink -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="panel panel-default"  style="border-color: #003769;">
+                        <div class="panel-heading" style="border-color: #003769; color: #ffcb36; background-color: #2b4761">
                             Service list
                         </div>
                         <div class="panel-body">
@@ -286,9 +269,9 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                             <td><?php echo $option_details['updated']; ?></td>
                                             <td>
                                                 
-                                              <a href="add_service.php?option_edit_id=<?php echo $option_details['id']; ?>" class="btn btn-primary">Edit</a>
+                                              <a href="add_service.php?option_edit_id=<?php echo $option_details['id']; ?>" class="btn btn-primary" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Edit</a>
                                                 
-                                              <a href="add_service.php?option_del_id=<?php echo $option_details['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger">Delete</td>
+                                              <a href="add_service.php?option_del_id=<?php echo $option_details['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Delete</td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>
@@ -296,7 +279,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
                                 <?php for ($i=1; $i<=$total_pages; $i++) {  
                                     echo  $pagLink = "<a class=".'btn btn-danger'." href='add_service.php?page=".$i."'>".$i."</a>";  
                                 } ?> 
-                                <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit"><i class="glyphicon glyphicon-home"></i>&nbsp;Mass Delete</button>
+                                <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">&nbsp;Mass Delete</button>
                                 </form> 
                             </div>
                         </div>
@@ -310,9 +293,7 @@ $get_service_details = mysqli_query($con,"SELECT * FROM `service_tab_details`,`s
     </div>
    
     <!-- /. WRAPPER  -->
-    <div id="footer-sec">
-        &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
-    </div>
+    <?php include('admin_include/admin_footer.php'); ?>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
