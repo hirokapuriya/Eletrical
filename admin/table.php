@@ -1,4 +1,4 @@
-﻿<?php //require_once('auth.php'); ?>
+﻿<?php require_once('auth.php'); ?>
 
 <?php 
    include("controller.php");
@@ -142,7 +142,6 @@
                                                 <button type="button" class="btn btn-default" data-dismiss="modal" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Close</button>
                                               </div>
                                             </div>
-
                                           </div>
                                         </div>
                                       <?php  } ?>

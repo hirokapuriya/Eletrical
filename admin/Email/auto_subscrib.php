@@ -2,7 +2,7 @@
         //$email_msg = $_REQUEST['subscribe_email'];
        /* foreach ($to as $value) 
         { */  //var_dump($value['email_msg']); die('opo');
-            $subject = 'Thank You Hiren';
+            $subject = '<strong>Thank you for subscribe</strong>';
             $message='<!DOCTYPE>';
             $message.='<html xmlns="http://www.w3.org/1999/xhtml">';
             $message.='<head>';

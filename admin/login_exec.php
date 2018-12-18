@@ -37,7 +37,7 @@
 	//If there are input validations, redirect back to the login form
 	if($errflag) {
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-		session_write_close();
+		//session_write_close();
 		header("location: index.php");
 		exit();
 	}
@@ -53,9 +53,10 @@
 			//Login Successful
 			session_regenerate_id();
 			$member = mysqli_fetch_assoc($result);
-			$_SESSION['SESS_MEMBER_ID'] = $member['mem_id'];
+			$_SESSION['SESS_MEMBER_ID'] = $member['id'];
 			$_SESSION['SESS_FIRST_NAME'] = $member['username'];
 			$_SESSION['SESS_LAST_NAME'] = $member['password'];
+			//	var_dump($_SESSION); die('lklklklk');
 			session_write_close();
 			header("location: home.php");
 			exit();

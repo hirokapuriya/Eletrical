@@ -2,19 +2,8 @@
     //Start session
     session_start();    
     //Unset the variables stored in session
-    unset($_SESSION['SESS_MEMBER_ID']);
-    unset($_SESSION['SESS_FIRST_NAME']);
-    unset($_SESSION['SESS_LAST_NAME']);
-    //include('auth.php')
-    //Start session
-    //session_start();
-    //die('kkkkkkk');
-    //Check whether the session variable SESS_MEMBER_ID is present or not
-   /* if(!isset($_SESSION['SESS_MEMBER_ID']) || (trim($_SESSION['SESS_MEMBER_ID']) == '')) 
-    {   //die('opopo');
-        header("location: index.php");
-        exit();
-    }*/
+    unset($_SESSION);
+   
 ?>
 <!DOCTYPE html>
 <html>
@@ -132,12 +121,12 @@
    ?>
     <div class="inputGroup inputGroup1">
         <label for="email1">Username</label>
-        <input type="text" id="email" name="username" class="email" maxlength="256"/>
+        <input type="text" id="email" name="username" class="email" placeholder="admin" maxlength="256"/>
         <span class="indicator"></span>
     </div>
     <div class="inputGroup inputGroup2">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="password" />
+        <input type="password" name="password" id="password" class="password" placeholder="admin123" />
     </div>
     <div class="inputGroup inputGroup3">
         <button id="login" type="submit" value="login">Log in</button>
