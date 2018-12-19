@@ -1,11 +1,9 @@
-﻿<?php require_once('auth.php'); ?>
+﻿<?php require_once('auth.php') ?>
 
 <?php
 error_reporting(E_ALL); 
 ini_set('display_errors', TRUE);
-    
     include('controller.php');
-
     if(isset($_REQUEST['sub_del_id'])){
        
        $id =  $_REQUEST['sub_del_id'];  
@@ -106,36 +104,11 @@ ini_set('display_errors', TRUE);
                                                 <td width="5%"><?php echo $i; ?></td>
                                                 <td width="80%"><?php echo $get_subscrib_row['subscribe_email']; ?></td>
                                                 <td>                                            
-                                                    <a href="subscrib.php?sub_del_id=<?php echo $get_subscrib_row['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Delete </a>
-                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#message<?php echo $result['id'];?>" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">View</button>
+                                                    <a href="subscrib.php?sub_del_id=<?php echo $get_subscrib_row['id']; ?>" onclick="return confirm('Are You Sure For Delete This Record?');" class="btn btn-danger" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Delete</a>
                                                 </td>
 
                                                 </td>
                                             </tr>
-                                            <div id="message<?php echo $result['id'];?>" class="modal fade" role="dialog" >
-                                          <div class="modal-dialog" >
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                              <div class="modal-header" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">
-                                                <button type="button" class="close" data-dismiss="modal" style="color: #ffcb36;">&times;</button>
-                                                <h4 class="modal-title">This is&nbsp;<u><?php echo $result['name'];?></u>&nbsp;Detail</h4>
-                                              </div>
-                                              <div class="modal-body">
-                                                    <!-- <strong>Hello My Name <b ><?php echo $result['name'];?></b> I have Issue This</strong></br> -->
-                                                    <label>ID&nbsp;-&nbsp;</label><?php echo $result['id'];?></br>
-                                                    <label>Name&nbsp;-&nbsp;</label><?php echo $result['name'];?></br>
-                                                    <label>Phone-No&nbsp;-&nbsp;</label><?php echo $result['phone']; ?></br>
-                                                    <label>Email&nbsp;-&nbsp;</label><?php echo $result['email']; ?></br>
-                                                    <label>Message&nbsp;-&nbsp;</label><?php echo $result['message']; ?></br>
-                                                    <label>Created&nbsp;-&nbsp;</label><?php echo $result['created']; ?></br>
-                                                    <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated']; ?>
-                                              </div>
-                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Close</button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
                                         <?php $i++; } ?>
                                         </tbody>
                                     </table>

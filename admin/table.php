@@ -124,8 +124,8 @@
                                           <div class="modal-dialog" >
                                             <!-- Modal content-->
                                             <div class="modal-content">
-                                              <div class="modal-header" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">
-                                                <button type="button" class="close" data-dismiss="modal" style="color: #ffcb36;">&times;</button>
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="modal-title">This is&nbsp;<u><?php echo $result['name'];?></u>&nbsp;Detail</h4>
                                               </div>
                                               <div class="modal-body">
@@ -139,7 +139,7 @@
                                                     <label>Updated&nbsp;-&nbsp;</label><?php echo $result['updated']; ?>
                                               </div>
                                               <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal" style="border-color: #003769; color: #ffcb36; background-color: #003769; ">Close</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                               </div>
                                             </div>
                                           </div>
