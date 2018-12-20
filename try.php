@@ -12,7 +12,7 @@
   width:100%;
   max-width:600px;
   background-color:#f9f9f9;
-  border:1px solid #ccc;
+  border:1px solid #ccc;zz
   border-radius:5px;
   padding:16px;
   margin:0 auto;
@@ -108,7 +108,8 @@
    </div>  
   </div>
     </body>  
-</html>  
+</html>
+  
 <script>  
 $(document).ready(function(){  
     $('#validate_form').parsley();

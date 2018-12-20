@@ -43,8 +43,60 @@ if (isset($_REQUEST['ragister']))
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <?php include("Include/css_inc.php"); ?>
-  
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="http://parsleyjs.org/dist/parsley.js"></script>
 </head>
+<style>
+ .box
+ {
+  width:100%;
+  max-width:600px;
+  background-color:#f9f9f9;
+  border:1px solid #ccc;
+  border-radius:5px;
+  padding:16px;
+  margin:0 auto;
+ }
+ input.parsley-success,
+ select.parsley-success,
+ textarea.parsley-success {
+   color: #468847;
+   background-color: #DFF0D8;
+   border: 1px solid #D6E9C6;
+ }
+
+ input.parsley-error,
+ select.parsley-error,
+ textarea.parsley-error {
+   color: #B94A48;
+   background-color: #F2DEDE;
+   border: 1px solid #EED3D7;
+ }
+
+ .parsley-errors-list {
+   margin: 2px 0 3px;
+   padding: 0;
+   list-style-type: none;
+   font-size: 0.9em;
+   line-height: 0.9em;
+   opacity: 0;
+
+   transition: all .3s ease-in;
+   -o-transition: all .3s ease-in;
+   -moz-transition: all .3s ease-in;
+   -webkit-transition: all .3s ease-in;
+ }
+
+ .parsley-errors-list.filled {
+   opacity: 1;
+ }
+ 
+ .parsley-type, .parsley-required, .parsley-equalto{
+  color:#ff0000;
+ }
+ 
+ </style>
 <body data-gr-c-s-loaded="true">
 <!-- Pre Loader -->
 <div id="dvLoading" style="display: none;"></div>
@@ -131,11 +183,11 @@ if (isset($_REQUEST['ragister']))
           <div class="col-sm-6">
               <div class="pgwSlider wide">
                   <div class="contact-form">
-                    <form method="post" id="contact-form">
+                    <form method="post" id="validate_form">
                       <div class="row">
                         <div class="col-sm-6">
-                          <input class="con-field" name="name" id="name" required="" placeholder="Name" type="text">
-                          <span id="error_name" style="display:none;color:#003769;">Wrong Name</span>
+                          <input name="name" id="name" placeholder="Enter Name" required data-parsley-pattern="^[a-zA-Z]+$" data-parsley-trigger="keyup" class="form-control" type="text">
+                          <!-- <span id="error_name" style="display:none;color:#003769;">Wrong Name</span> -->
                         </div>
                         <div class="col-sm-6">
                           <input class="con-field" name="contact" required="" maxlength="10" autocomplete="off" id="phone" placeholder="Phone No" type="text">
@@ -168,7 +220,7 @@ if (isset($_REQUEST['ragister']))
                         <div class="col-sm-12">
                           <textarea class="con-field" style="width: 100%" name="message" id="message" rows="6" placeholder="Your Message"></textarea>
                           <div class="submit-area" style="margin-top: 10px; text-align: center;">
-                              <input class="btn-one" type="submit" name="ragister" value="Send Message" required="required" style=" background: #003769 none repeat scroll 0 0; border: 2px solid #003769; color: #ffffff; display: inline-block; font-size: 16px; margin: 0 0 20px; padding: 8px 30px; text-transform: uppercase; transition: all 0.3s ease 0s;">
+                              <input class="btn-one" type="submit" name="ragister" id="submit" value="Send Message"  style=" background: #003769 none repeat scroll 0 0; border: 2px solid #003769; color: #ffffff; display: inline-block; font-size: 16px; margin: 0 0 20px; padding: 8px 30px; text-transform: uppercase; transition: all 0.3s ease 0s;">
                           </div>
                         </div>
                       </div>
@@ -224,7 +276,9 @@ if (isset($_REQUEST['ragister']))
 <script src="js/wow.min.js"></script> 
 <script src="js/slider.js"></script> 
 <script src="js/custom.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="http://parsleyjs.org/dist/parsley.js"></script>
+<!-- 
 <script type="text/javascript">
  $('#email_address').on('keypress', function() {
     var email = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
@@ -261,6 +315,35 @@ if (isset($_REQUEST['ragister']))
         $("#phonealert").html("Enter numbers only");
     }
 });
+</script> -->
+<script>  
+$(document).ready(function(){  
+    $('#validate_form').parsley();
+ 
+ $('#validate_form').on('submit', function(event){
+  event.preventDefault();
+  if($('#validate_form').parsley().isValid())
+  {
+   $.ajax({
+    url:"service_details.php",
+    method:"POST",
+    data:$(this).serialize(),
+    beforeSend:function(){
+     $('#submit').attr('disabled','disabled');
+     $('#submit').val('Submitting...');
+    },
+    success:function(data)
+    {
+     $('#validate_form')[0].reset();
+     $('#validate_form').parsley().reset();
+     $('#submit').attr('disabled',false);
+     $('#submit').val('Submit');
+     alert(data);
+    }
+   });
+  }
+ });
+});  
 </script>
 <?php //include("Include/validation.php") ?>
 

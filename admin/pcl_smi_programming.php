@@ -5,7 +5,7 @@ ini_set('display_errors',1);
 include("controller.php");
     //Single Delete
     if(isset($_REQUEST['del_id_service']))
-     {
+    {
         $del_reg_ser=$_REQUEST['del_id_service'];
         $obj_result= new controller;
         $service_result = $obj_result->Single_delete_ragister_service($del_reg_ser);
