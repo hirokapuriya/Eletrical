@@ -186,12 +186,12 @@ if (isset($_REQUEST['ragister']))
                     <form method="post" id="validate_form">
                       <div class="row">
                         <div class="col-sm-6">
-                          <input name="name" id="name" placeholder="Enter Name" required data-parsley-pattern="^[a-zA-Z]+$" data-parsley-trigger="keyup" class="form-control" type="text">
+                          <input name="name" id="name" placeholder="Enter Name"  required data-parsley-pattern="^[a-zA-Z]+$" data-parsley-trigger="keyup" class="form-control" type="text">
                           <!-- <span id="error_name" style="display:none;color:#003769;">Wrong Name</span> -->
                         </div>
                         <div class="col-sm-6">
                           <input class="con-field" name="contact" required="" maxlength="10" autocomplete="off" id="phone" placeholder="Phone No" type="text">
-                          <span id="phonealert" style="color: #003769;"></span>
+                          <!-- <span id="phonealert" style="color: #003769;"></span> -->
                         </div>
                         <!--AC & DC Drive Programming-->
                         <?php if ($result_service_details['id'] == 18) { ?>
@@ -212,8 +212,8 @@ if (isset($_REQUEST['ragister']))
                           </div>
                         <?php } ?>
                         <div class="col-sm-12">
-                          <input class="con-field" name="email" required="" id="email_address" placeholder="Email" type="text">
-                          <span id="error_email" style="display:none;color:#003769;">Wrong Email</span>
+                          <input class="con-field" name="email" data-parsley-type="email" id="email_address" placeholder="Email" type="email">
+                          <!-- <span id="error_email" style="display:none;color:#003769;">Wrong Email</span> -->
                         </div>
                       </div>
                       <div class="row">
@@ -348,3 +348,9 @@ $(document).ready(function(){
 <?php //include("Include/validation.php") ?>
 
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: none;"><i class="fa fa-angle-up"></i></a></body></html>
+<!--
+ <div class="col-sm-6">
+                          <input class="con-field" name="contact" data-parsley-minlength="10" data-parsley-minlength-message="minlength 10 number" data-parsley-type="digits" data-parsley-type-message="only numbers" autocomplete="off" id="phone" placeholder="Phone No" type="text">
+                          <span id="phonealert" style="color: #003769;"></span>
+                        </div>
+-->
