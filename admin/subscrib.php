@@ -85,7 +85,7 @@ ini_set('display_errors', TRUE);
                                         <thead>
                                             <tr>
                                                 <th>Mass-Delete<br/><input type="checkbox" id="select_all" value=""/></th>
-                                                <th>Mail</th>
+                                                <th>Mail<br/><input type="checkbox" id="select_all_mail" value=""/></th>
                                                 <th>Id</th>
                                                 <th>Email</th>
                                                 <th>Action</th>
@@ -100,7 +100,7 @@ ini_set('display_errors', TRUE);
                                       {?>
                                             <tr>
                                                 <td align="center"><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $get_subscrib_row['id']; ?>"></td>
-                                                <td><input type="checkbox" name="mail[]" value="<?php echo $get_subscrib_row['subscribe_email']; ?>"></td>
+                                                <td><input type="checkbox" class="mailbox" name="mail[]" value="<?php echo $get_subscrib_row['subscribe_email']; ?>"></td>
                                                 <td width="5%"><?php echo $i; ?></td>
                                                 <td width="80%"><?php echo $get_subscrib_row['subscribe_email']; ?></td>
                                                 <td>                                            
@@ -113,14 +113,14 @@ ini_set('display_errors', TRUE);
                                         </tbody>
                                     </table>
                                     <br/><button class="btn btn-danger" type="submit" name="bulk_delete_submit" style="border-color: #003769; color: #ffcb36; background-color: #003769;">&nbsp;Mass Delete</button>
-                                </form>
+                                <!-- </form> -->
                             </div>
                         </div>
                     </div>
                     <!--  End  Striped Rows Table  -->
                 </div>
             </div>
-            <form method="post">
+            <!-- <form method="post"> -->
             <div class="row" style="padding-bottom: 100px;">
                     <div class="col-md-12">
                         <!-- <div id="comments-sec"> -->
@@ -132,7 +132,7 @@ ini_set('display_errors', TRUE);
 
                             <div class="form-group  ">
                                 <label>Please Write a Subject Line</label>
-                                <input type="text" class="form-control" name="subject" required="required" placeholder="Enter Subject Of Ticket" />
+                                <input type="text" class="form-control" name="subject" placeholder="Enter Subject Of Ticket" />
                             </div>
                             <div class="form-group ">
                                 <label>Please Enter Issue</label>
@@ -165,5 +165,30 @@ ini_set('display_errors', TRUE);
     <script src="assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#select_all_mail').on('click',function(){
+                if(this.checked){
+                    $('.mailbox').each(function(){
+                        this.checked = true;
+                    });
+                }else{
+                     $('.mailbox').each(function(){
+                        this.checked = false;
+                    });
+                }
+            });
+    
+            $('.mailbox').on('click',function(){
+                if($('.checkbox:checked').length == $('.mailbox').length){
+                    $('#select_all_mail').prop('checked',true);
+                }else{
+                    $('#select_all_mail').prop('checked',false);
+                }
+            });
+            //$("#select_count").html($("input.emp_checkbox:checked").length+" Selected");
+        });
+    </script>
 </body>
 </html>

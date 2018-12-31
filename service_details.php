@@ -183,23 +183,21 @@ if (isset($_REQUEST['ragister']))
           <div class="col-sm-6">
               <div class="pgwSlider wide">
                   <div class="contact-form">
-                    <form method="post" id="validate_form">
+                    <form method="post" id="validate_form" >
                       <div class="row">
                         <div class="col-sm-6">
-                          <input name="name" id="name" placeholder="Enter Name"  required data-parsley-pattern="^[a-zA-Z]+$" data-parsley-trigger="keyup" class="form-control" type="text">
-                          <!-- <span id="error_name" style="display:none;color:#003769;">Wrong Name</span> -->
+                          <input name="name" placeholder="Enter Name" data-parsley-minlength="2" data-parsley-minlength-message="minlength 2 charector" required data-parsley-pattern="^[a-zA-Z]+$" data-parsley-trigger="keyup" class="form-control" type="text">
                         </div>
                         <div class="col-sm-6">
-                          <input class="con-field" name="contact" required="" maxlength="10" autocomplete="off" id="phone" placeholder="Phone No" type="text">
-                          <!-- <span id="phonealert" style="color: #003769;"></span> -->
+                        <input class="con-field" name="contact" data-parsley-minlength="6" data-parsley-maxlength="10" data-parsley-minlength-message="minlength 6 number" data-parsley-maxlength-message="minlength 10 number" data-parsley-type="digits" data-parsley-type-message="only numbers" autocomplete="off" placeholder="Phone No" type="text">
                         </div>
                         <!--AC & DC Drive Programming-->
                         <?php if ($result_service_details['id'] == 18) { ?>
                           <div class="col-sm-6">
-                            <input class="con-field" name="company_drive" id="name" required="" placeholder="Company-Drive" type="text">
+                            <input class="con-field" name="company_drive"  placeholder="Company-Drive" type="text">
                           </div>
                           <div class="col-sm-6">
-                            <input class="con-field" name="drive_no" required="" id="contact" placeholder="Drive Model No" type="text">
+                            <input class="con-field" name="drive_no" placeholder="Drive Model No" type="text">
                           </div>
                         <?php } ?>
                         <!--AC & DC Drive Reparing-->
@@ -278,44 +276,7 @@ if (isset($_REQUEST['ragister']))
 <script src="js/custom.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="http://parsleyjs.org/dist/parsley.js"></script>
-<!-- 
-<script type="text/javascript">
- $('#email_address').on('keypress', function() {
-    var email = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
-    if(!email) {
-        $('#error_email').show();
-    } else {
-        $('#error_email').hide();
-    }
-  });
-  $('#name').on('keypress', function() {
-    var name = /^[a-zA-Z\s]+$/.test(this.value); 
-    if(!name) {
-        $('#error_name').show();
-    } else {
-        $('#error_name').hide();
-    }
- })
-  $('#phone').keypress(function (event) {
-    var keycode = event.which;
-    if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
-        event.preventDefault();
-    }
-  });
-  $("#phone").bind("keyup keydown", function() {    
-    var amount = parseFloat($(this).val());
-    if (amount) {
-        if (amount > 0 || amount < 10) {
-            $("#phonealert").html("Your number must be between 0 and 10");
-        } else
-    if(amount < 10) {
-            $("#phonealert").html("valid phone number");
-        }
-    } else {
-        $("#phonealert").html("Enter numbers only");
-    }
-});
-</script> -->
+
 <script>  
 $(document).ready(function(){  
     $('#validate_form').parsley();
@@ -350,7 +311,7 @@ $(document).ready(function(){
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: none;"><i class="fa fa-angle-up"></i></a></body></html>
 <!--
  <div class="col-sm-6">
-                          <input class="con-field" name="contact" data-parsley-minlength="10" data-parsley-minlength-message="minlength 10 number" data-parsley-type="digits" data-parsley-type-message="only numbers" autocomplete="off" id="phone" placeholder="Phone No" type="text">
-                          <span id="phonealert" style="color: #003769;"></span>
-                        </div>
+    <input class="con-field" name="contact" data-parsley-minlength="10" data-parsley-minlength-message="minlength 10 number" data-parsley-type="digits" data-parsley-type-message="only numbers" autocomplete="off" id="phone" placeholder="Phone No" type="text">
+    <span id="phonealert" style="color: #003769;"></span>
+  </div>
 -->
